@@ -42,23 +42,6 @@
       <option>Novembro</option>
       <option>Dezembro</option>
     </select>
-    <!--<ul class="list-group list-group-horizontal">
-      <li class="list-group-item ligMes" mes="0">Jan</li>
-      <li class="list-group-item ligMes" mes="1">Fev</li>
-      <li class="list-group-item ligMes" mes="2">Mar</li>
-      <li class="list-group-item ligMes" mes="3">Abr</li>
-      <li class="list-group-item ligMes" mes="4">Mai</li>
-      <li class="list-group-item ligMes" mes="5">Jun</li>
-      <li class="list-group-item ligMes" mes="6">Jul</li>
-      <li class="list-group-item ligMes" mes="7">Ago</li>
-      <li class="list-group-item ligMes" mes="8">Set</li>
-      <li class="list-group-item ligMes" mes="9">Out</li>
-      <li class="list-group-item ligMes" mes="10">Nov</li>
-      <li class="list-group-item ligMes" mes="11">Dez</li>
-    </ul>-->
-  </div>
-  <div class="col-sm-2">
-    
   </div>
 </div>
 <table class="table table-bordered" id="tMes" style="margin-top: 20px;">
@@ -133,19 +116,12 @@
 <script type="text/javascript">
 
   $(function(){
-    /*var ano = $("#sAno option:selected").val();
-    var mes = $("#sMes option:selected").index();*/
     var ano = new Date().getFullYear();
     var mes = new Date().getMonth();
     exibirMes(mes, ano);
 
     var meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
     $("#sMes").val($("option:contains('" + meses[mes] + "')").val());
-
-    $(".evento").click(function(){
-      $("#mbEvento").text($(this).attr("event-id"));
-      $("#modal-title").text($(this).attr("event-title"));
-    });
   });
 
   function diasNoMes(mes, ano) {
@@ -172,6 +148,11 @@
     $("#dia10").append(" <span class='badge badge-success evento' data-toggle='modal' data-target='#modalEventos' event-title='Culto especial' event-id='1'>Evento</span>");
     $("#dia15").append(" <span class='badge badge-success evento' data-toggle='modal' data-target='#modalEventos' event-title='Casamento' event-id='2'>Evento</span>");
     $("#dia26").append(" <span class='badge badge-success evento' data-toggle='modal' data-target='#modalEventos' event-title='Culto especial' event-id='3'>Evento</span>");
+
+    $(".evento").click(function(){
+      $("#mbEvento").text($(this).attr("event-id"));
+      $("#modal-title").text($(this).attr("event-title"));
+    });
   }
 
   $("#sAno").on("change", function(){
