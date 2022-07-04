@@ -11,7 +11,7 @@ $(function(){
 
     $("#lCalendario").click(function(){
         console.log("Load Calendário");
-        $("#principal").load("calendario.html");
+        $("#principal").load("ibcamposbrancos/calendario.html");
         $(".nbMenu>.active").removeClass("active");
         $(".niCalendario").addClass("active");
     });
