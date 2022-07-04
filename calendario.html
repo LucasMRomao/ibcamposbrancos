@@ -1,0 +1,188 @@
+<!--Modal de eventos-->
+<div class="modal fade" tabindex="-1" id="modalEventos">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="mbEvento"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 20px;">
+  <div class="col-sm-2">
+      <select class="form-control" id="sAno">
+          <option>2022</option>
+          <option>2021</option>
+          <option>2020</option>
+      </select>
+  </div>
+  <div class="col-sm-4">
+    <select class="form-control" id="sMes">
+      <option>Janeiro</option>
+      <option>Fevereiro</option>
+      <option>Março</option>
+      <option>Abril</option>
+      <option>Maio</option>
+      <option>Junho</option>
+      <option>Julho</option>
+      <option>Agosto</option>
+      <option>Setembro</option>
+      <option>Outubro</option>
+      <option>Novembro</option>
+      <option>Dezembro</option>
+    </select>
+    <!--<ul class="list-group list-group-horizontal">
+      <li class="list-group-item ligMes" mes="0">Jan</li>
+      <li class="list-group-item ligMes" mes="1">Fev</li>
+      <li class="list-group-item ligMes" mes="2">Mar</li>
+      <li class="list-group-item ligMes" mes="3">Abr</li>
+      <li class="list-group-item ligMes" mes="4">Mai</li>
+      <li class="list-group-item ligMes" mes="5">Jun</li>
+      <li class="list-group-item ligMes" mes="6">Jul</li>
+      <li class="list-group-item ligMes" mes="7">Ago</li>
+      <li class="list-group-item ligMes" mes="8">Set</li>
+      <li class="list-group-item ligMes" mes="9">Out</li>
+      <li class="list-group-item ligMes" mes="10">Nov</li>
+      <li class="list-group-item ligMes" mes="11">Dez</li>
+    </ul>-->
+  </div>
+  <div class="col-sm-2">
+    
+  </div>
+</div>
+<table class="table table-bordered" id="tMes" style="margin-top: 20px;">
+    <thead style="background-color: #808080;">
+      <tr>
+        <th scope="col">Dom</th>
+        <th scope="col">Seg</th>
+        <th scope="col">Ter</th>
+        <th scope="col">Qua</th>
+        <th scope="col">Qui</th>
+        <th scope="col">Sex</th>
+        <th scope="col">Sáb</th>
+      </tr>
+    </thead>
+    <tbody style="background-color: #C0C0C0;">
+      <tr>
+        <td class="tDia" id="dia1" style="color: red;"></td>
+        <td class="tDia" id="dia2"></td>
+        <td class="tDia" id="dia3"></td>
+        <td class="tDia" id="dia4">1</td>
+        <td class="tDia" id="dia5">2</td>
+        <td class="tDia" id="dia6">3</td>
+        <td class="tDia" id="dia7">4</td>
+      </tr>
+      <tr>
+        <td class="tDia" id="dia8" style="color: red;">5</td>
+        <td class="tDia" id="dia9">6</td>
+        <td class="tDia" id="dia10">7</td>
+        <td class="tDia" id="dia11">8</td>
+        <td class="tDia" id="dia12">9</td>
+        <td class="tDia" id="dia13">10</td>
+        <td class="tDia" id="dia14">11</td>
+      </tr>
+      <tr>
+        <td class="tDia" id="dia15" style="color: red;">12</td>
+        <td class="tDia" id="dia16">13</td>
+        <td class="tDia" id="dia17">14</td>
+        <td class="tDia" id="dia18">15</td>
+        <td class="tDia" id="dia19">16</td>
+        <td class="tDia" id="dia20">17</td>
+        <td class="tDia" id="dia21">18</td>
+      </tr>
+      <tr>
+        <td class="tDia" id="dia22" style="color: red;">19</td>
+        <td class="tDia" id="dia23">20</td>
+        <td class="tDia" id="dia24">21</td>
+        <td class="tDia" id="dia25">22</td>
+        <td class="tDia" id="dia26">23</td>
+        <td class="tDia" id="dia27">24</td>
+        <td class="tDia" id="dia28">25</td>
+      </tr>
+      <tr>
+        <td class="tDia" id="dia29" style="color: red;">26</td>
+        <td class="tDia" id="dia30">27</td>
+        <td class="tDia" id="dia31">28</td>
+        <td class="tDia" id="dia32">29</td>
+        <td class="tDia" id="dia33">30</td>
+        <td class="tDia" id="dia34"></td>
+        <td class="tDia" id="dia35"></td>
+      </tr>
+      <tr>
+        <td class="tDia" id="dia36" style="color: red;">26</td>
+        <td class="tDia" id="dia37">27</td>
+        <td class="tDia" id="dia38">28</td>
+        <td class="tDia" id="dia39">29</td>
+        <td class="tDia" id="dia40">30</td>
+        <td class="tDia" id="dia41"></td>
+        <td class="tDia" id="dia42"></td>
+      </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+
+  $(function(){
+    /*var ano = $("#sAno option:selected").val();
+    var mes = $("#sMes option:selected").index();*/
+    var ano = new Date().getFullYear();
+    var mes = new Date().getMonth();
+    exibirMes(mes, ano);
+
+    var meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    $("#sMes").val($("option:contains('" + meses[mes] + "')").val());
+
+    $(".evento").click(function(){
+      $("#mbEvento").text($(this).attr("event-id"));
+      $("#modal-title").text($(this).attr("event-title"));
+    });
+  });
+
+  function diasNoMes(mes, ano) {
+    if(mes == 1){
+      return ano % 4 == 0 ? 29 : 28;
+    }else if(mes <= 6){
+      return mes % 2 == 0 ? 31 : 30;
+    }else{
+      return mes % 2 == 1 ? 31 : 30;
+    }
+  }
+
+  function exibirMes(mes, ano){
+    $(".tDia").text(""); //Limpa a tabela
+    var date = new Date(ano, mes, 1);
+    var totalDias = diasNoMes(mes, ano);
+    var dia = date.getDay() + 1;
+
+    for(var i=1; i<=totalDias; i++){
+      $("#dia" + dia).text(i);
+      dia++;
+    }
+
+    $("#dia10").append(" <span class='badge badge-success evento' data-toggle='modal' data-target='#modalEventos' event-title='Culto especial' event-id='1'>Evento</span>");
+    $("#dia15").append(" <span class='badge badge-success evento' data-toggle='modal' data-target='#modalEventos' event-title='Casamento' event-id='2'>Evento</span>");
+    $("#dia26").append(" <span class='badge badge-success evento' data-toggle='modal' data-target='#modalEventos' event-title='Culto especial' event-id='3'>Evento</span>");
+  }
+
+  $("#sAno").on("change", function(){
+    var ano = $("#sAno option:selected").val();
+    var mes = $("#sMes option:selected").index();
+    exibirMes(mes, ano);
+  });
+
+  $("#sMes").on("change", function(){
+    var ano = $("#sAno option:selected").val();
+    var mes = $("#sMes option:selected").index();
+    exibirMes(mes, ano);
+  });
+</script>

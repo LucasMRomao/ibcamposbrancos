@@ -1,0 +1,50 @@
+<form>
+    <div class="alert alert-primary" role="alert" style="margin-top: 10px;">
+
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center" style="font-size: 30px;">Pedido de oração</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="iNome">Nome</label>
+            <input type="email" class="form-control" id="iNome" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="iWhatsapp">Whatsapp</label>
+            <input type="text" class="form-control" id="iWhatsapp" autocomplete="off" maxlength="15">
+            <small id="whatsappHelp" class="form-text text-muted">Seu número não será exibido caso o pedido seja público.</small>
+        </div>
+        <div class="form-group">
+            <label for="taDescricao">Descrição do pedido</label>
+            <textarea class="form-control" id="taDescricao" rows="3"></textarea>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="cPublico">
+            <label class="form-check-label" for="cPublico">Público</label>
+            <small id="publicoHelp" class="form-text text-muted">Somente o Pastor poderá ver o pedido.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(function(){
+
+        /*$("#iWhatsapp").on("keypress", function(){
+            var inputLength = $(this).val().length;
+
+            if($(this).val().indexOf("(") != 0){
+                $(this).val("(" + $(this).val());
+            }
+        });*/
+
+        $("#cPublico").on("change", function(){
+            var isChecked = $("#cPublico").is(":checked");
+
+            isChecked ? $("#publicoHelp").text("Todos poderão ver o pedido.") : $("#publicoHelp").text("Somente o Pastor poderá ver o pedido.");
+        })
+
+    });
+</script>
