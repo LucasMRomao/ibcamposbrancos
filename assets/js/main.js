@@ -1,6 +1,6 @@
 $(function(){
 
-    $("#principal").load("../../home.html");
+    $("#principal").load("home.html");
 
     $("#lHome").click(function(){
         $("#principal").load("../../home.html");
