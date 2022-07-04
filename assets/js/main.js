@@ -1,13 +1,14 @@
 $(function(){
-
-    $("#principal").load("home.html");
-    $("#lHome").click(load("home.html"));
-    $("#lCalendario").click(load("calendario.html"));
-    $("#lPedido").click(load("pedido_oracao.html"));
-
-    let load = (pagina) => {
+    let loadPage = function (pagina) {
         $("#principal").load(pagina);
         $(".nbMenu>.active").removeClass("active");
         $(".niContato").addClass("active");
     }
+
+    $("#principal").load("home.html");
+    $("#lHome").click(() => loadPage("home.html"));
+    $("#lCalendario").click(() => loadPage("calendario.html"));
+    $("#lPedido").click(() => loadPage("pedido_oracao.html"));
+
+    
 });
