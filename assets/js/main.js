@@ -1,25 +1,13 @@
 $(function(){
 
     $("#principal").load("home.html");
+    $("#lHome").click(load("home.html"));
+    $("#lCalendario").click(load("calendario.html"));
+    $("#lPedido").click(load("pedido_oracao.html"));
 
-    $("#lHome").click(function(){
-        console.log("Load Home");
-        $("#principal").load("home.html");
-        $(".nbMenu>.active").removeClass("active");
-        $(".niHome").addClass("active");
-    })
-
-    $("#lCalendario").click(function(){
-        console.log("Load Calendário");
-        $("#principal").load("calendario.html");
-        $(".nbMenu>.active").removeClass("active");
-        $(".niCalendario").addClass("active");
-    });
-
-    $("#lPedido").click(function(){
-        console.log("Load Pedido Oração");
-        $("#principal").load("pedido_oracao.html");
+    let load = (pagina) => {
+        $("#principal").load(pagina);
         $(".nbMenu>.active").removeClass("active");
         $(".niContato").addClass("active");
-    });
+    }
 });
