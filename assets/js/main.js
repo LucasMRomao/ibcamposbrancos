@@ -1,19 +1,13 @@
 $(function(){
-    let loadPage = function (pagina) {
+    let loadPage = function (pagina, e) {
         $("#principal").load(pagina);
         $(".nbMenu>.active").removeClass("active");
-        //$(".niContato").addClass("active");
-
-        switch(pagina){
-            case 'home.html': $(".niHome").addClass("active"); break;
-            case 'calendario.html': $(".niCalendario").addClass("active"); break;
-            case 'pedido_oracao.html': $(".niPedido").addClass("active"); break;
-        }
+        $(".ni" + e).addClass("active");
     }
 
     $("#principal").load("home.html");
-    $("#lHome").click(() => loadPage("home.html"));
-    $("#lCalendario").click(() => loadPage("calendario.html"));
-    $("#lPedido").click(() => loadPage("pedido_oracao.html"));
+    $("#lHome").click(() => loadPage("home.html", "Home"));
+    $("#lCalendario").click(() => loadPage("calendario.html", "Calendario"));
+    $("#lPedido").click(() => loadPage("pedido_oracao.html", "Pedido"));
     
 });
