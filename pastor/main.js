@@ -73,7 +73,7 @@ $(function(){
                             $pedido += "<img style='float: right; width: 3%; height: auto;' src='../assets/img/";
                             publico ? $pedido += "cadeado-aberto.png" : $pedido += "cadeado-fechado.png";
                             $pedido += "' />";
-                            $pedido += "<i>" + whatsapp + "</i><br/>";
+                            $pedido += "<i>" + whatsapp + "</i><br/><br/>";
                             $pedido += descricao;
                             $pedido += "</div>"; //Close div col-11
                             $pedido += "</div>"; //Close div row
