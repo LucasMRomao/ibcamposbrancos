@@ -27,6 +27,11 @@
                     <label class="form-check-label" for="cPublico">Público</label>
                     <small id="publicoHelp" class="form-text text-muted">Somente o Pastor poderá ver o pedido.</small>
                 </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="cAnonimo">
+                    <label class="form-check-label" for="cAnonimo">Anonimo</label>
+                    <small id="anonimoHelp" class="form-text text-muted">Seu nome será exibido.</small>
+                </div>
                 <button type="button" class="btn btn-primary" id="bEnviar">Enviar</button>
             </div>
         </div>
@@ -47,6 +52,12 @@
             var isChecked = $("#cPublico").is(":checked");
 
             isChecked ? $("#publicoHelp").text("Todos poderão ver o pedido.") : $("#publicoHelp").text("Somente o Pastor poderá ver o pedido.");
+        });
+
+        $("#cAnonimo").on("change", function(){
+            var isChecked = $("#cAnonimo").is(":checked");
+
+            isChecked ? $("#anonimoHelp").text("Seu nome não será exibido.") : $("#anonimoHelp").text("Seu nome será exibido.");
         });
 
         const firebaseConfig = {
@@ -71,6 +82,7 @@
             let whatsapp = $("#iWhatsapp").val();
             let descricao = $("#taDescricao").val();
             let publico = $("#cPublico").is(':checked');
+            let anonimo = $("#cAnonimo").is(':checked');
 
             if(nome == undefined || nome == null || nome == ''){
                 alert("Por favor insira seu nome");
@@ -79,7 +91,8 @@
                     nome: nome,
                     whatsapp: whatsapp,
                     descricao_pedido: descricao,
-                    publico: publico
+                    publico: publico,
+                    anonimo: anonimo
                 });
 
                 alert("Pedido de oração enviado com sucesso!");
@@ -100,10 +113,11 @@
                 let whatsapp = val.data().whatsapp;
                 let descricao = val.data().descricao_pedido;
                 let publico = val.data().publico;
+                let anonimo = val.data().anonimo;
 
                 if(publico){
                     let $pedido = $("<div class='alert alert-primary' role='alert' style='margin-top: 10px;'>");
-                    $pedido.append("<b>" + nome + "</b><br/>");
+                    anonimo ? $pedido.append("<b>Anônimo</b><br/>") : $pedido.append("<b>" + nome + "</b><br/>");
                     $pedido.append(descricao);    
                     $pedido.append("</div>");
 
