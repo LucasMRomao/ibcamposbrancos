@@ -20,11 +20,11 @@ $(function(){
         let user = $("#iUsuario").val();
         let password = $("#iSenha").val();
 
-        const dbRef = db.ref('credenciais_login');
-        var dbUser = dbRef.child('user');
-        var dbPassword = dbRef.child('password');
-
-        console.log("dbUser: " + dbUser);
-        console.log("dbPassword: " + dbPassword);
+        var dbUser = firebase.database().ref('credenciais_login/f0LLkbq5FaeQmQIchvQO/user');
+        
+        dbUser.on('value', (snapshot) => {
+            const data = snapshot.val();
+            console.log(data);
+        });
     });
 });
