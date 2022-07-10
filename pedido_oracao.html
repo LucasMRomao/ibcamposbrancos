@@ -110,7 +110,11 @@
 
                 data += mes;
                 data += '-';
-                data += date.getDate();
+
+                let dia = date.getDate();
+                if(dia < 10) dia = '0' + dia;
+
+                data += dia;
 
                 db.collection('pedidos').add({
                     nome: nome,
