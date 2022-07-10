@@ -21,6 +21,10 @@ $(function(){
         let password = $("#iSenha").val();
 
         var database = db.collection('credenciais_login');
-        console.log(database.firestore.toJSON());
+        var dbUser = database.child('user');
+        var dbPassword = database.child('password');
+
+        console.log("dbUser: " + dbUser);
+        console.log("dbPassword: " + dbPassword);
     });
 });
