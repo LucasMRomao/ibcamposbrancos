@@ -16,7 +16,8 @@ $(function(){
         const auth = firebase.auth();
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
-
+        console.log(db);
+        
         let user = $("#iUsuario").val();
         let password = $("#iSenha").val();
 
