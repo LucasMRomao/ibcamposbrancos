@@ -72,17 +72,21 @@
             let descricao = $("#taDescricao").val();
             let publico = $("#cPublico").is(':checked');
 
-            db.collection('pedidos').add({
-                nome: nome,
-                whatsapp: whatsapp,
-                descricao_pedido: descricao,
-                publico: publico
-            });
+            if(nome == undefined || nome == null || nome == ''){
+                alert("Por favor insira seu nome");
+            }else{
+                db.collection('pedidos').add({
+                    nome: nome,
+                    whatsapp: whatsapp,
+                    descricao_pedido: descricao,
+                    publico: publico
+                });
 
-            alert("Pedido de oração enviado com sucesso!");
-            $("#iNome").val('');
-            $("#iWhatsapp").val('');
-            $("#taDescricao").val('');
+                alert("Pedido de oração enviado com sucesso!");
+                $("#iNome").val('');
+                $("#iWhatsapp").val('');
+                $("#taDescricao").val('');
+            }
         });
 
         //Método para 'ouvir' o nó de pedidos
