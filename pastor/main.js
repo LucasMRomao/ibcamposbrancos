@@ -20,7 +20,7 @@ $(function(){
         let user = $("#iUsuario").val();
         let password = $("#iSenha").val();
 
-        const dbRef = firebase.database().ref();
+        const dbRef = ref(db);
         var dbUser = dbRef.child('user');
         var dbPassword = dbRef.child('password');
 
