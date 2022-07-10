@@ -20,11 +20,17 @@ $(function(){
         let user = $("#iUsuario").val();
         let password = $("#iSenha").val();
 
-        var dbUser = firebase.database().ref('credenciais_login/f0LLkbq5FaeQmQIchvQO/user');
-        
-        dbUser.on('value', (snapshot) => {
-            const data = snapshot.val();
-            console.log(data);
+        db.collection('credenciais_login').onSnapshot((data) => {
+            data.docs.map((val) => { //Similar ao foreach do PHP
+                let dbUser = val.data().user;
+                let dbPassword = val.data().password;
+
+                if(user == dbUser && password == dbPassword){
+                    alert("Logado!");
+                }else{
+                    alert("Erro ao logar!");
+                }
+            });
         });
     });
 });
