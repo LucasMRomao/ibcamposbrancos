@@ -16,15 +16,11 @@ $(function(){
         const auth = firebase.auth();
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
-        console.log(db);
-        
+
         let user = $("#iUsuario").val();
         let password = $("#iSenha").val();
 
-        var database = firebase.database().ref('credenciais_login');
-        database.on('value', (snapshot) => {
-            const data = snapshot.val();
-            console.log(data);
-        });
+        var database = db.collection('credenciais_login');
+        console.log(database);
     });
 });
