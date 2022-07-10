@@ -20,7 +20,7 @@ $(function(){
         let user = $("#iUsuario").val();
         let password = $("#iSenha").val();
 
-        const dbRef = ref(db);
+        const dbRef = db.ref('credenciais_login');
         var dbUser = dbRef.child('user');
         var dbPassword = dbRef.child('password');
 
