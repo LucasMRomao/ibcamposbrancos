@@ -86,7 +86,7 @@
         });
 
         //Método para 'ouvir' o nó de pedidos
-        db.collection('pedidos').onSnapshat((data) => {
+        db.collection('pedidos').onSnapshot((data) => {
 
             let dPedidos = $("#dPedidos");
             dPedidos.html("");
