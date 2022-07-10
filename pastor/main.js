@@ -27,7 +27,27 @@ $(function(){
                 let dbPassword = val.data().password;
 
                 if(user == dbUser && password == dbPassword){
-                    alert("Logado!");
+                    
+                    $("#dMain").html("");
+
+                    db.collection('pedidos').onSnapshot((dataPedido) => {
+                        dataPedido.docs.map((val) => {
+                            let nome = val.data().nome;
+                            let whatsapp = val.data().whatsapp;
+                            let descricao = val.data().descricao_pedido;
+                            let publico = val.data().publico;
+                            
+                            let $pedido = $("");
+
+                            publico ? $pedido.append("<div class='alert alert-success' role='alert' style='margin-top: 10px;'>") : $pedido.append("<div class='alert alert-warning' role='alert' style='margin-top: 10px;'>");
+                            $pedido.append("<b>" + nome + "</b><br/>");
+                            $pedido.append(descricao);    
+                            $pedido.append("</div>");
+
+                            $("#dMain").append($pedido);
+                        });
+                    });
+
                 }else{
                     alert("Erro ao logar!");
                 }
