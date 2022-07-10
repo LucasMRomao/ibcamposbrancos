@@ -48,8 +48,17 @@ $(function(){
                             let whatsapp = val.data().whatsapp;
                             let descricao = val.data().descricao_pedido;
                             let publico = val.data().publico;
+                            let data = '';
                             let lido = val.data().lido;
                             
+                            let dataPedido = val.data().data;
+
+                            data += dataPedido.split("-")[2];
+                            data += "/";
+                            data += dataPedido.split("-")[1];
+                            data += "/";
+                            data += dataPedido.split("-")[0];
+
                             let $pedido = '';
 
                             $pedido += "<div class='alert alert-success' role='alert' style='margin-top: 10px;'>";
@@ -58,7 +67,9 @@ $(function(){
                             lido ? $pedido += "<a href='#' class='lPedidoNaoLido' pedido-id='" + val.id + "'><img class='img-fluid' src='../assets/img/lido.png' /></a>" : $pedido += "<a href='#' class='lPedidoLido' pedido-id='" + val.id + "'><img class='img-fluid' src='../assets/img/nao-lido.png' /></a>";
                             $pedido += "</div>"; //Close div col-1
                             $pedido += "<div class='col-11'>"
-                            $pedido += "<b>" + nome + "</b><br/>";
+                            $pedido += "<b>" + nome + "</b>";
+                            $pedido += "<div style='float: right'><span>" + data + "</span></div>"
+                            $pedido += "<br/>";
                             $pedido += "<img style='float: right; width: 3%; height: auto;' src='../assets/img/";
                             publico ? $pedido += "cadeado-aberto.png" : $pedido += "cadeado-fechado.png";
                             $pedido += "' />";
