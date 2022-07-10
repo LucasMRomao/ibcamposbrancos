@@ -20,9 +20,9 @@ $(function(){
         let user = $("#iUsuario").val();
         let password = $("#iSenha").val();
 
-        var database = db.collection('credenciais_login');
-        var dbUser = database.child('user');
-        var dbPassword = database.child('password');
+        const dbRef = firebase.database().ref();
+        var dbUser = dbRef.child('user');
+        var dbPassword = dbRef.child('password');
 
         console.log("dbUser: " + dbUser);
         console.log("dbPassword: " + dbPassword);
