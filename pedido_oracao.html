@@ -99,8 +99,8 @@
 
                 if(publico){
                     let $pedido = $("<div class='alert alert-primary' role='alert' style='margin-top: 10px;'>");
-                    $pedido.append("<b>Nome:</b> " + nome + "<br/>");
-                    $pedido.append("<b>Pedido:</b> " + descricao);    
+                    $pedido.append("<b>" + nome + "</b><br/>");
+                    $pedido.append(descricao);    
                     $pedido.append("</div>");
 
                     dPedidos.append($pedido);
