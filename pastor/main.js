@@ -37,15 +37,15 @@ $(function(){
                             let descricao = val.data().descricao_pedido;
                             let publico = val.data().publico;
                             
-                            let $pedido = $("");
+                            let $pedido = '';
 
-                            publico ? $pedido.append("<div class='alert alert-success' role='alert' style='margin-top: 10px;'>") : $pedido.append("<div class='alert alert-warning' role='alert' style='margin-top: 10px;'>");
-                            $pedido.append("<b>" + nome + "</b><br/>");
-                            $pedido.append("<i>" + whatsapp + "</i><br/>");
-                            $pedido.append(descricao);    
-                            $pedido.append("</div>");
+                            publico ? $pedido += "<div class='alert alert-success' role='alert' style='margin-top: 10px;'>" : $pedido += "<div class='alert alert-warning' role='alert' style='margin-top: 10px;'>";
+                            $pedido += "<b>" + nome + "</b><br/>";
+                            $pedido += "<i>" + whatsapp + "</i><br/>";
+                            $pedido += descricao;    
+                            $pedido += "</div>";
 
-                            $("#dMain").append($pedido);
+                            $("#dMain").html($("#dMain").html() + $pedido);
                         });
                     });
 
