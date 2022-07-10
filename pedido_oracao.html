@@ -25,9 +25,14 @@
             <label class="form-check-label" for="cPublico">Público</label>
             <small id="publicoHelp" class="form-text text-muted">Somente o Pastor poderá ver o pedido.</small>
         </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="button" class="btn btn-primary" id="bEnviar">Enviar</button>
     </div>
 </form>
+
+<!--Bibliotecas do Firebase para utilizar a base de dados online-->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
 <script type="text/javascript">
     $(function(){
@@ -38,6 +43,42 @@
             var isChecked = $("#cPublico").is(":checked");
 
             isChecked ? $("#publicoHelp").text("Todos poderão ver o pedido.") : $("#publicoHelp").text("Somente o Pastor poderá ver o pedido.");
+        });
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
+            authDomain: "igreja-batista-campos-brancos.firebaseapp.com",
+            databaseURL: "https://igreja-batista-campos-brancos-default-rtdb.firebaseio.com",
+            projectId: "igreja-batista-campos-brancos",
+            storageBucket: "igreja-batista-campos-brancos.appspot.com",
+            messagingSenderId: "724470922283",
+            appId: "1:724470922283:web:fcf1eaf1f43df1d48dfe6e",
+            measurementId: "G-WKZFS0PDDY"
+        };
+    
+        firebase.initializeApp(firebaseConfig);
+
+        const auth = firebase.auth();
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const db = firebase.firestore();
+
+        $("#bEnviar").click(function(){
+            let nome = $("#iNome").val();
+            let whatsapp = $("#iWhatsapp").val();
+            let descricao = $("#taDescricao").val();
+            let publico = $("#cPublico").is(':checked');
+
+            db.collection('pedidos').add({
+                nome: nome,
+                whatsapp: whatsapp,
+                pedido: pedido,
+                publico: publico
+            });
+
+            alert("Pedido de oração enviado com sucesso!");
+            $("#iNome").val('');
+            $("#iWhatsapp").val('');
+            $("#taDescricao").val('');
         });
 
     });
