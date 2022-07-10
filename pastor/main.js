@@ -41,6 +41,7 @@ $(function(){
 
                             publico ? $pedido.append("<div class='alert alert-success' role='alert' style='margin-top: 10px;'>") : $pedido.append("<div class='alert alert-warning' role='alert' style='margin-top: 10px;'>");
                             $pedido.append("<b>" + nome + "</b><br/>");
+                            $pedido.append("<i>" + whatsapp + "</i><br/>");
                             $pedido.append(descricao);    
                             $pedido.append("</div>");
 
