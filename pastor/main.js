@@ -26,7 +26,7 @@ $(function(){
         if(logado) return; //Não executar se já estiver logado
         
         let user = $("#iUsuario").val();
-        let password = $("#iSenha").val();
+        let password = MD5($("#iSenha").val());
 
         db.collection('credenciais_login').onSnapshot((data) => {
             data.docs.map((val) => { //Similar ao foreach do PHP
