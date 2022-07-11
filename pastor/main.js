@@ -1,3 +1,7 @@
+function salvarNovaSenha(){
+    console.log("Funcionou!");
+}
+
 $(function(){
 
     const firebaseConfig = {
