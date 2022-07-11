@@ -57,9 +57,9 @@ $(function(){
                 }
             });
         });
+    });
 
-        $("#bSalvarNovaSenha").click(function(){
-            console.log("Funcionou!");
-        });
+    $("#bSalvarNovaSenha").click(function(){
+        console.log("Funcionou!");
     });
 });
