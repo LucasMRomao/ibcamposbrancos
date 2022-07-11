@@ -36,10 +36,12 @@ $(function(){
                 if(user == dbUser && password == dbPassword){
                     
                     logado = true;
-                    $("#dMain").html("");
-                    $("#dMain").html("<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalNovaSenha'>Alterar senha</button>");
+                    $("#dMain").load("area_do_pastor.html");
 
                     db.collection('pedidos').onSnapshot((dataPedido) => {
+                        
+                        $("#dPedidos").html(""); //Limpa pedidos
+                        
                         dataPedido.docs.map((val) => {
                             let nome = val.data().nome;
                             let whatsapp = val.data().whatsapp;
@@ -54,7 +56,7 @@ $(function(){
                             $pedido += descricao;    
                             $pedido += "</div>";
 
-                            $("#dMain").html($("#dMain").html() + $pedido);
+                            $("#dPedidos").html($("#dPedidos").html() + $pedido);
                         });
                     });
 
