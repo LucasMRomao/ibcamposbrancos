@@ -1,7 +1,3 @@
-function salvarNovaSenha(){
-    console.log("Funcionou!");
-}
-
 $(function(){
 
     const firebaseConfig = {
@@ -15,7 +11,7 @@ $(function(){
         measurementId: "G-WKZFS0PDDY"
     };
 
-    if (!firebase.apps.length) {
+    if(!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
 
@@ -60,6 +56,10 @@ $(function(){
                     alert("Erro ao logar!");
                 }
             });
+        });
+
+        $("#bSalvarNovaSenha").click(function(){
+            console.log("Funcionou!");
         });
     });
 });
