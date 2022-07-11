@@ -29,6 +29,7 @@ $(function(){
                 if(user == dbUser && password == dbPassword){
                     
                     $("#dMain").html("");
+                    $("#dMain").html("<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalNovaSenha'>Alterar senha</button>");
 
                     db.collection('pedidos').onSnapshot((dataPedido) => {
                         dataPedido.docs.map((val) => {
