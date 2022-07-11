@@ -60,7 +60,7 @@ $(function(){
     });
 
     $("#bSalvarNovaSenha").click(function(){
-        if($("#iNovaSenha").val().isEmpty()){
+        if($("#iNovaSenha").val() == ''){
             alert("Campo senha não pode estar em branco!");
         }else{
             let novaSenha = $("#iNovaSenha").val();
