@@ -60,6 +60,12 @@ $(function(){
     });
 
     $("#bSalvarNovaSenha").click(function(){
-        console.log("Funcionou!");
+        if($("#iNovaSenha").val().isEmpty()){
+            alert("Campo senha não pode estar em branco!");
+        }else{
+            let novaSenha = $("#iNovaSenha").val();
+            db.collection("credenciais_login").doc("f0LLkbq5FaeQmQIchvQO").set({user: 'allan', password: novaSenha});
+            alert("Senha alterada com sucesso!");
+        }
     });
 });
