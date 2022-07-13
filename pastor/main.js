@@ -43,8 +43,7 @@ $(function(){
                         $("#dPedidos").html(""); //Limpa pedidos
                         
                         dataPedido.docs.map((val) => {
-                            console.log(val);
-                            console.log(val.data());
+                            console.log("ID: " + val.id);
                             let nome = val.data().nome;
                             let whatsapp = val.data().whatsapp;
                             let descricao = val.data().descricao_pedido;
