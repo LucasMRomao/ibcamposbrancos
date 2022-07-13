@@ -48,14 +48,22 @@ $(function(){
                             let whatsapp = val.data().whatsapp;
                             let descricao = val.data().descricao_pedido;
                             let publico = val.data().publico;
+                            let lido = val.data().lido;
                             
                             let $pedido = '';
 
                             publico ? $pedido += "<div class='alert alert-success' role='alert' style='margin-top: 10px;'>" : $pedido += "<div class='alert alert-warning' role='alert' style='margin-top: 10px;'>";
+                            $pedido += "<div class='row'>";
+                            $pedido += "<div class='col-1'>";
+                            lido ? $pedido += "<img class='img-fluid' src='assets/img/'lido.jpg />" : $pedido += "<img class='img-fluid' src='assets/img/nao-lido.jpg' />";
+                            $pedido += "</div>"; //Close div col-1
+                            $pedido += "<div class='col-11'>"
                             $pedido += "<b>" + nome + "</b><br/>";
                             $pedido += "<i>" + whatsapp + "</i><br/>";
                             $pedido += descricao;
-                            $pedido += "</div>";
+                            $pedido += "</div>"; //Close div col-11
+                            $pedido += "</div>"; //Close div row
+                            $pedido += "</div>" //Close div alert
 
                             $("#dPedidos").html($("#dPedidos").html() + $pedido);
                         });
