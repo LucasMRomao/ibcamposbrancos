@@ -55,7 +55,7 @@ $(function(){
                             publico ? $pedido += "<div class='alert alert-success' role='alert' style='margin-top: 10px;'>" : $pedido += "<div class='alert alert-warning' role='alert' style='margin-top: 10px;'>";
                             $pedido += "<div class='row'>";
                             $pedido += "<div class='col-1'>";
-                            lido ? $pedido += "<a href='#' class='lPedidoLido' pedido-id='" + val.id + "'><img class='img-fluid' src='../assets/img/'lido.jpg /></a>" : $pedido += "<img class='img-fluid' src='../assets/img/nao-lido.jpg' />";
+                            lido ? $pedido += "<img class='img-fluid' src='../assets/img/'lido.jpg />" : $pedido += "<a href='#' class='lPedidoLido' pedido-id='" + val.id + "'><img class='img-fluid' src='../assets/img/nao-lido.jpg' /></a>";
                             $pedido += "</div>"; //Close div col-1
                             $pedido += "<div class='col-11'>"
                             $pedido += "<b>" + nome + "</b><br/>";
@@ -69,7 +69,6 @@ $(function(){
 
                             $(".lPedidoLido").click(function(){
                                 db.collection("pedidos").doc($(this).attr("pedido-id")).update({lido: true});
-                                console.log("Pedido lido: " + $(this).attr("pedido-id"));
                             });
                         });
                     });
