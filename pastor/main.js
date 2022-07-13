@@ -55,7 +55,7 @@ $(function(){
                             publico ? $pedido += "<div class='alert alert-success' role='alert' style='margin-top: 10px;'>" : $pedido += "<div class='alert alert-warning' role='alert' style='margin-top: 10px;'>";
                             $pedido += "<div class='row'>";
                             $pedido += "<div class='col-1'>";
-                            lido ? $pedido += "<img class='img-fluid' src='../assets/img/'lido.jpg />" : $pedido += "<img class='img-fluid' src='../assets/img/nao-lido.jpg' />";
+                            lido ? $pedido += "<a href='#' class='lPedidoLido' pedido-id='" + val.id + "'><img class='img-fluid' src='../assets/img/'lido.jpg /></a>" : $pedido += "<img class='img-fluid' src='../assets/img/nao-lido.jpg' />";
                             $pedido += "</div>"; //Close div col-1
                             $pedido += "<div class='col-11'>"
                             $pedido += "<b>" + nome + "</b><br/>";
@@ -81,7 +81,9 @@ $(function(){
             alert("Campo senha não pode estar em branco!");
         }else{
             let novaSenha = $("#iNovaSenha").val();
-            db.collection("credenciais_login").doc("f0LLkbq5FaeQmQIchvQO").set({user: 'allan', password: MD5(novaSenha)});
+            //db.collection("credenciais_login").doc("f0LLkbq5FaeQmQIchvQO").set({user: 'allan', password: MD5(novaSenha)});
+            db.collection("credenciais_login").doc("f0LLkbq5FaeQmQIchvQO").update({password: MD5(novaSenha)});
+            console.log("senha alterada com update");
             alert("Senha alterada com sucesso!");
         }
     });
