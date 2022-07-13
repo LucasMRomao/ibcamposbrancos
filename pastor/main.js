@@ -66,6 +66,11 @@ $(function(){
                             $pedido += "</div>" //Close div alert
 
                             $("#dPedidos").html($("#dPedidos").html() + $pedido);
+
+                            $(".lPedidoLido").click(function(){
+                                db.collection("pedidos").doc($(this).attr("pedido-id")).update({lido: true});
+                                console.log("Pedido lido: " + $(this).attr("pedido-id"));
+                            });
                         });
                     });
 
@@ -79,12 +84,18 @@ $(function(){
     $("#bSalvarNovaSenha").click(function(){
         if($("#iNovaSenha").val() == ''){
             alert("Campo senha não pode estar em branco!");
+            return false;
         }else{
             let novaSenha = $("#iNovaSenha").val();
             //db.collection("credenciais_login").doc("f0LLkbq5FaeQmQIchvQO").set({user: 'allan', password: MD5(novaSenha)});
             db.collection("credenciais_login").doc("f0LLkbq5FaeQmQIchvQO").update({password: MD5(novaSenha)});
             console.log("senha alterada com update");
             alert("Senha alterada com sucesso!");
+            $("#iNovaSenha").val('');
         }
+    });
+
+    $("#bCancelarNovaSenha").click(function(){
+        $("#iNovaSenha").val('');
     });
 });
