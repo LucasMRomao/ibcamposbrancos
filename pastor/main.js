@@ -43,6 +43,8 @@ $(function(){
                         $("#dPedidos").html(""); //Limpa pedidos
                         
                         dataPedido.docs.map((val) => {
+                            console.log(val);
+                            console.log(val.data());
                             let nome = val.data().nome;
                             let whatsapp = val.data().whatsapp;
                             let descricao = val.data().descricao_pedido;
@@ -53,7 +55,7 @@ $(function(){
                             publico ? $pedido += "<div class='alert alert-success' role='alert' style='margin-top: 10px;'>" : $pedido += "<div class='alert alert-warning' role='alert' style='margin-top: 10px;'>";
                             $pedido += "<b>" + nome + "</b><br/>";
                             $pedido += "<i>" + whatsapp + "</i><br/>";
-                            $pedido += descricao;    
+                            $pedido += descricao;
                             $pedido += "</div>";
 
                             $("#dPedidos").html($("#dPedidos").html() + $pedido);
