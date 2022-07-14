@@ -93,7 +93,7 @@ $(function(){
     $("#bSalvarNovaSenha").click(function(){
         if($("#iNovaSenha").val() == ''){
             alert("Campo senha não pode estar em branco!");
-            return false;
+            return false; //Cancela o dismiss do Modal
         }else{
             let novaSenha = $("#iNovaSenha").val();
             //db.collection("credenciais_login").doc("f0LLkbq5FaeQmQIchvQO").set({user: 'allan', password: MD5(novaSenha)});
