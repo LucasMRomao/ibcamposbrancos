@@ -41,7 +41,8 @@ $(function(){
                     db.collection('pedidos').onSnapshot((dataPedido) => {
                         
                         $("#dPedidos").html(""); //Limpa pedidos
-                        
+                        var contPedidos = 0;
+
                         dataPedido.docs.map((val) => {
                             let nome = val.data().nome;
                             let whatsapp = val.data().whatsapp;
@@ -65,6 +66,7 @@ $(function(){
                             $pedido += "</div>" //Close div alert
 
                             $("#dPedidos").html($("#dPedidos").html() + $pedido);
+                            contPedidos++;
 
                             $(".lPedidoLido").click(function(){
                                 db.collection("pedidos").doc($(this).attr("pedido-id")).update({lido: true});
@@ -74,6 +76,8 @@ $(function(){
                                 db.collection("pedidos").doc($(this).attr("pedido-id")).update({lido: false});
                             });
                         });
+
+                        $("#sTotalPedidos").text(contPedidos);
                     });
 
                 }else{
