@@ -59,6 +59,9 @@ $(function(){
                             $pedido += "</div>"; //Close div col-1
                             $pedido += "<div class='col-11'>"
                             $pedido += "<b>" + nome + "</b><br/>";
+                            $pedido += "<img style='float: right; width: 3%; height: auto;' src='../assets/img/";
+                            publico ? $pedido += "cadeado-aberto.jpg" : $pedido += "cadeado-fechado.jpg";
+                            $pedido += "' />";
                             $pedido += "<i>" + whatsapp + "</i><br/>";
                             $pedido += descricao;
                             $pedido += "</div>"; //Close div col-11
