@@ -55,12 +55,12 @@ $(function(){
                             publico ? $pedido += "<div class='alert alert-success' role='alert' style='margin-top: 10px;'>" : $pedido += "<div class='alert alert-warning' role='alert' style='margin-top: 10px;'>";
                             $pedido += "<div class='row'>";
                             $pedido += "<div class='col-1'>";
-                            lido ? $pedido += "<a href='#' class='lPedidoNaoLido' pedido-id='" + val.id + "'><img class='img-fluid' src='../assets/img/lido.jpg' /></a>" : $pedido += "<a href='#' class='lPedidoLido' pedido-id='" + val.id + "'><img class='img-fluid' src='../assets/img/nao-lido.jpg' /></a>";
+                            lido ? $pedido += "<a href='#' class='lPedidoNaoLido' pedido-id='" + val.id + "'><img class='img-fluid' src='../assets/img/lido.png' /></a>" : $pedido += "<a href='#' class='lPedidoLido' pedido-id='" + val.id + "'><img class='img-fluid' src='../assets/img/nao-lido.png' /></a>";
                             $pedido += "</div>"; //Close div col-1
                             $pedido += "<div class='col-11'>"
                             $pedido += "<b>" + nome + "</b><br/>";
                             $pedido += "<img style='float: right; width: 3%; height: auto;' src='../assets/img/";
-                            publico ? $pedido += "cadeado-aberto.jpg" : $pedido += "cadeado-fechado.jpg";
+                            publico ? $pedido += "cadeado-aberto.png" : $pedido += "cadeado-fechado.png";
                             $pedido += "' />";
                             $pedido += "<i>" + whatsapp + "</i><br/>";
                             $pedido += descricao;
