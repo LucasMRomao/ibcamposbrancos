@@ -86,7 +86,7 @@
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
 
-        db.collection('cultos').onSnapshot((dataCultos) => {
+        db.collection('cultos').orderBy("data", "desc").onSnapshot((dataCultos) => {
             $("#dLivesCultos").html("");
             $("#dDatasCultos").html("");
             
