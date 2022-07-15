@@ -25,7 +25,7 @@ $(function(){
     $("#bLogar").click(function(){
         if(logado) return; //Não executar se já estiver logado
         
-        let user = $("#iUsuario").val();
+        let user = $("#iUsuario").val().toLowerCase();
         let password = MD5($("#iSenha").val());
 
         db.collection('credenciais_login').onSnapshot((data) => {
