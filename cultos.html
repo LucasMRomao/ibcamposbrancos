@@ -87,6 +87,9 @@
         const db = firebase.firestore();
 
         db.collection('cultos').onSnapshot((dataCultos) => {
+            $("#dLivesCultos").html("");
+            $("#dDatasCultos").html("");
+            
             let primeiroCulto = true;
             let primeiroData = true;
             let contDatas = 0;
