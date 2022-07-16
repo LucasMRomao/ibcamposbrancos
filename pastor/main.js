@@ -38,7 +38,7 @@ $(function(){
                     logado = true;
                     $("#dMain").load("area_do_pastor.html");
 
-                    db.collection('pedidos').onSnapshot((dataPedido) => {
+                    db.collection('pedidos').orderBy("data", "desc").onSnapshot((dataPedido) => {
                         
                         $("#dPedidos").html(""); //Limpa pedidos
                         var contPedidos = 0;

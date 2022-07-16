@@ -97,12 +97,28 @@
             if(nome == undefined || nome == null || nome == ''){
                 alert("Por favor insira seu nome");
             }else{
+
+                let date = new Date();
+
+                let data = '';
+                data += date.getFullYear();
+                data += "-";
+
+                let mes = date.getMonth();
+                mes++;
+                if(mes < 10) mes = '0' + mes;
+
+                data += mes;
+                data += '-';
+                data += date.getDate();
+
                 db.collection('pedidos').add({
                     nome: nome,
                     whatsapp: whatsapp,
                     descricao_pedido: descricao,
                     publico: publico,
                     anonimo: anonimo,
+                    data: data,
                     lido: false
                 });
 
@@ -114,7 +130,7 @@
         });
 
         //Método para 'ouvir' o nó de pedidos
-        db.collection('pedidos').onSnapshot((data) => {
+        db.collection('pedidos').orderBy("data", "desc").onSnapshot((data) => {
 
             let dPedidos = $("#dPedidos");
             dPedidos.html("");
