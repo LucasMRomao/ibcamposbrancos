@@ -89,7 +89,7 @@
 
             $(".listaData").click(function(){
                 $("#dDatasCultos>.listaData").click(function(){
-                    $("#dDatasCultos>.active").removeClass("active");
+                    $("#dDatasCultos>[data-toggle='list']").removeClass("active");
                     $(this).addClass("active");
                 });
             })
