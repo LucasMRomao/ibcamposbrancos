@@ -51,7 +51,7 @@ $(function(){
                             let data = '';
                             let lido = val.data().lido;
                             
-                            let dataPedido = val.data().data;
+                            let dataPedido = val.data().data.split(" ")[0];
 
                             data += dataPedido.split("-")[2];
                             data += "/";

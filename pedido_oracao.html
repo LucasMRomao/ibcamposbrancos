@@ -115,6 +115,8 @@
                 if(dia < 10) dia = '0' + dia;
 
                 data += dia;
+                data += ' ';
+                data += date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 
                 db.collection('pedidos').add({
                     nome: nome,
