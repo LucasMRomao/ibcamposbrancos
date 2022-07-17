@@ -79,7 +79,7 @@
 
                     let contador;
 
-                    dbRef.collection("arquivos").get("uhuMYjfpabutlQGYL1pu").then((data) => {
+                    db.collection("arquivos").get("uhuMYjfpabutlQGYL1pu").then((data) => {
                         contador = data.docs[0].data().cont;
                     });
 
