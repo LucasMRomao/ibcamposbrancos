@@ -111,6 +111,7 @@
 
                     db.collection("arquivos").get("uhuMYjfpabutlQGYL1pu").then((data) => {
                         contador = data.docs[0].data().cont;
+                        console.log("Contador: " + contador);
 
                         const uploadTask = storage.ref(`testemunhos/${contador}`)
                         .put(file);
