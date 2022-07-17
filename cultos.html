@@ -64,7 +64,7 @@
                 let $culto = '';
 
                 $culto += "<div class='carousel-item";
-                //if(primeiroCulto){$culto += " active"; primeiroCulto = false}
+                if(primeiroCulto){$culto += " active"; primeiroCulto = false}
                 $culto += "'>";
                 $culto += "<iframe src='";
                 $culto += url_iframe;
@@ -76,7 +76,7 @@
 
                 let $dataCulto = '';
                 $dataCulto += "<a href='#carouselExampleIndicators' data-toggle='list' class='list-group-item list-group-item-action listaData";
-                if(primeiroData){$dataCulto += " active"; primeiroData = false;}
+                //if(primeiroData){$dataCulto += " active"; primeiroData = false;}
                 $dataCulto += "' role='tab' data-slide-to='";
                 $dataCulto += contDatas++;
                 $dataCulto += "'>";
