@@ -77,22 +77,22 @@
 
                 let date = new Date();
 
-                let data = '';
-                data += date.getFullYear();
-                data += "-";
+                let dataTestemunho = '';
+                dataTestemunho += date.getFullYear();
+                dataTestemunho += "-";
 
                 let mes = date.getMonth();
                 mes++;
                 if(mes < 10) mes = '0' + mes;
 
-                data += mes;
-                data += '-';
+                dataTestemunho += mes;
+                dataTestemunho += '-';
 
                 let dia = date.getDate();
                 if(dia < 10) dia = '0' + dia;
 
-                data += dia;
-                data += ' ';
+                dataTestemunho += dia;
+                dataTestemunho += ' ';
 
                 let hours = date.getHours();
                 if(hours < 10) hours = '0' + hours;
@@ -103,7 +103,7 @@
                 let seconds = date.getSeconds();
                 if(seconds < 10) seconds = '0' + seconds;
 
-                data += hours + ':' + minutes + ':' + seconds;
+                dataTestemunho += hours + ':' + minutes + ':' + seconds;
 
                 if(file){
 
@@ -130,7 +130,7 @@
 
                                 db.collection('testemunhos').add({
                                     nome: nome,
-                                    data_testemunho: data,
+                                    data_testemunho: dataTestemunho,
                                     descricao_testemunho: descricao,
                                     url_arquivo: urlArquivo
                                 });
@@ -148,7 +148,7 @@
                 }else{
                     db.collection('testemunhos').add({
                         nome: nome,
-                        data: data,
+                        data: dataTestemunho,
                         descricao_testemunho: descricao,
                         url_arquivo: ''
                     });
