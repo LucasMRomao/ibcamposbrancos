@@ -1,5 +1,10 @@
 <form>
     <div class="row">
+        <div class="col-12">
+            <div class="alert alert-danger" role="alert" style="margin-top: 10px;">
+                <span><b>Página em fase de construção!</b></span>
+            </div>
+        </div>
         <div class="col-sm-6">
             <div class="alert alert-primary" role="alert" style="margin-top: 10px;">
 
@@ -166,7 +171,7 @@
 
         db.collection("testemunhos").orderBy("data_testemunho", "desc").onSnapshot((data)=>{
             $("#dTestemunhos").html("");
-            
+
             data.docs.map((val) => { //Similar ao foreach do PHP
                 
                 let nome = val.data().nome;
@@ -181,7 +186,7 @@
                     $testemunho += "</video><br/><br/>";
                 }
                 $testemunho += "<b>Nome: </b>" + nome + "<br/>";
-                if(descricao != undefined) $testemunho += descricao;
+                if(descricao) $testemunho += descricao;
                 $testemunho += "</div>"; //Close div alert
 
                 $("#dTestemunhos").append($testemunho);
