@@ -63,6 +63,7 @@
         const auth = firebase.auth();
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
+        const storage = firebase.storage();
 
         $("#bEnviar").click(function(){
             let nome = $("#iNome").val();
