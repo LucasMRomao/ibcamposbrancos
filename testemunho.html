@@ -129,9 +129,9 @@
 
                                 db.collection('testemunhos').add({
                                     nome: nome,
-                                    data: data,
+                                    data_testemunho: data,
                                     descricao_testemunho: descricao,
-                                    url_arquivo: 'teste'
+                                    url_arquivo: urlArquivo
                                 });
 
                                 db.collection('arquivos').doc('uhuMYjfpabutlQGYL1pu').update({cont: contador});
