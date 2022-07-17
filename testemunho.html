@@ -126,11 +126,13 @@
                             uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
                                 urlArquivo = url;
                                 console.log(urlArquivo);
+                                console.log("Data: " + data);
 
                                 db.collection('testemunhos').add({
                                     nome: nome,
                                     data_testemunho: data,
-                                    descricao_testemunho: descricao
+                                    descricao_testemunho: descricao,
+                                    url_arquivo: urlArquivo
                                 });
 
                                 db.collection('arquivos').doc('uhuMYjfpabutlQGYL1pu').update({cont: contador});
