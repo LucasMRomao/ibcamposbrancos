@@ -77,73 +77,72 @@
 
                 if(file){
 
-                    let contador = 0;
+                    let contador;
 
                     db.collection('arquivos').onSnapshot((data) => {
                         data.docs.map((val) => { //Similar ao foreach do PHP
                             contador = val.data().cont;
-                        });
-                    });
 
-                    const uploadTask = storage.ref(`testemunhos/${contador}`)
-                    .put(file);
+                            const uploadTask = storage.ref(`testemunhos/${contador}`)
+                            .put(file);
 
-                    uploadTask.on('state_change', (snapshot) => {
-                        let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
-                        $("#pEnvioArquivo").val(progress);
-                    }, (error) =>{
+                            uploadTask.on('state_change', (snapshot) => {
+                                let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
+                                $("#pEnvioArquivo").val(progress);
+                            }, (error) =>{
 
-                    }, () => {
-                        contador++;
-                        uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
-                            db.collection('arquivos').doc('uhuMYjfpabutlQGYL1pu').update({cont: contador});
-                            urlArquivo = url;
+                            }, () => {
+                                contador++;
+                                uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
+                                    db.collection('arquivos').doc('uhuMYjfpabutlQGYL1pu').update({cont: contador});
+                                    urlArquivo = url;
+                                });
+                            });
+
+                            let date = new Date();
+
+                            let data = '';
+                            data += date.getFullYear();
+                            data += "-";
+
+                            let mes = date.getMonth();
+                            mes++;
+                            if(mes < 10) mes = '0' + mes;
+
+                            data += mes;
+                            data += '-';
+
+                            let dia = date.getDate();
+                            if(dia < 10) dia = '0' + dia;
+
+                            data += dia;
+                            data += ' ';
+
+                            let hours = date.getHours();
+                            if(hours < 10) hours = '0' + hours;
+
+                            let minutes = date.getMinutes();
+                            if(minutes < 10) minutes = '0' + minutes;
+
+                            let seconds = date.getSeconds();
+                            if(seconds < 10) seconds = '0' + seconds;
+
+                            data += hours + ':' + minutes + ':' + seconds;
+
+                            db.collection('testemunhos').add({
+                                nome: nome,
+                                data: data,
+                                descricao_testemunho: descricao,
+                                url_arquivo: urlArquivo
+                            });
+
+                            alert("Testemunho enviado com sucesso!");
+                            $("#iNome").val('');
+                            $("#taDescricao").val('');
+                            $("#iArquivo").val('');
                         });
                     });
                 }
-
-                let date = new Date();
-
-                let data = '';
-                data += date.getFullYear();
-                data += "-";
-
-                let mes = date.getMonth();
-                mes++;
-                if(mes < 10) mes = '0' + mes;
-
-                data += mes;
-                data += '-';
-
-                let dia = date.getDate();
-                if(dia < 10) dia = '0' + dia;
-
-                data += dia;
-                data += ' ';
-
-                let hours = date.getHours();
-                if(hours < 10) hours = '0' + hours;
-
-                let minutes = date.getMinutes();
-                if(minutes < 10) minutes = '0' + minutes;
-
-                let seconds = date.getSeconds();
-                if(seconds < 10) seconds = '0' + seconds;
-
-                data += hours + ':' + minutes + ':' + seconds;
-
-                db.collection('testemunhos').add({
-                    nome: nome,
-                    data: data,
-                    descricao_testemunho: descricao,
-                    url_arquivo: urlArquivo
-                });
-
-                alert("Testemunho enviado com sucesso!");
-                $("#iNome").val('');
-                $("#taDescricao").val('');
-                $("#iArquivo").val('');
-
             }
         });
     });
