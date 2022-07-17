@@ -19,6 +19,7 @@
                 </div>
                 <div class="form-group">
                     <progress value="0" max="100" id="pEnvioArquivo"></progress>
+                    <span id="sPorcentagemEnvio">0%</span>
                 </div>
                 <div class="form-group">
                     <label for="taDescricao">Testemunho</label>
@@ -72,6 +73,8 @@
 
             if(nome == undefined || nome == null || nome == ''){
                 alert("Por favor, insira seu nome!");
+            }else if(!file && (descricao == undefined || descricao == null || descricao == '')){
+                alert("Uma descrição ou um arquivo de vídeo deve ser inserido!");
             }else{
                 let file = $("#iArquivo")[0].files[0];
 
@@ -119,6 +122,7 @@
                         uploadTask.on('state_change', (snapshot) => {
                             let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
                             $("#pEnvioArquivo").val(progress);
+                            $("#sPorcentagemEnvio").text(progress + "%");
                         }, (error) =>{
                             console.log(error);
                         }, () => {
@@ -159,6 +163,28 @@
                     $("#iArquivo").val('');
                 }
             }
+        });
+
+        db.collection("testemunhos").orderBy("data_testemunho", "desc").onSnapshot((data)=>{
+            data.docs.map((val) => { //Similar ao foreach do PHP
+                
+                let nome = val.data().nome;
+                let dataTestemunho = val.data().data;
+                let descricao = val.data().descricao;
+                let urlArquivo = val.data().url_arquivo;
+
+                let $testemunho = "<div class='alert alert-success' role='alert' style='margin-top: 10px;'>";
+                if(url_arquivo){
+                    $testemunho += "<video controls autoplay name='media'>";
+                    $testemunho += "<source src='" + urlArquivo + "'>";
+                    $testemunho += "</video><br/><br/>";
+                }
+                $testemunho += "<b>Nome: </b>" + nome + "<br/>";
+                $testemunho += descricao;
+                $testemunho += "</div>"; //Close div alert
+
+                $("#dTestemunhos").append($testemunho);
+            });
         });
     });
 </script>
