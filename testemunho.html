@@ -165,6 +165,8 @@
         });
 
         db.collection("testemunhos").orderBy("data_testemunho", "desc").onSnapshot((data)=>{
+            $("#dTestemunhos").html("");
+            
             data.docs.map((val) => { //Similar ao foreach do PHP
                 
                 let nome = val.data().nome;
