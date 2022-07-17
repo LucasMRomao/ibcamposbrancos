@@ -169,12 +169,12 @@
             data.docs.map((val) => { //Similar ao foreach do PHP
                 
                 let nome = val.data().nome;
-                let dataTestemunho = val.data().data;
+                let dataTestemunho = val.data().data_testemunho;
                 let descricao = val.data().descricao;
                 let urlArquivo = val.data().url_arquivo;
 
                 let $testemunho = "<div class='alert alert-success' role='alert' style='margin-top: 10px;'>";
-                if(url_arquivo){
+                if(urlArquivo){
                     $testemunho += "<video controls autoplay name='media'>";
                     $testemunho += "<source src='" + urlArquivo + "'>";
                     $testemunho += "</video><br/><br/>";
