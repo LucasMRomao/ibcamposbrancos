@@ -62,3 +62,14 @@ footer {
     overflow: hidden;
     overflow-y: scroll;
 }
+
+.scroll-bg-testemunhos{
+    width: 100%;
+}
+
+.scroll-div-testemunhos{
+    height: 100%;
+    margin: 10px;
+    overflow: hidden;
+    overflow-y: scroll;
+}

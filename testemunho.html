@@ -40,8 +40,10 @@
                         <p class="text-center" style="font-size: 30px;">Testemunhos</p>
                     </div>
                 </div>
-                <div id="dTestemunhos">
+                <div class="scroll-bg-testemunhos">
+                    <div class="scroll-div-testemunhos" id="dTestemunhos">
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -149,6 +151,8 @@
                                 $("#iNome").val('');
                                 $("#taDescricao").val('');
                                 $("#iArquivo").val('');
+                                $("#pEnvioArquivo").val(0);
+                                $("#sPorcentagemEnvio").text("0%");
                             });
                         });
                     });
@@ -165,6 +169,8 @@
                     $("#iNome").val('');
                     $("#taDescricao").val('');
                     $("#iArquivo").val('');
+                    $("#pEnvioArquivo").val(0);
+                    $("#sPorcentagemEnvio").text("0%");
                 }
             }
         });
