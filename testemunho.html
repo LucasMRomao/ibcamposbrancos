@@ -124,6 +124,7 @@
                             contador++;
                             uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
                                 urlArquivo = url;
+                                console.log(urlArquivo);
 
                                 db.collection('testemunhos').add({
                                     nome: nome,
@@ -133,14 +134,15 @@
                                 });
 
                                 db.collection('arquivos').doc('uhuMYjfpabutlQGYL1pu').update({cont: contador});
+                                
+                                alert("Testemunho enviado com sucesso!");
+                                $("#iNome").val('');
+                                $("#taDescricao").val('');
+                                $("#iArquivo").val('');
                             });
                         });
                     });
 
-                    alert("Testemunho enviado com sucesso!");
-                    $("#iNome").val('');
-                    $("#taDescricao").val('');
-                    $("#iArquivo").val('');
                 }else{
                     db.collection('testemunhos').add({
                         nome: nome,
@@ -148,6 +150,11 @@
                         descricao_testemunho: descricao,
                         url_arquivo: ''
                     });
+                    
+                    alert("Testemunho enviado com sucesso!");
+                    $("#iNome").val('');
+                    $("#taDescricao").val('');
+                    $("#iArquivo").val('');
                 }
             }
         });
