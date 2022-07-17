@@ -130,8 +130,7 @@
                                 db.collection('testemunhos').add({
                                     nome: nome,
                                     data_testemunho: data,
-                                    descricao_testemunho: descricao,
-                                    url_arquivo: urlArquivo
+                                    descricao_testemunho: descricao
                                 });
 
                                 db.collection('arquivos').doc('uhuMYjfpabutlQGYL1pu').update({cont: contador});
