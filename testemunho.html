@@ -81,8 +81,8 @@
 
             if(nome == undefined || nome == null || nome == ''){
                 alert("Por favor, insira seu nome!");
-            }else if(!file && (descricao == undefined || descricao == null || descricao == '')){
-                alert("Uma descrição ou um arquivo de vídeo deve ser inserido!");
+            }else if(!file){
+                alert("Um arquivo de vídeo deve ser inserido!");
             }else{
                 let date = new Date();
 
@@ -179,7 +179,7 @@
             $("#dTestemunhos").html("");
 
             data.docs.map((val) => { //Similar ao foreach do PHP
-                console.log("Data testemunho: " + val.data().dataTestemunho);
+                console.log("Data testemunho: " + val.data().data_testemunho);
                 let nome = val.data().nome;
                 let dataTestemunho = val.data().data_testemunho;
                 let descricao = val.data().descricao_testemunho;
