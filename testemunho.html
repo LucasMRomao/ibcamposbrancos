@@ -1,1 +1,149 @@
-<h2>Página em construção!</h2>
+<form>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="alert alert-primary" role="alert" style="margin-top: 10px;">
+
+                <div class="row">
+                    <div class="col-12">
+                        <p class="text-center" style="font-size: 30px;">Testemunho</p>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="iNome">Nome</label>
+                    <input type="text" class="form-control" id="iNome" aria-describedby="nomeHelp" />
+                </div>
+                <div class="form-group">
+                    <label for="taDescricao">Testemunho</label>
+                    <textarea class="form-control" id="taDescricao" rows="3" style="min-height: 100px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="iArquivo">Arquivo de imagem/vídeo</label>
+                    <input type="file" class="form-control" id="iArquivo" />
+                </div>
+                <div class="form-group">
+                    <progress value="0" max="100" id="pEnvioArquivo"></progress>
+                </div>
+                <button type="button" class="btn btn-primary" id="bEnviar">Enviar</button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="alert alert-primary" role="alert" style="margin-top: 10px;">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="text-center" style="font-size: 30px;">Testemunhos</p>
+                    </div>
+                </div>
+                <div id="dTestemunhos">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(function(){
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
+            authDomain: "igreja-batista-campos-brancos.firebaseapp.com",
+            databaseURL: "https://igreja-batista-campos-brancos-default-rtdb.firebaseio.com",
+            projectId: "igreja-batista-campos-brancos",
+            storageBucket: "igreja-batista-campos-brancos.appspot.com",
+            messagingSenderId: "724470922283",
+            appId: "1:724470922283:web:fcf1eaf1f43df1d48dfe6e",
+            measurementId: "G-WKZFS0PDDY"
+        };
+
+        if(!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+
+        const auth = firebase.auth();
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const db = firebase.firestore();
+
+        $("#bEnviar").click(function(){
+            let nome = $("#iNome").val();
+            let descricao = $("#taDescricao").val();
+            let urlArquivo;
+
+            if(nome == undefined || nome == null || nome == ''){
+                alert("Por favor, insira seu nome!");
+            }else{
+                let file = $("#iArquivo")[0].files[0];
+
+                if(file){
+
+                    let contador = 0;
+
+                    db.collection('arquivos').onSnapshot((data) => {
+                        data.docs.map((val) => { //Similar ao foreach do PHP
+                            contador = val.data().cont;
+                        });
+                    });
+
+                    const uploadTask = storage.ref(`testemunhos/${contador}`)
+                    .put(file);
+
+                    uploadTask.on('state_change', (snapshot) => {
+                        let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
+                        $("#pEnvioArquivo").val(progress);
+                    }, (error) =>{
+
+                    }, () => {
+                        contador++;
+                        uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
+                            db.collection('arquivos').doc('uhuMYjfpabutlQGYL1pu').update({cont: contador});
+                            urlArquivo = url;
+                        });
+                    });
+                }
+
+                let date = new Date();
+
+                let data = '';
+                data += date.getFullYear();
+                data += "-";
+
+                let mes = date.getMonth();
+                mes++;
+                if(mes < 10) mes = '0' + mes;
+
+                data += mes;
+                data += '-';
+
+                let dia = date.getDate();
+                if(dia < 10) dia = '0' + dia;
+
+                data += dia;
+                data += ' ';
+
+                let hours = date.getHours();
+                if(hours < 10) hours = '0' + hours;
+
+                let minutes = date.getMinutes();
+                if(minutes < 10) minutes = '0' + minutes;
+
+                let seconds = date.getSeconds();
+                if(seconds < 10) seconds = '0' + seconds;
+
+                data += hours + ':' + minutes + ':' + seconds;
+
+                db.collection('testemunhos').add({
+                    nome: nome,
+                    data: data,
+                    descricao_testemunho: descricao,
+                    url_arquivo: urlArquivo
+                });
+
+                alert("Testemunho enviado com sucesso!");
+                $("#iNome").val('');
+                $("#taDescricao").val('');
+                $("#iArquivo").val('');
+
+            }
+        });
+    });
+</script>
