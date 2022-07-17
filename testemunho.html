@@ -122,7 +122,7 @@
                         contador = data.docs[0].data().cont;
                         console.log("Contador: " + contador);
 
-                        const uploadTask = storage.ref(`testemunhos/${contador}`)
+                        const uploadTask = storage.ref(`testemunhos/arquivo-${contador}`)
                         .put(file);
 
                         uploadTask.on('state_change', (snapshot) => {
@@ -179,7 +179,7 @@
             $("#dTestemunhos").html("");
 
             data.docs.map((val) => { //Similar ao foreach do PHP
-                
+                console.log("Data testemunho: " + val.data().dataTestemunho);
                 let nome = val.data().nome;
                 let dataTestemunho = val.data().data_testemunho;
                 let descricao = val.data().descricao_testemunho;
