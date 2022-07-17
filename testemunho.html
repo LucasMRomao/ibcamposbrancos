@@ -180,7 +180,7 @@
                     $testemunho += "</video><br/><br/>";
                 }
                 $testemunho += "<b>Nome: </b>" + nome + "<br/>";
-                $testemunho += descricao;
+                if(descricao != undefined) $testemunho += descricao;
                 $testemunho += "</div>"; //Close div alert
 
                 $("#dTestemunhos").append($testemunho);
