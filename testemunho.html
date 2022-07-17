@@ -120,7 +120,7 @@
                             let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
                             $("#pEnvioArquivo").val(progress);
                         }, (error) =>{
-
+                            console.log(error);
                         }, () => {
                             contador++;
                             uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
