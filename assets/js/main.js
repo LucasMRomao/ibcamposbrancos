@@ -31,12 +31,16 @@ $(function(){
     const provider = new firebase.auth.GoogleAuthProvider();
     const db = firebase.firestore();
 
-    db.collection("versiculo_semanal").doc("tXDk9jv0SOvX4MF5Muho").onSnapshot((data) => {
+    db.collection("versiculo_semanal").onSnapshot((data) => {
         data.docs.map((val) => { //Similar ao foreach do PHP
             let livro = val.data().livro;
             let capitulo = val.data().capitulo;
             let versiculo = val.data().versiculo;
             let descricao_versiculo = val.data().descricao_versiculo;
+            console.log(livro);
+            console.log(capitulo);
+            console.log(versiculo);
+            console.log(descricao_versiculo);
 
             $("#sLivro").text(livro);
             $("#sCapitulo").text(capitulo);
