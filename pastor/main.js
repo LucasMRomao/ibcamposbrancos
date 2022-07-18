@@ -146,6 +146,10 @@ $(function(){
             });
 
             alert("Versículo atualizado!");
+            $("#iNovoLivro").val('');
+            $("#iNovoCapitulo").val('');
+            $("#iNovoVersiculo").val('');
+            $("#taNovaDescricao").val('');
         }
     });
 
