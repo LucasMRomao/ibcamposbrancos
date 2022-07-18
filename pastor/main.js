@@ -118,4 +118,41 @@ $(function(){
     $("#bCancelarNovaSenha").click(function(){
         $("#iNovaSenha").val('');
     });
+
+    $("#bSalvarNovoVersiculo").click(function(){
+        if($("#iNovoLivro").val() == ''){
+            alert("Por favor insira o nome do livro!");
+            return false;
+        }else if($("#iNovoCapitulo").val() == ''){
+            alert("Por favor insira o capítulo!");
+            return false;
+        }else if($("#iNovoVersiculo").val() == ''){
+            alert("Por favor insira o versículo!");
+            return false;
+        }else if($("#taNovaDescricao").val() == ''){
+            alert("Por favor insira a descrição do versículo!");
+            return false;
+        }else{
+            let livro = $("#iNovoLivro").val();
+            let capitulo = $("#iNovoCapitulo").val();
+            let versiculo = $("#iNovoVersiculo").val();
+            let descricao_versiculo = $("#taNovaDescricao").val();
+
+            db.collection("versiculo_semanal").doc("tXDk9jv0SOvX4MF5Muho").update({
+                livro: livro,
+                capitulo: capitulo,
+                versiculo: versiculo,
+                descricao_versiculo: descricao_versiculo
+            });
+
+            alert("Versículo atualizado!");
+        }
+    });
+
+    $("#bCancelarNovoVersiculo").click(function(){
+        $("#iNovoLivro").val('');
+        $("#iNovoCapitulo").val('');
+        $("#iNovoVersiculo").val('');
+        $("#taNovaDescricao").val('');
+    });
 });

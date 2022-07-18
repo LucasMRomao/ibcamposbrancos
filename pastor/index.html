@@ -30,6 +30,51 @@
             </div>
             </div>
         </div>
+
+        <!--Modal alterar versículo no rodapé da página-->
+        <div class="modal fade" tabindex="-1" id="modalNovoVersiculo">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Alterar versículo atual</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">Livro:</span>
+                        </div>
+                        <input type="text" id="iNovoLivro" class="form-control" placeholder="Livro" aria-label="Livro" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">Capítulo:</span>
+                        </div>
+                        <input type="number" id="iNovoCapitulo" class="form-control" placeholder="Capítulo" aria-label="Capítulo" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">Versículo:</span>
+                        </div>
+                        <input type="number" id="iNovoVersiculo" class="form-control" placeholder="Versículo" aria-label="Versículo" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Descrição do versículo:</span>
+                        </div>
+                        <textarea id="taNovaDescricao" class="form-control" aria-label="Descrição do versículo"></textarea>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="bCancelarNovoVersiculo">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="bSalvarNovoVersiculo">Salvar</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
         <div class="container-fluid" id="dMain">
             <div class="alert alert-primary" role="alert" style="margin-top: 10px;">
                 <div class="form-group">
