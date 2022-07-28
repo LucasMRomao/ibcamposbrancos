@@ -65,15 +65,12 @@
                     
                     celula += "<div class='carousel-inner'>";
                     
-                    console.log(data.docs);
                     for(var i in data.docs){
                         celula += "<div class='carousel-item";
                         if(i == 0) celula += " active";
                         celula += "'>";
 
-                        console.log(data.docs[i]);
-
-                        celula += "<img src='" + data.docs[i].url_foto + "' class='d-block w-100' alt='...'>";
+                        celula += "<img src='" + data.docs[i].data().url_foto + "' class='d-block w-100' alt='...'>";
 
                         celula += "</div>";
                     }
