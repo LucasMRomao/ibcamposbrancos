@@ -1,3 +1,91 @@
-<div class="alert alert-danger">
+<div class="alert alert-danger" style="margin-top: 10px;">
     <h1>Página em construção!</h1>
 </div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="alert alert-primary" role="alert" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center" style="font-size: 30px;">Células</p>
+                </div>
+            </div>
+            <div id="dCelulas">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
+            authDomain: "igreja-batista-campos-brancos.firebaseapp.com",
+            databaseURL: "https://igreja-batista-campos-brancos-default-rtdb.firebaseio.com",
+            projectId: "igreja-batista-campos-brancos",
+            storageBucket: "igreja-batista-campos-brancos.appspot.com",
+            messagingSenderId: "724470922283",
+            appId: "1:724470922283:web:fcf1eaf1f43df1d48dfe6e",
+            measurementId: "G-WKZFS0PDDY"
+        };
+
+        if(!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+
+        const auth = firebase.auth();
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const db = firebase.firestore();
+
+        db.collection("celulas").onSnapshot((dataCelulas) => {
+            $("#dCelulas").html("");
+
+            dataCelulas.docs.map((val) => {
+
+                let id = val.data().id;
+                let docs;
+
+                db.collection("celulas_fotos").where("id", "==", id).get().then((data) => {
+                    docs = data.docs;
+                });
+
+                let celula = "";
+                celula += "<div class='alert alert-success' style='margin-top: 10px;'>";
+                celula += "<h5>" + val.data().descricao + "</h5><br/><br/>";
+                celula += "<div id='carouselExampleIndicators' class='carousel slide' data-ride='carousel'>";
+                celula += "<ol class='carousel-indicators'>";
+                
+                for(var i in docs){
+                    celula += "<li data-target='#carouselExampleIndicators' data-slide-to='";
+                    celula += i + "'";
+                    if(i == 0) celula += " class='active'";
+                    celula += "></li>"
+                }
+
+                celula += "</ol>";
+                
+                celula += "<div class='carousel-inner'>";
+                
+                for(var i in docs){
+                    celula += "<div class='carousel-item";
+                    if(i == 0) celula += " active";
+                    celula += "'>";
+
+                    celula += "<img src='" + docs[i].url_foto + "' class='d-block w-100' alt='...'>";
+
+                    celula += "</div>";
+                }
+
+                celula += "</div>"; //Close div carousel-inner
+
+                celula += "</div>"; //Close div carousel slide
+                celula += "</div>"; //Close div alert
+
+            });
+        });
+    });
+
+</script>
