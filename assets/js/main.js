@@ -3,6 +3,7 @@ $(function(){
         $("#principal").load(pagina);
         $(".nbMenu>.active").removeClass("active");
         $(".ni" + e).addClass("active");
+        console.log("Carregar página: " + pagina);
     }
 
     $("#principal").load("home.html");
