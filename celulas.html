@@ -47,20 +47,18 @@
 
                 let id = val.data().id;
 
-                db.collection("celulas_fotos").where("id", "==", id).get().then((data) => {
+                db.collection("celulas_fotos").where("id_celula", "==", id).get().then((data) => {
                     let celula = "";
                     celula += "<div class='alert alert-success' style='margin-top: 10px;'>";
                     celula += "<h5>" + val.data().descricao + "</h5><br/><br/>";
                     celula += "<div id='carouselExampleIndicators' class='carousel slide' data-ride='carousel'>";
                     celula += "<ol class='carousel-indicators'>";
-                    
+
                     for(var i in data.docs){
                         celula += "<li data-target='#carouselExampleIndicators' data-slide-to='";
                         celula += i + "'";
                         if(i == 0) celula += " class='active'";
                         celula += "></li>";
-
-                        console.log(data.docs[i]);
                     }
 
                     celula += "</ol>";
@@ -75,8 +73,6 @@
                         celula += "<img src='" + docs[i].url_foto + "' class='d-block w-100' alt='...'>";
 
                         celula += "</div>";
-
-                        console.log(data.docs[i]);
                     }
 
                     celula += "</div>"; //Close div carousel-inner
