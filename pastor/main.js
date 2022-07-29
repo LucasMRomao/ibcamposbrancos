@@ -161,7 +161,7 @@ $(function(){
         $("#taNovaDescricao").val('');
     });
 
-    $("#bSalvarNovaCelula").click(() => {
+    $("#bSalvarNovaCelula").click(async () => {
 
         if($("#iDescricaoNovaCelula").val() == ''){
             alert("Insira uma descrição para a célula!");
