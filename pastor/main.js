@@ -205,7 +205,7 @@ $(function(){
                     });
                 }
 
-                db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").update({cont_celulas: ++contCelulas});
+                db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_celulas: ++contCelulas});
 
                 $("#iDescricaoNovaCelula").val("");
                 $("#iFotosCelula").val("");
