@@ -159,4 +159,23 @@ $(function(){
         $("#iNovoVersiculo").val('');
         $("#taNovaDescricao").val('');
     });
+
+    $("#bSalvarNovaCelula").click(() => {
+
+        if($("#iDescricaoNovaCelula").val() == ''){
+            alert("Insira uma descrição para a célula!");
+            return false;
+        }else if($("#iFotosCelula")[0].files.length == 0){
+            alert("Selecione ao menos uma foto!");
+            return false;
+        }else{
+            alert("Célula: " + $("#iDescricaoNovaCelula").val() + " - Fotos: " + $("#iFotosCelula")[0].files.length);
+        }
+
+    });
+
+    $("#bCancelarNovaCelula").click(() => {
+        $("#iDescricaoNovaCelula").val("");
+        $("#iFotosCelula").val("");
+    });
 });
