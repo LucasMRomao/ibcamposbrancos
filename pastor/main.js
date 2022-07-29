@@ -174,8 +174,8 @@ $(function(){
 
             db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then((data) => {
 
-                let contCelulas = data.data().cont_celulas;
-                let contFotos = data.data().cont_fotos;
+                let contCelulas = data.docs[0].data().cont_celulas;
+                let contFotos = data.docs[0].data().cont_fotos;
                 let fotos = $("#iFotosCelula")[0].files;
 
                 db.collection("celulas").add({
