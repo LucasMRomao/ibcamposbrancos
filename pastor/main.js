@@ -21,6 +21,7 @@ $(function(){
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
     const db = firebase.firestore();
+    const storage = firebase.storage();
 
     $("#bLogar").click(function(){
         if(logado) return; //Não executar se já estiver logado
