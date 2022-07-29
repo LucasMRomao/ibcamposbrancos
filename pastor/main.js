@@ -185,7 +185,7 @@ $(function(){
                 });
 
                 for(var i in fotos){
-                    const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(file);
+                    const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(fotos[i]);
 
                     uploadTask.on('state_change', (snapshot) => {
                         /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
