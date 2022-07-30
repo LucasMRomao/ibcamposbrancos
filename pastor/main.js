@@ -23,7 +23,7 @@ function uploadImagem(foto, contFotos, contCelulas){
                 url_foto: url
             });
 
-            db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_fotos: ++contFotos});
+            db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_fotos: contFotos + 1});
         });
     });
 
