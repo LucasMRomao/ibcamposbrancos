@@ -196,8 +196,8 @@ $(function(){
                         $("#sPorcentagemEnvio").text(Math.round(progress) + "%");*/
                     }, (error) =>{
                         console.log(error);
-                    }, () => {
-                        uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
+                    }, async () => {
+                        await uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
                             db.collection("celulas_fotos").add({
                                 id_celula: contCelulas,
                                 url_foto: url
