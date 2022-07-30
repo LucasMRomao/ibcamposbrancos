@@ -187,6 +187,7 @@ $(function(){
                 for(var i in fotos){
                     const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(fotos[i]);
                     console.log("Teste async await.");
+                    console.log(fotos[i]);
 
                     await uploadTask.on('state_change', (snapshot) => {
                         /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
