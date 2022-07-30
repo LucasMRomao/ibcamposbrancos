@@ -22,8 +22,6 @@ function uploadImagem(foto, contFotos, contCelulas){
                 id_celula: contCelulas,
                 url_foto: url
             });
-
-            db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_fotos: contFotos + 1});
         });
     });
 
@@ -223,6 +221,7 @@ $(function(){
                 }
 
                 db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_celulas: ++contCelulas});
+                db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_fotos: ++contFotos});
 
                 $("#iDescricaoNovaCelula").val("");
                 $("#iFotosCelula").val("");
