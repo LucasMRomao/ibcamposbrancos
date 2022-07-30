@@ -49,7 +49,7 @@
 
                 db.collection("celulas_fotos").where("id_celula", "==", id).get().then((data) => {
 
-                    let dataCelula = val.data().descricao;
+                    let dataCelula = val.data().data_celula;
                     let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" +dataCelula.split("-")[0];
 
                     let celula = "";
