@@ -184,6 +184,8 @@ $(function(){
                     descricao: descricaoCelula
                 });
 
+                console.log(fotos);
+
                 for(var i in fotos){
 
                     const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(fotos[i]);
