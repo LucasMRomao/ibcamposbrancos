@@ -48,9 +48,14 @@
                 let id = val.data().id;
 
                 db.collection("celulas_fotos").where("id_celula", "==", id).get().then((data) => {
+
+                    let dataCelula = val.data().descricao;
+                    let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" +dataCelula.split("-")[0];
+
                     let celula = "";
                     celula += "<div class='alert alert-success' style='margin-top: 10px;'>";
-                    celula += "<h5>" + val.data().descricao + "</h5><br/><br/>";
+                    celula += "<h5>" + val.data().descricao + "</h5><br/>";
+                    celula += "<span>" + dataFormatada + "</span><br/><br/>";
                     celula += "<div id='carouselCelula" + id + "' class='carousel slide' data-ride='carousel'>";
                     celula += "<ol class='carousel-indicators'>";
 
