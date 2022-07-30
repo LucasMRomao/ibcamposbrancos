@@ -216,15 +216,6 @@ $(function(){
                 });
 
                 for(var i=0; i<fotos.length; i++){
-                    var pattern = /image-*/;
-
-                    if (!fotos[0].type.match(pattern)){
-                        alert("Somente arquivos de imagem são aceitos!");
-                        return false;
-                    }
-                }
-
-                for(var i=0; i<fotos.length; i++){
                     await uploadImagem(fotos[i], contFotos, contCelulas);
                     contFotos++;
                 }
