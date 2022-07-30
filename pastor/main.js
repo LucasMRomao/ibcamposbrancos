@@ -185,18 +185,19 @@ $(function(){
                 });
 
                 for(var i in fotos){
+
                     const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(fotos[i]);
                     console.log("Teste async await.");
                     console.log(fotos[i]);
 
-                    await uploadTask.on('state_change', (snapshot) => {
+                    uploadTask.on('state_change', (snapshot) => {
                         /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
                         $("#pEnvioArquivo").val(progress);
                         $("#sPorcentagemEnvio").text(Math.round(progress) + "%");*/
                     }, (error) =>{
                         console.log(error);
                     }, () => {
-                        uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
+                        await uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
                             db.collection("celulas_fotos").add({
                                 id_celula: contCelulas,
                                 url_foto: url
