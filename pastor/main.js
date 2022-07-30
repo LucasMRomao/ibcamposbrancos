@@ -194,12 +194,16 @@ $(function(){
         if($("#iDescricaoNovaCelula").val() == ''){
             alert("Insira uma descrição para a célula!");
             return false;
+        }else if($("#iDataNovaCelula").val() == ''){
+            alert("Insira uma data válida!");
+            return false;
         }else if($("#iFotosCelula")[0].files.length == 0){
             alert("Selecione ao menos uma foto!");
             return false;
         }else{
             
             let descricaoCelula = $("#iDescricaoNovaCelula").val();
+            let dataCelula = $("#iDataNovaCelula").val();
 
             db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then(async (data) => {
 
@@ -209,7 +213,8 @@ $(function(){
 
                 db.collection("celulas").add({
                     id: contCelulas,
-                    descricao: descricaoCelula
+                    descricao: descricaoCelula,
+                    data_celula: dataCelula
                 });
 
                 for(var i=0; i<fotos.length; i++){

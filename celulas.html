@@ -40,7 +40,7 @@
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
 
-        db.collection("celulas").onSnapshot((dataCelulas) => {
+        db.collection("celulas").orderBy("data_celula", "desc").onSnapshot((dataCelulas) => {
             $("#dCelulas").html("");
 
             dataCelulas.docs.map((val) => {
