@@ -3,6 +3,7 @@ var logado = false;
 
 function uploadImagem(foto, contFotos, contCelulas){
 
+    let db = firebase.firestore();
     let storage = firebase.storage();
 
     const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
