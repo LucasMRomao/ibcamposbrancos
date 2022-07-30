@@ -185,7 +185,7 @@ $(function(){
                 });
 
                 for(var i in fotos){
-                    const uploadTask = await storage.ref(`celulas/arquivo-${contFotos}`).put(fotos[i]);
+                    const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(fotos[i]);
                     console.log("Teste async await.");
                     console.log(fotos[i]);
 
