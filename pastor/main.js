@@ -224,6 +224,7 @@ $(function(){
                 db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_fotos: contFotos});
 
                 $("#iDescricaoNovaCelula").val("");
+                $("#iDataNovaCelula").val("");
                 $("#iFotosCelula").val("");
             });
         }
@@ -232,6 +233,7 @@ $(function(){
 
     $("#bCancelarNovaCelula").click(() => {
         $("#iDescricaoNovaCelula").val("");
+        $("#iDataNovaCelula").val("");
         $("#iFotosCelula").val("");
     });
 });
