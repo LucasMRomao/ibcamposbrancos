@@ -220,7 +220,7 @@ $(function(){
 
                     if (!fotos[0].type.match(pattern)){
                         alert("Somente arquivos de imagem são aceitos!");
-                        return;
+                        return false;
                     }
                 }
 
