@@ -173,7 +173,7 @@ $(function(){
             
             let descricaoCelula = $("#iDescricaoNovaCelula").val();
 
-            db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then((data) => {
+            db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then(async (data) => {
 
                 let contCelulas = data.docs[0].data().cont_celulas;
                 let contFotos = data.docs[0].data().cont_fotos;
@@ -185,8 +185,8 @@ $(function(){
                 });
 
                 for(var i in fotos){
-                    const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(fotos[i]);
-                    console.log(fotos[i]);
+                    const uploadTask = await storage.ref(`celulas/arquivo-${contFotos}`).put(fotos[i]);
+                    console.log("Teste async await.");
 
                     uploadTask.on('state_change', (snapshot) => {
                         /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
