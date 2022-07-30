@@ -221,7 +221,7 @@ $(function(){
                 }
 
                 db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_celulas: ++contCelulas});
-                db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_fotos: ++contFotos});
+                db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_fotos: contFotos});
 
                 $("#iDescricaoNovaCelula").val("");
                 $("#iFotosCelula").val("");
