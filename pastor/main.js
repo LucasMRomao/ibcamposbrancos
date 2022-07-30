@@ -173,7 +173,7 @@ $(function(){
             
             let descricaoCelula = $("#iDescricaoNovaCelula").val();
 
-            db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then(async (data) => {
+            db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then((data) => {
 
                 let contCelulas = data.docs[0].data().cont_celulas;
                 let contFotos = data.docs[0].data().cont_fotos;
@@ -196,7 +196,7 @@ $(function(){
                         $("#sPorcentagemEnvio").text(Math.round(progress) + "%");*/
                     }, (error) =>{
                         console.log(error);
-                    }, () => {
+                    }, async () => {
                         await uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
                             db.collection("celulas_fotos").add({
                                 id_celula: contCelulas,
