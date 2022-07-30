@@ -22,6 +22,12 @@ function uploadImagem(foto, contFotos, contCelulas){
                 id_celula: contCelulas,
                 url_foto: url
             });
+
+            $("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
+            if($("#pEnvioFotos").attr("max") == $("#pEnvioFotos").val()){
+                alert("Célula enviada com sucesso!");
+                $("#divEnvioFotos").hide();
+            }
         });
     });
 
@@ -208,6 +214,8 @@ $(function(){
                 let contCelulas = data.docs[0].data().cont_celulas;
                 let contFotos = data.docs[0].data().cont_fotos;
                 let fotos = $("#iFotosCelula")[0].files;
+                $("#pEnvioFotos").attr("max", fotos.length);
+                $("#divEnvioFotos").show();
 
                 db.collection("celulas").add({
                     id: contCelulas,
