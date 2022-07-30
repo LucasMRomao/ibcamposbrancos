@@ -210,7 +210,8 @@ $(function(){
                 });
 
                 for(var i=0; i<fotos.length; i++){
-                    await this.uploadImagem(fotos[i]), contFotos, contCelulas;
+                    await uploadImagem(fotos[i], contFotos, contCelulas);
+                    contFotos++;
                 }
 
                 db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_celulas: ++contCelulas});
