@@ -161,7 +161,7 @@ $(function(){
         $("#taNovaDescricao").val('');
     });
 
-    $("#bSalvarNovaCelula").click(async () => {
+    $("#bSalvarNovaCelula").click(() => {
 
         if($("#iDescricaoNovaCelula").val() == ''){
             alert("Insira uma descrição para a célula!");
@@ -186,8 +186,9 @@ $(function(){
 
                 for(var i in fotos){
                     const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(fotos[i]);
+                    console.log(fotos[i]);
 
-                    await uploadTask.on('state_change', (snapshot) => {
+                    uploadTask.on('state_change', (snapshot) => {
                         /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
                         $("#pEnvioArquivo").val(progress);
                         $("#sPorcentagemEnvio").text(Math.round(progress) + "%");*/
