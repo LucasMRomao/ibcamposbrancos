@@ -7,7 +7,7 @@ function uploadImagem(foto, contFotos, contCelulas){
 
     const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
     console.log("Teste async await.");
-    console.log(fotos[i]);
+    console.log(foto);
 
     uploadTask.on('state_change', (snapshot) => {
         /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
