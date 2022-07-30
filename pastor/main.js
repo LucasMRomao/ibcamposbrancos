@@ -3,6 +3,8 @@ var logado = false;
 
 function uploadImagem(foto, contFotos, contCelulas){
 
+    let storage = firebase.storage();
+
     const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
     console.log("Teste async await.");
     console.log(fotos[i]);
