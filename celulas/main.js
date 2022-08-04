@@ -37,7 +37,7 @@ $(function(){
 
             db.collection("usuarios").where("user", "==", user).where("password", "==", password).get().then((data) => {
                 console.log(data);
-                if(data.exists){
+                if(!data.empty){
                     alert("Logou!");
                 }else{
                     alert("Credenciais inválidas!");
