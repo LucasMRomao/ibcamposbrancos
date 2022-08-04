@@ -33,6 +33,16 @@ $(function(){
     const provider = new firebase.auth.GoogleAuthProvider();
     const db = firebase.firestore();
 
+    db.collection("cultos").orderBy("data", "desc").limit(1).get().then((data) => {
+        let url_iframe = data.docs[0].data().url_iframe;
+
+        let $html = "<iframe src='";
+        $html += url_iframe;
+        $html += "' width='500' height='281' style='border:none;overflow:hidden' scrolling='no' frameborder='0' allowfullscreen='true' allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'></iframe>";
+
+        $("#divCulto").html($html);
+    });
+
     db.collection("versiculo_semanal").onSnapshot((data) => {
         data.docs.map((val) => { //Similar ao foreach do PHP
             let livro = val.data().livro;
