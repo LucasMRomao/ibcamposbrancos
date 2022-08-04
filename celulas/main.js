@@ -33,7 +33,7 @@ $(function(){
             let user = $("#iUsuario").val().toLowerCase();
             let password = MD5($("#iSenha").val());
 
-            db.collection("usuarios").where("user", user).where("password", password).get().then((data) => {
+            db.collection("usuarios").where("user", "==", user).where("password", "==", password).get().then((data) => {
                 if(data.exists){
                     alert("Logou!");
                 }else{
