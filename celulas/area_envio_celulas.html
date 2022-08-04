@@ -1,0 +1,101 @@
+<div class='alert alert-primary' role='alert' style='margin-top: 10px;'>
+    <div class="form-group">
+        <label for="iDescricaoNovaCelula">Descrição da célula:</label>
+        <input type="text" class="form-control" id="iDescricaoNovaCelula" aria-describedby="emailHelp">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="iDataNovaCelula">Data da célula:</label>
+        <input type="date" id="iDataNovaCelula" class="form-control" aria-label="Livro" aria-describedby="basic-addon1" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="iFotosCelula">Fotos:</label>
+        <input type="file" multiple id="iFotosCelula" class="form-control" />
+    </div>
+    <button type="button" class="btn btn-primary" id="bEnviar">Enviar</button>
+    
+    <div class="row" style="margin-top: 10px; display: none;" id="divEnvioFotos">
+        <div class="col-12">
+            <div class="alert alert-success" role="alert">
+                <progress id="pEnvioFotos" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function uploadImagem(foto, contFotos, contCelulas){
+
+        let db = firebase.firestore();
+        let storage = firebase.storage();
+
+        const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
+        console.log("Teste async await.");
+        console.log(foto);
+
+        uploadTask.on('state_change', (snapshot) => {
+            /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
+            $("#pEnvioArquivo").val(progress);
+            $("#sPorcentagemEnvio").text(Math.round(progress) + "%");*/
+        }, (error) =>{
+            console.log(error);
+        }, () => {
+            uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
+                db.collection("celulas_fotos").add({
+                    id_celula: contCelulas,
+                    url_foto: url
+                });
+
+                $("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
+                if($("#pEnvioFotos").attr("max") == $("#pEnvioFotos").val()){
+                    alert("Célula enviada com sucesso!");
+                    $("#divEnvioFotos").hide();
+                }
+            });
+        });
+    }
+
+    $(function(){
+        $("#bEnviar").click(async () => {
+            if($("#iDescricaoNovaCelula").val() == ''){
+                alert("Insira uma descrição para a célula!");
+            }else if($("#iFotosCelula")[0].files.length == 0){
+                alert("Selecione ao menos 1 foto!");
+            }else{
+                let descricaoCelula = $("#iDescricaoNovaCelula").val();
+                let dataCelula = $("#iDataNovaCelula").val();
+                let usuarioLogado = $("#iUsuarioLogado").val();
+
+                db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then(async (data) => {
+
+                    let contCelulas = data.docs[0].data().cont_celulas;
+                    let contFotos = data.docs[0].data().cont_fotos;
+                    let fotos = $("#iFotosCelula")[0].files;
+                    $("#pEnvioFotos").attr("max", fotos.length);
+                    $("#divEnvioFotos").show();
+
+                    db.collection("celulas").add({
+                        id: contCelulas,
+                        descricao: descricaoCelula,
+                        data_celula: dataCelula,
+                        enviado_por: usuarioLogado
+                    });
+
+                    for(var i=0; i<fotos.length; i++){
+                        await uploadImagem(fotos[i], contFotos, contCelulas);
+                        contFotos++;
+                    }
+
+                    db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_celulas: ++contCelulas});
+                    db.collection("cont_celulas").doc("9GYvhjPyNi6h3m4YV0a1").update({cont_fotos: contFotos});
+
+                    $("#iDescricaoNovaCelula").val("");
+                    $("#iDataNovaCelula").val("");
+                    $("#iFotosCelula").val("");
+                });
+            }
+        });
+    });
+</script>
