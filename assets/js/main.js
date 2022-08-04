@@ -49,10 +49,6 @@ $(function(){
             let capitulo = val.data().capitulo;
             let versiculo = val.data().versiculo;
             let descricao_versiculo = val.data().descricao_versiculo;
-            console.log(livro);
-            console.log(capitulo);
-            console.log(versiculo);
-            console.log(descricao_versiculo);
 
             $("#sLivro").text(livro);
             $("#sCapitulo").text(capitulo);
