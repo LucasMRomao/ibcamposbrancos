@@ -61,6 +61,8 @@
         $("#bEnviar").click(async () => {
             if($("#iDescricaoNovaCelula").val() == ''){
                 alert("Insira uma descrição para a célula!");
+            }else if($("#iDataNovaCelula").val() == ''){
+                alert("Insira uma data válida!");
             }else if($("#iFotosCelula")[0].files.length == 0){
                 alert("Selecione ao menos 1 foto!");
             }else{
