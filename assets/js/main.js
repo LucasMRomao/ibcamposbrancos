@@ -40,7 +40,6 @@ $(function(){
         $html += url_iframe;
         $html += "' width='500' height='281' style='border:none;overflow:hidden' scrolling='no' frameborder='0' allowfullscreen='true' allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'></iframe>";
 
-        console.log($html);
         $("#divCulto").html($html);
     });
 
