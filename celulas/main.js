@@ -59,6 +59,7 @@ $(function(){
             db.collection("usuarios").where("user", "==", usuarioLogado).get().then((data) => {
                 db.collection("usuarios").doc(data.docs[0].id).update({password: novaSenha});
                 alert("Senha alterada com sucesso!");
+                $("#iNovaSenha").val('');
             });
         }
     });
