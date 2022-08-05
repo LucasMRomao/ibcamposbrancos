@@ -43,4 +43,21 @@ $(function(){
             });
         }
     });
+
+    $("#bCancelarNovaSenha").click(() => {
+        $("#iNovaSenha").val('');
+    });
+
+    $("#bSalvarNovaSenha").click(() => {
+        if($("#iNovaSenha").val() == ''){
+            alert("Insira a nova senha!");
+            return false; //Cancela o dismiss do modal
+        }else{
+            let usuarioLogado = $("#iUsuarioLogado").val();
+            let novaSenha = $("#iNovaSenha").val();
+
+            db.collection("usuarios").where("user", "==", usuarioLogado).update({password: novaSenha});
+            alert("Senha alterada com sucesso!");
+        }
+    });
 })
