@@ -54,7 +54,7 @@ $(function(){
             return false; //Cancela o dismiss do modal
         }else{
             let usuarioLogado = $("#iUsuarioLogado").val();
-            let novaSenha = $("#iNovaSenha").val();
+            let novaSenha = MD5($("#iNovaSenha").val());
 
             db.collection("usuarios").where("user", "==", usuarioLogado).get().then((data) => {
                 db.collection("usuarios").doc(data.docs[0].id).update({password: novaSenha});
