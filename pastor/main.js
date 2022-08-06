@@ -72,8 +72,8 @@ $(function(){
             let $usuario = '<tr>';
             $usuario += '<td>' + user + '</td>';
             $usuario += '<td>';
-            $usuario += '<button class="btn btn-outline-warning btn-sm bRedefinirSenhaUsuario" user-id="' + val.id + '" onclick="redefinirSenhaUsuario(' + val.id + ')">Redefinir senha</button>&nbsp;';
-            $usuario += '<button class="btn btn-outline-danger btn-sm bExcluirUsuario" user-id="' + val.id + '" onclick="excluirUsuario(' + val.id + ')">Excluir</button>';
+            $usuario += '<button class="btn btn-outline-warning btn-sm bRedefinirSenhaUsuario" user-id="' + val.id + '" onclick="redefinirSenhaUsuario(\'' + val.id + '\')">Redefinir senha</button>&nbsp;';
+            $usuario += '<button class="btn btn-outline-danger btn-sm bExcluirUsuario" user-id="' + val.id + '" onclick="excluirUsuario(\'' + val.id + '\')">Excluir</button>';
             $usuario += '</td>';
             $usuario += '</tr>';
 
