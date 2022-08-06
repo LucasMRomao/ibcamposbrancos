@@ -37,6 +37,7 @@ $(function(){
                 if(!data.empty){
                     $("#iUsuarioLogado").val(user);
                     $("#dMain").load("area_envio_celulas.html");
+                    $("#sUsuarioLogado").text(user);
                 }else{
                     alert("Credenciais inválidas!");
                 }
