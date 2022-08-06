@@ -33,12 +33,25 @@ function uploadImagem(foto, contFotos, contCelulas){
 
 }
 
-function redefinirSenhaUsuario(userId){
-    alert("Redefinir senha usuário: " + userId);
+function redefinirSenhaUsuario(userId, user){
+    let db = firebase.firestore();
+    let confirmaRedefinir = confirm("Deseja redefinir a senha do usuário: " + user + " ?");
+
+    if(confirmaRedefinir){
+        db.collection("usuarios").doc(userId).update({password: MD5('1234')});
+        alert("Senha do usuário redefinida!");
+    }
 }
 
-function excluirUsuario(userId){
-    alert("Excluir usuário: " + userId);
+function excluirUsuario(userId, user){
+    let db = firebase.firestore();
+    let confirmaExcluir = confirm("Deseja excluir o usuário: " + user + " ?");
+    
+    if(confirmaExcluir){
+        db.collection("usuarios").doc(userId).delete();
+        alert("Usuário excluído!");
+    }
+    
 }
 
 $(function(){
@@ -72,8 +85,8 @@ $(function(){
             let $usuario = '<tr>';
             $usuario += '<td>' + user + '</td>';
             $usuario += '<td>';
-            $usuario += '<button class="btn btn-outline-warning btn-sm bRedefinirSenhaUsuario" user-id="' + val.id + '" onclick="redefinirSenhaUsuario(\'' + val.id + '\')">Redefinir senha</button>&nbsp;';
-            $usuario += '<button class="btn btn-outline-danger btn-sm bExcluirUsuario" user-id="' + val.id + '" onclick="excluirUsuario(\'' + val.id + '\')">Excluir</button>';
+            $usuario += '<button class="btn btn-outline-warning btn-sm bRedefinirSenhaUsuario" user-id="' + val.id + '" onclick="redefinirSenhaUsuario(\'' + val.id + '\', \'' + user + '\')">Redefinir senha</button>&nbsp;';
+            $usuario += '<button class="btn btn-outline-danger btn-sm bExcluirUsuario" user-id="' + val.id + '" onclick="excluirUsuario(\'' + val.id + '\', \'' + user + '\')">Excluir</button>';
             $usuario += '</td>';
             $usuario += '</tr>';
 
