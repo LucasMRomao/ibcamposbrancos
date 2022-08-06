@@ -56,7 +56,7 @@ $(function(){
     const storage = firebase.storage();
 
     db.collection("usuarios").onSnapshot((data) => {
-        $("#divUsuarios").html(""); //Limpa a lista
+        $("#tableUsuarios>tbody").html(""); //Limpa a lista
 
         data.docs.map((val) => {
             let user = val.data().user;
