@@ -55,6 +55,24 @@ $(function(){
     const db = firebase.firestore();
     const storage = firebase.storage();
 
+    db.collection("usuarios").onSnapshot((data) => {
+        $("#divUsuarios").html(""); //Limpa a lista
+
+        data.docs.map((val) => {
+            let user = val.data().user;
+
+            let $usuario = '<tr>';
+            $usuario += '<td>' + user + '</td>';
+            $usuario += '<td>';
+            $usuario += '<button class="btn btn-outline-warning btn-sm bRedefinirSenhaUsuario" user-id="' + val.id + '">Redefinir senha</button>';
+            $usuario += '<button class="btn btn-outline-danger btn-sm bExcluirUsuario" user-id="' + val.id + '">Excluir</button>';
+            $usuario += '</td>';
+            $usuario += '</tr>';
+
+            $("#tableUsuarios>tbody").append($usuario);
+        });
+    });
+
     $("#bLogar").click(function(){
         if(logado) return; //Não executar se já estiver logado
         
