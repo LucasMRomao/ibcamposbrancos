@@ -10,7 +10,7 @@ $(function(){
     $("#lHome").click(() => loadPage("home.html", "Home"));
     //$("#lCalendario").click(() => loadPage("calendario.html", "Calendario"));
     $("#lCultos").click(() => loadPage("cultos.html", "Cultos"));
-    $("#lCelulas").click(() => loadPage("celulas.html", "Celulas"));
+    $("#lCelulas").click(() => loadPage("pagina_celulas.html", "Celulas"));
     $("#lPedido").click(() => loadPage("pedido_oracao.html", "Pedido"));
     $("#lTestemunho").click(() => loadPage("testemunho.html", "Testemunho"));
 
