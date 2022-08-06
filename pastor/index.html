@@ -8,146 +8,156 @@
         <!--Modal alterar senha-->
         <div class="modal fade" tabindex="-1" id="modalNovaSenha">
             <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Alterar senha</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Nova senha:</span>
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Alterar senha</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Nova senha:</span>
+                            </div>
+                            <input type="password" id="iNovaSenha" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon1">
                         </div>
-                        <input type="password" id="iNovaSenha" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="bCancelarNovaSenha">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="bSalvarNovaSenha">Salvar</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="bCancelarNovaSenha">Cancelar</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="bSalvarNovaSenha">Salvar</button>
-                </div>
-            </div>
             </div>
         </div>
 
         <!--Modal alterar versículo no rodapé da página-->
         <div class="modal fade" tabindex="-1" id="modalNovoVersiculo">
             <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Alterar versículo atual</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Livro:</span>
-                        </div>
-                        <input type="text" id="iNovoLivro" class="form-control" placeholder="Livro" aria-label="Livro" aria-describedby="basic-addon1">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Alterar versículo atual</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Capítulo:</span>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Livro:</span>
+                            </div>
+                            <input type="text" id="iNovoLivro" class="form-control" placeholder="Livro" aria-label="Livro" aria-describedby="basic-addon1">
                         </div>
-                        <input type="number" id="iNovoCapitulo" class="form-control" placeholder="Capítulo" aria-label="Capítulo" aria-describedby="basic-addon1">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Capítulo:</span>
+                            </div>
+                            <input type="number" id="iNovoCapitulo" class="form-control" placeholder="Capítulo" aria-label="Capítulo" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Versículo:</span>
+                            </div>
+                            <input type="number" id="iNovoVersiculo" class="form-control" placeholder="Versículo" aria-label="Versículo" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Descrição do versículo:</span>
+                            </div>
+                            <textarea id="taNovaDescricao" class="form-control" aria-label="Descrição do versículo"></textarea>
+                        </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Versículo:</span>
-                        </div>
-                        <input type="number" id="iNovoVersiculo" class="form-control" placeholder="Versículo" aria-label="Versículo" aria-describedby="basic-addon1">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="bCancelarNovoVersiculo">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="bSalvarNovoVersiculo">Salvar</button>
                     </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">Descrição do versículo:</span>
-                        </div>
-                        <textarea id="taNovaDescricao" class="form-control" aria-label="Descrição do versículo"></textarea>
-                      </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="bCancelarNovoVersiculo">Cancelar</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="bSalvarNovoVersiculo">Salvar</button>
-                </div>
-            </div>
             </div>
         </div>
 
         <!--Modal adicionar célula-->
         <div class="modal fade" tabindex="-1" id="modalAdicionarCelula">
             <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Adicionar célula</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Descrição:</span>
-                        </div>
-                        <input type="text" id="iDescricaoNovaCelula" class="form-control" placeholder="Descrição da célula" aria-label="Livro" aria-describedby="basic-addon1" />
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Adicionar célula</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Data:</span>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Descrição:</span>
+                            </div>
+                            <input type="text" id="iDescricaoNovaCelula" class="form-control" placeholder="Descrição da célula" aria-label="Livro" aria-describedby="basic-addon1" />
                         </div>
-                        <input type="date" id="iDataNovaCelula" class="form-control" aria-label="Livro" aria-describedby="basic-addon1" />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Data:</span>
+                            </div>
+                            <input type="date" id="iDataNovaCelula" class="form-control" aria-label="Livro" aria-describedby="basic-addon1" />
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Fotos:</span>
+                            </div>
+                            <input type="file" multiple id="iFotosCelula" class="form-control" />
+                        </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Fotos:</span>
-                        </div>
-                        <input type="file" multiple id="iFotosCelula" class="form-control" />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="bCancelarNovaCelula">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="bSalvarNovaCelula">Salvar</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="bCancelarNovaCelula">Cancelar</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="bSalvarNovaCelula">Salvar</button>
-                </div>
-            </div>
             </div>
         </div>
 
         <!--Modal cadastro de usuários-->
-        <div class="modal fade" tabindex="-1" id="modalNovaSenha">
+        <div class="modal fade" tabindex="-1" id="modalCadastroUsuarios">
             <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Cadastro de usuários</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-primary">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1">Usuário:</span>
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Cadastro de usuários</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-primary">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Usuário:</span>
+                                </div>
+                                <input type="text" id="iNomeNovoUsuario" class="form-control" aria-label="Usuário" aria-describedby="basic-addon1" />
                             </div>
-                            <input type="text" id="iNomeNovoUsuario" class="form-control" aria-label="Livro" aria-describedby="basic-addon1" />
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1">Senha:</span>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon2">Senha:</span>
+                                </div>
+                                <input type="password" id="iSenhaNovoUsuario" class="form-control" aria-label="Senha" aria-describedby="basic-addon2" />
                             </div>
-                            <input type="password" id="iSenhaNovoUsuario" class="form-control" aria-label="Livro" aria-describedby="basic-addon1" />
-                        </div>
-                        <button type="button" class="btn btn-primary" id="bSalvarNovoUsuario">Salvar</button><br/><br/>
+                            <button type="button" class="btn btn-primary" id="bSalvarNovoUsuario">Salvar</button><br/><br/>
 
-                        <div id="divUsuarios">
-                            
+                            <div id="divUsuarios">
+                                <table class="table table-hover table-dark" id="tableUsuarios">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Usuário</th>
+                                        <th scope="col">Ações</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
             </div>
         </div>
 
