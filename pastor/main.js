@@ -64,13 +64,47 @@ $(function(){
             let $usuario = '<tr>';
             $usuario += '<td>' + user + '</td>';
             $usuario += '<td>';
-            $usuario += '<button class="btn btn-outline-warning btn-sm bRedefinirSenhaUsuario" user-id="' + val.id + '">Redefinir senha</button>';
+            $usuario += '<button class="btn btn-outline-warning btn-sm bRedefinirSenhaUsuario" user-id="' + val.id + '">Redefinir senha</button>&nbsp;';
             $usuario += '<button class="btn btn-outline-danger btn-sm bExcluirUsuario" user-id="' + val.id + '">Excluir</button>';
             $usuario += '</td>';
             $usuario += '</tr>';
 
             $("#tableUsuarios>tbody").append($usuario);
         });
+    });
+
+    $("#modalCadastroUsuarios").click(function(){
+        $("#iSenhaNovoUsuario").val('1234'); //Senha padrão
+    });
+
+    $("#bSalvarNovoUsuario").click(function(){
+        let user = $("#iNomeNovoUsuario").val();
+        let password = $("#iSenhaNovoUsuario").val();
+
+        if(user == ''){
+            alert("Insira o nome do novo usuário!");
+        }else if(password == ''){
+            alert("Insira uma senha para o novo usuário!");
+        }else{
+            db.collection("usuarios").add({
+                user: user,
+                password: MD5(password)
+            });
+
+            alert("Usuário cadastrado!");
+            $("#iNomeNovoUsuario").val('');
+            $("#iSenhaNovoUsuario").val('1234');
+        }
+    });
+
+    $(".bRedefinirSenhaUsuario").click(function(){
+        let userId = $(this).attr("user-id");
+        alert("Redefinir senha usuário: " + userId);
+    });
+
+    $(".bExcluirUsuario").click(function(){
+        let userId = $(this).attr("user-id");
+        alert("Excluir usuário: " + userId);
     });
 
     $("#bLogar").click(function(){
