@@ -71,6 +71,16 @@ $(function(){
 
             $("#tableUsuarios>tbody").append($usuario);
         });
+
+        $(".bRedefinirSenhaUsuario").click(function(){
+            let userId = $(this).attr("user-id");
+            alert("Redefinir senha usuário: " + userId);
+        });
+    
+        $(".bExcluirUsuario").click(function(){
+            let userId = $(this).attr("user-id");
+            alert("Excluir usuário: " + userId);
+        });
     });
 
     $("#modalCadastroUsuarios").click(function(){
@@ -95,16 +105,6 @@ $(function(){
             $("#iNomeNovoUsuario").val('');
             $("#iSenhaNovoUsuario").val('1234');
         }
-    });
-
-    $(".bRedefinirSenhaUsuario").click(function(){
-        let userId = $(this).attr("user-id");
-        alert("Redefinir senha usuário: " + userId);
-    });
-
-    $(".bExcluirUsuario").click(function(){
-        let userId = $(this).attr("user-id");
-        alert("Excluir usuário: " + userId);
     });
 
     $("#bLogar").click(function(){
