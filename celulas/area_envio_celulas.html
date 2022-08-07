@@ -77,8 +77,6 @@
                 $("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
                 if($("#pEnvioFotos").attr("max") == $("#pEnvioFotos").val()){
                     $("#sMensagemConcluida").show('fade');
-                    $("#pEnvioFotos").attr("max", 100);
-                    $("#pEnvioFotos").val(0);
                 }
             });
         });
@@ -136,6 +134,8 @@
         $("#bFecharProgresso").click(function(){
             $("#divEnvioFotos").hide('fade');
             $("#sMensagemConcluida").hide();
+            $("#pEnvioFotos").attr("max", 100);
+            $("#pEnvioFotos").val(0);
         });
     });
 </script>
