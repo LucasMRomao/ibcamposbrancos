@@ -48,7 +48,7 @@
   </div>
 </div>
 
-<script>
+<script type="text/javascript">
   $(function(){
     db.collection("cultos").orderBy("data", "desc").limit(1).get().then((data) => {
         let url_iframe = data.docs[0].data().url_iframe;
