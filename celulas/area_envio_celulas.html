@@ -77,6 +77,8 @@
                 $("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
                 if($("#pEnvioFotos").attr("max") == $("#pEnvioFotos").val()){
                     $("#sMensagemConcluida").show('fade');
+                    $("#pEnvioFotos").attr("max", 100);
+                    $("#pEnvioFotos").val(0);
                 }
             });
         });
@@ -106,6 +108,7 @@
                     let contFotos = data.docs[0].data().cont_fotos;
                     let fotos = $("#iFotosCelula")[0].files;
                     $("#pEnvioFotos").attr("max", fotos.length);
+                    $("#pEnvioFotos").val(0);
                     $("#divEnvioFotos").show('fade');
 
                     db.collection("celulas").add({
