@@ -107,6 +107,7 @@
                     let fotos = $("#iFotosCelula")[0].files;
                     $("#pEnvioFotos").attr("max", fotos.length);
                     $("#pEnvioFotos").val(0);
+                    $("#sMensagemConcluida").hide();
                     $("#divEnvioFotos").show('fade');
 
                     db.collection("celulas").add({
