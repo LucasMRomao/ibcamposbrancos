@@ -99,7 +99,7 @@ $(function(){
     });
 
     $("#bSalvarNovoUsuario").click(function(){
-        let user = $("#iNomeNovoUsuario").val();
+        let user = $("#iNomeNovoUsuario").val().toLowerCase();
         let password = $("#iSenhaNovoUsuario").val();
 
         if(user == ''){
@@ -141,12 +141,12 @@ $(function(){
                     logado = true;
                     $("#dMain").load("area_do_pastor.html");
 
-                    db.collection('pedidos').orderBy("data", "desc").onSnapshot((dataPedido) => {
+                    db.collection('pedidos').orderBy("data", "desc").onSnapshot((dataPedidos) => {
                         
                         $("#dPedidos").html(""); //Limpa pedidos
                         var contPedidos = 0;
 
-                        dataPedido.docs.map((val) => {
+                        dataPedidos.docs.map((val) => {
                             let nome = val.data().nome;
                             let whatsapp = val.data().whatsapp;
                             let descricao = val.data().descricao_pedido;
@@ -154,13 +154,13 @@ $(function(){
                             let data = '';
                             let lido = val.data().lido;
                             
-                            let dataPedido = val.data().data.split(" ")[0];
+                            let data_pedido = val.data().data.split(" ")[0];
 
-                            data += dataPedido.split("-")[2];
+                            data += data_pedido.split("-")[2];
                             data += "/";
-                            data += dataPedido.split("-")[1];
+                            data += data_pedido.split("-")[1];
                             data += "/";
-                            data += dataPedido.split("-")[0];
+                            data += data_pedido.split("-")[0];
 
                             let $pedido = '';
 
