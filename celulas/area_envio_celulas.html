@@ -24,13 +24,9 @@
     
     <div class="row" style="margin-top: 10px; display: none;" id="divEnvioFotos">
         <div class="col-12">
-            <div class="alert alert-success" role="alert">
-                <progress id="pEnvioFotos" />
-            </div>
-        </div>
-        <div class="col-12" id="divMensagemConcluida" style="display: none;">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Célula enviada com sucesso!</strong>
+                <progress id="pEnvioFotos" />
+                <strong style="display: none;" id="sMensagemConcluida">Célula enviada com sucesso!</strong>
                 <button type="button" id="bFecharProgresso" class="close" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -64,8 +60,6 @@
     function uploadImagem(foto, contFotos, contCelulas){
 
         const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
-        console.log("Teste async await.");
-        console.log(foto);
 
         uploadTask.on('state_change', (snapshot) => {
             /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
@@ -82,7 +76,7 @@
 
                 $("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
                 if($("#pEnvioFotos").attr("max") == $("#pEnvioFotos").val()){
-                    $("#divMensagemConcluida").show('fade');
+                    $("#sMensagemConcluida").show('fade');
                 }
             });
         });
@@ -134,6 +128,11 @@
                     $("#iFotosCelula").val("");
                 });
             }
+        });
+
+        $("#bFecharProgresso").click(function(){
+            $("#divEnvioFotos").hide('fade');
+            $("#sMensagemConcluida").hide();
         });
     });
 </script>
