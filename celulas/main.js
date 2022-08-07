@@ -63,4 +63,21 @@ $(function(){
             });
         }
     });
+
+    var inputUsuario = document.getElementById("iUsuario");
+    var inputSenha = document.getElementById("iSenha");
+
+    inputUsuario.addEventListener("keypress", function(event){
+        if(event.key === "Enter"){
+            event.preventDefault(); //Cancela a ação default
+            document.getElementById("bLogar").click();
+        }
+    });
+
+    inputSenha.addEventListener("keypress", function(event){
+        if(event.key === "Enter"){
+            event.preventDefault(); //Cancela a ação default
+            document.getElementById("bLogar").click();
+        }
+    });
 })
