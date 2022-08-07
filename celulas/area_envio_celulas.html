@@ -28,6 +28,14 @@
                 <progress id="pEnvioFotos" />
             </div>
         </div>
+        <div class="col-12" id="divMensagemConcluida" style="display: none;">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Célula enviada com sucesso!</strong>
+                <button type="button" id="bFecharProgresso" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -74,8 +82,7 @@
 
                 $("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
                 if($("#pEnvioFotos").attr("max") == $("#pEnvioFotos").val()){
-                    alert("Célula enviada com sucesso!");
-                    $("#divEnvioFotos").hide();
+                    $("#divMensagemConcluida").show('fade');
                 }
             });
         });
@@ -97,13 +104,15 @@
                 let dataCelula = $("#iDataNovaCelula").val();
                 let usuarioLogado = $("#iUsuarioLogado").val();
 
+                $("#divEnvioFotos").show();
+
                 db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then(async (data) => {
 
                     let contCelulas = data.docs[0].data().cont_celulas;
                     let contFotos = data.docs[0].data().cont_fotos;
                     let fotos = $("#iFotosCelula")[0].files;
                     $("#pEnvioFotos").attr("max", fotos.length);
-                    $("#divEnvioFotos").show();
+                    $("#divEnvioFotos").show('fade');
 
                     db.collection("celulas").add({
                         id: contCelulas,

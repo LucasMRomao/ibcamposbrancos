@@ -46,6 +46,11 @@ $(function(){
         }
     });
 
+    $("#bFecharProgresso").click(function(){
+        $("#divEnvioFotos").hide('fade');
+        $("#divMensagemConcluida").hide();
+    });
+
     $("#bCancelarNovaSenha").click(() => {
         $("#iNovaSenha").val('');
     });
