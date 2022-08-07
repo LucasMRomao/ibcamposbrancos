@@ -27,8 +27,10 @@ $(function(){
 
         if($("#iUsuario").val() == ''){
             alert("Insira o usuário!");
+            $("#iUsuario").focus();
         }else if($("#iSenha").val() == ''){
             alert("Insira a senha!");
+            $("#iSenha").focus();
         }else{
             let user = $("#iUsuario").val().toLowerCase();
             let password = MD5($("#iSenha").val());
@@ -78,6 +80,6 @@ $(function(){
         if(event.key === "Enter"){
             event.preventDefault(); //Cancela a ação default
             document.getElementById("bLogar").click();
-        }
+        } 
     });
 })
