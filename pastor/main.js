@@ -107,14 +107,21 @@ $(function(){
         }else if(password == ''){
             alert("Insira uma senha para o novo usuário!");
         }else{
-            db.collection("usuarios").add({
-                user: user,
-                password: MD5(password)
-            });
 
-            alert("Usuário cadastrado!");
-            $("#iNomeNovoUsuario").val('');
-            $("#iSenhaNovoUsuario").val('1234');
+            db.collection("usuarios").where("user", "==", user).get().then((data) => {
+                if(data.empty){
+                    db.collection("usuarios").add({
+                        user: user,
+                        password: MD5(password)
+                    });
+        
+                    alert("Usuário cadastrado!");
+                    $("#iNomeNovoUsuario").val('');
+                    $("#iSenhaNovoUsuario").val('1234');
+                }else{
+                    alert("Nome de usuário já cadastrado!");
+                }
+            });
         }
     });
 
@@ -306,5 +313,22 @@ $(function(){
         $("#iDescricaoNovaCelula").val("");
         $("#iDataNovaCelula").val("");
         $("#iFotosCelula").val("");
+    });
+
+    var inputUsuario = document.getElementById("iUsuario");
+    var inputSenha = document.getElementById("iSenha");
+
+    inputUsuario.addEventListener("keypress", function(event){
+        if(event.key === "Enter"){
+            event.preventDefault(); //Cancela a ação default
+            document.getElementById("bLogar").click();
+        }
+    });
+
+    inputSenha.addEventListener("keypress", function(event){
+        if(event.key === "Enter"){
+            event.preventDefault(); //Cancela a ação default
+            document.getElementById("bLogar").click();
+        } 
     });
 });
