@@ -87,11 +87,18 @@
                 $("#dDatasCultos").html($("#dDatasCultos").html() + $dataCulto);
             });
 
-            $(".listaData").click(function(){
+            /*$(".listaData").click(function(){
                 $("#dDatasCultos>.listaData").click(function(){
                     $("#dDatasCultos>[data-toggle='list']").removeClass("active");
                     $(this).addClass("active");
                 });
+            });*/
+
+            $(".listaData").first().addClass("active");
+
+            $(".listaData").click(function(){
+                $(".listaData").removeClass("active");
+                $(this).addClass("active");
             })
         });
     });
