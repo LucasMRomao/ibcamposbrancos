@@ -77,8 +77,8 @@
                 });
 
                 //$("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
-                let ariaValueNow = $("#pEnvioFoto").attr("aria-valuenow");
-                let ariaValueMax = $("#pEnvioFoto").attr("aria-valuemax");
+                let ariaValueNow = Number($("#pEnvioFoto").attr("aria-valuenow"));
+                let ariaValueMax = Number($("#pEnvioFoto").attr("aria-valuemax"));
 
                 ariaValueNow += 1;
 
@@ -88,6 +88,8 @@
 
                 $("#pEnvioFoto").css("width", progresso + "%");
                 $("#pEnvioFoto").text(Math.round(progresso) + "%");
+
+                console.log(progresso);
 
                 if(progresso == 100){
                     $("#sMensagemConcluida").show('fade');
