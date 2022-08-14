@@ -112,8 +112,9 @@
                 let usuarioLogado = $("#iUsuarioLogado").val();
 
                 $("#pEnvioFoto").attr("aria-valuenow", "0");
-                $("#pEnvioFoto").attr("width", "0%");
+                $("#pEnvioFoto").css("width", "0%");
                 $("#pEnvioFoto").text("0%");
+                $("#sMensagemConcluida").hide();
                 $("#divEnvioFotos").show();
 
                 db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then(async (data) => {
@@ -122,9 +123,6 @@
                     let contFotos = data.docs[0].data().cont_fotos;
                     let fotos = $("#iFotosCelula")[0].files;
                     $("#pEnvioFoto").attr("aria-valuemax", fotos.length);
-                    $("#pEnvioFoto").attr("aria-valuenow", "0");
-                    $("#aria-valuenow").css("width", "0%");
-                    $("#sMensagemConcluida").hide();
                     $("#divEnvioFotos").show('fade');
 
                     db.collection("celulas").add({
