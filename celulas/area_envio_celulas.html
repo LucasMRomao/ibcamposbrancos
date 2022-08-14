@@ -86,7 +86,8 @@
 
                 let progresso = (Number(ariaValueNow) / Number(ariaValueMax)) * 100;
 
-                $("#pEnvioFoto").css("width", progresso);
+                $("#pEnvioFoto").css("width", progresso + "%");
+                $("#pEnvioFoto").text(Math.round(progresso) + "%");
 
                 if(progresso == 100){
                     $("#sMensagemConcluida").show('fade');
