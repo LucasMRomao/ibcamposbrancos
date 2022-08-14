@@ -84,14 +84,14 @@
 
                 $("#pEnvioFoto").attr("aria-valuenow", ariaValueNow);
 
-                let progresso = (Number(ariaValueNow) / Number(ariaValueMax)) * 100;
+                let progresso = Number(Number(ariaValueNow) / Number(ariaValueMax)) * 100;
 
                 $("#pEnvioFoto").css("width", progresso + "%");
                 $("#pEnvioFoto").text(Math.round(progresso) + "%");
 
                 console.log(progresso);
 
-                if(progresso == 100){
+                if(Math.round(progresso) == 100){
                     $("#sMensagemConcluida").show('fade');
                 }
             });
