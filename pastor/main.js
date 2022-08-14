@@ -61,6 +61,11 @@ function excluirUsuario(userId, user){
     
 }
 
+function fecharProgresso(){
+    $("#dEnvioConcluido").hide();
+    $("#divEnvioFotos").hide('fade');
+}
+
 $(function(){
 
     const firebaseConfig = {
@@ -99,12 +104,6 @@ $(function(){
 
             $("#tableUsuarios>tbody").append($usuario);
         });
-    });
-
-    $("#bFecharProgresso").click(function(){
-        $("#dEnvioConcluido").hide();
-        $("#divEnvioFotos").hide('fade');
-        console.log("Fechar progresso");
     });
 
     $("#modalCadastroUsuarios").click(function(){
