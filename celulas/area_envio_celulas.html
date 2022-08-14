@@ -76,7 +76,6 @@
                     url_foto: url
                 });
 
-                //$("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
                 let ariaValueNow = Number($("#pEnvioFoto").attr("aria-valuenow"));
                 let ariaValueMax = Number($("#pEnvioFoto").attr("aria-valuemax"));
 
@@ -88,8 +87,6 @@
 
                 $("#pEnvioFoto").css("width", progresso + "%");
                 $("#pEnvioFoto").text(Math.round(progresso) + "%");
-
-                console.log(progresso);
 
                 if(Math.round(progresso) == 100){
                     $("#sMensagemConcluida").show('fade');
@@ -121,9 +118,7 @@
                     let contCelulas = data.docs[0].data().cont_celulas;
                     let contFotos = data.docs[0].data().cont_fotos;
                     let fotos = $("#iFotosCelula")[0].files;
-                    /*$("#pEnvioFotos").attr("max", fotos.length);
-                    $("#pEnvioFotos").val(0);*/
-                    $("#aria-valuenow").attr("aria-valuemax", fotos.length);
+                    $("#pEnvioFoto").attr("aria-valuemax", fotos.length);
                     $("#pEnvioFoto").attr("aria-valuenow", "0");
                     $("#aria-valuenow").css("width", "0%");
                     $("#sMensagemConcluida").hide();
