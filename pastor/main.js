@@ -104,6 +104,7 @@ $(function(){
     $("#bFecharProgresso").click(function(){
         $("#dEnvioConcluido").hide();
         $("#divEnvioFotos").hide('fade');
+        console.log("Fechar progresso");
     });
 
     $("#modalCadastroUsuarios").click(function(){
