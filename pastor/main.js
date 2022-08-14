@@ -7,8 +7,6 @@ function uploadImagem(foto, contFotos, contCelulas){
     let storage = firebase.storage();
 
     const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
-    console.log("Teste async await.");
-    console.log(foto);
 
     uploadTask.on('state_change', (snapshot) => {
         /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
@@ -103,7 +101,7 @@ $(function(){
         });
     });
 
-    $("#bFecharProgresso").click(() => {
+    $("#bFecharProgresso").click(function(){
         $("#dEnvioConcluido").hide();
         $("#divEnvioFotos").hide('fade');
     });
@@ -294,6 +292,7 @@ $(function(){
             let dataCelula = $("#iDataNovaCelula").val();
             $("#pEnvioFoto").attr("aria-valuenow", "0");
             $("#pEnvioFoto").css("width", "0%");
+            $("#dEnvioConcluido").hide();
 
             db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then(async (data) => {
 
