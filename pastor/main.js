@@ -34,11 +34,15 @@ function uploadImagem(foto, contFotos, contCelulas){
 
             ariaValueNow += 1;
 
-            let progresso = Number((variaValueNow / ariaValueMax) * 100).toFixed(2);
+            let progresso = Number((ariaValueNow / ariaValueMax) * 100).toFixed(2);
 
             $("#pEnvioFoto").attr("aria-valuenow", ariaValueNow);
             $("#pEnvioFoto").css("width", progresso + "%");
             $("#pEnvioFoto").text(Math.round(progresso) + "%");
+
+            if(Math.round(progresso) == 100){
+                $("#dEnvioConcluido").show('fade');
+            }
         });
     });
 
@@ -103,6 +107,11 @@ $(function(){
 
             $("#tableUsuarios>tbody").append($usuario);
         });
+    });
+
+    $("#bFecharProgresso").click(() => {
+        $("#dEnvioConcluido").hide();
+        $("#divEnvioFotos").hide('fade');
     });
 
     $("#modalCadastroUsuarios").click(function(){
