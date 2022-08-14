@@ -113,6 +113,7 @@
 
                 $("#pEnvioFoto").attr("aria-valuenow", "0");
                 $("#pEnvioFoto").attr("width", "0%");
+                $("#pEnvioFoto").text("0%");
                 $("#divEnvioFotos").show();
 
                 db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then(async (data) => {
