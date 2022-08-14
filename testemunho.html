@@ -78,11 +78,11 @@
 
             if(nome == undefined || nome == null || nome == ''){
                 alert("Por favor, insira seu nome!");
-            }/*else if(!file){
-                alert("Um arquivo de vídeo deve ser inserido!");
-            }else if(!file.type.match(pattern)){
+            }else if(!file && descricao == ''){
+                alert("Uma descrição ou um arquivo de vídeo deve ser inserido!");
+            }else if(file && !file.type.match(pattern)){
                 alert("Somente arquivos de vídeo são aceitos!");
-            }*/else{
+            }else{
                 let date = new Date();
 
                 let dataTestemunho = '';
@@ -159,7 +159,7 @@
                 }else{
                     db.collection('testemunhos').add({
                         nome: nome,
-                        data: dataTestemunho,
+                        data_testemunho: dataTestemunho,
                         descricao_testemunho: descricao,
                         url_arquivo: ''
                     });
@@ -178,7 +178,6 @@
             $("#dTestemunhos").html("");
 
             data.docs.map((val) => { //Similar ao foreach do PHP
-                console.log("Data testemunho: " + val.data().data_testemunho);
                 let nome = val.data().nome;
                 let dataTestemunho = val.data().data_testemunho;
                 let descricao = val.data().descricao_testemunho;
@@ -194,7 +193,6 @@
                 if(descricao) $testemunho += descricao;
                 $testemunho += "</div>"; //Close div alert
 
-                console.log($testemunho);
                 $("#dTestemunhos").append($testemunho);
             });
         });
