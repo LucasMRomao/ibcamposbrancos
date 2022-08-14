@@ -23,11 +23,22 @@ function uploadImagem(foto, contFotos, contCelulas){
                 url_foto: url
             });
 
-            $("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
+            /*$("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
             if($("#pEnvioFotos").attr("max") == $("#pEnvioFotos").val()){
                 alert("Célula enviada com sucesso!");
                 $("#divEnvioFotos").hide();
-            }
+            }*/
+
+            let ariaValueNow = Number($("#pEnvioFoto").attr("aria-valuenow"));
+            let ariaValueMax = Number($("#pEnvioFoto").attr("aria-valuemax"));
+
+            ariaValueNow += 1;
+
+            let progresso = Number((variaValueNow / ariaValueMax) * 100).toFixed(2);
+
+            $("#pEnvioFoto").attr("aria-valuenow", ariaValueNow);
+            $("#pEnvioFoto").css("width", progresso + "%");
+            $("#pEnvioFoto").text(Math.round(progresso) + "%");
         });
     });
 
@@ -278,13 +289,16 @@ $(function(){
             
             let descricaoCelula = $("#iDescricaoNovaCelula").val();
             let dataCelula = $("#iDataNovaCelula").val();
+            $("#pEnvioFoto").attr("aria-valuenow", "0");
+            $("#pEnvioFoto").css("width", "0%");
 
             db.collection("cont_celulas").get("9GYvhjPyNi6h3m4YV0a1").then(async (data) => {
 
                 let contCelulas = data.docs[0].data().cont_celulas;
                 let contFotos = data.docs[0].data().cont_fotos;
                 let fotos = $("#iFotosCelula")[0].files;
-                $("#pEnvioFotos").attr("max", fotos.length);
+                //$("#pEnvioFotos").attr("max", fotos.length);
+                $("#pEnvioFoto").attr("aria-valuemax", fotos.length);
                 $("#divEnvioFotos").show();
 
                 db.collection("celulas").add({

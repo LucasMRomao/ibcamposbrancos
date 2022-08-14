@@ -22,7 +22,19 @@
     <div class="row" style="margin-top: 10px; display: none;" id="divEnvioFotos">
         <div class="col-12">
             <div class="alert alert-success" role="alert">
-                <progress id="pEnvioFotos" />
+                <div class="row">
+                    <div class="col-12">
+                        <div class="progress">
+                            <div id="pEnvioFoto" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="display: none;" id="dEnvioConcluido">
+                        <strong>Célula enviada com sucesso!</strong>
+                        <button type="button" id="bFecharProgresso" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
