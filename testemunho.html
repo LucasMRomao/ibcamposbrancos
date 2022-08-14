@@ -114,6 +114,10 @@
 
                 dataTestemunho += hours + ':' + minutes + ':' + seconds;
 
+                $("#pEnvioArquivo").attr("aria-valuenow", "0");
+                $("#pEnvioArquivo").css("width", "0%");
+                $("#pEnvioArquivo").text("0%");
+
                 if(file){
 
                     let contador;
