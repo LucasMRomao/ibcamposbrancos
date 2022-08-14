@@ -159,8 +159,9 @@
                                 $("#iNome").val('');
                                 $("#taDescricao").val('');
                                 $("#iArquivo").val('');
-                                $("#pEnvioArquivo").val(0);
-                                $("#sPorcentagemEnvio").text("0%");
+                                $("#pEnvioArquivo").attr("aria-valuenow", "0");
+                                $("#pEnvioArquivo").css("width", "0%");
+                                $("#pEnvioArquivo").text("0%");
                             });
                         });
                     });
@@ -177,8 +178,9 @@
                     $("#iNome").val('');
                     $("#taDescricao").val('');
                     $("#iArquivo").val('');
-                    $("#pEnvioArquivo").val(0);
-                    $("#sPorcentagemEnvio").text("0%");
+                    $("#pEnvioArquivo").attr("aria-valuenow", "0");
+                    $("#pEnvioArquivo").css("width", "0%");
+                    $("#pEnvioArquivo").text("0%");
                 }
             }
         });
