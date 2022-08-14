@@ -23,12 +23,6 @@ function uploadImagem(foto, contFotos, contCelulas){
                 url_foto: url
             });
 
-            /*$("#pEnvioFotos").val($("#pEnvioFotos").val() + 1);
-            if($("#pEnvioFotos").attr("max") == $("#pEnvioFotos").val()){
-                alert("Célula enviada com sucesso!");
-                $("#divEnvioFotos").hide();
-            }*/
-
             let ariaValueNow = Number($("#pEnvioFoto").attr("aria-valuenow"));
             let ariaValueMax = Number($("#pEnvioFoto").attr("aria-valuemax"));
 
@@ -306,7 +300,6 @@ $(function(){
                 let contCelulas = data.docs[0].data().cont_celulas;
                 let contFotos = data.docs[0].data().cont_fotos;
                 let fotos = $("#iFotosCelula")[0].files;
-                //$("#pEnvioFotos").attr("max", fotos.length);
                 $("#pEnvioFoto").attr("aria-valuemax", fotos.length);
                 $("#divEnvioFotos").show();
 
