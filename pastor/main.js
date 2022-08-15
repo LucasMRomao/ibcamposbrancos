@@ -159,7 +159,7 @@ $(function(){
                 for(var i in result.verses){
                     versiculos_livro_selecionado[i] = result.verses[i].text;
 
-                    let option = "<option value='" + i + "'>" + i + "</option>";
+                    let option = "<option value='" + parseInt(i+1) + "'>" + parseInt(i+1) + "</option>";
                     $("#sNovoVersiculo").append(option);
                 }
             }
@@ -167,7 +167,7 @@ $(function(){
     });
 
     $("#sNovoVersiculo").change(function(){
-        let index = $("#sNovoVersiculo option:selected").val();
+        let index = $("#sNovoVersiculo option:selected").val() - 1;
         $("#taNovaDescricao").text(versiculos_livro_selecionado[index]);
     });
 
