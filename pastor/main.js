@@ -159,7 +159,8 @@ $(function(){
                 for(var i in result.verses){
                     versiculos_livro_selecionado[i] = result.verses[i].text;
 
-                    let option = "<option value='" + parseInt(i+1) + "'>" + parseInt(i+1) + "</option>";
+                    let j = i + 1;
+                    let option = "<option value='" + j + "'>" + j + "</option>";
                     $("#sNovoVersiculo").append(option);
                 }
             }
