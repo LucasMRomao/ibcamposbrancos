@@ -2,6 +2,8 @@ var MD5 = function(d){var r = M(V(Y(X(d),8*d.length)));return r.toLowerCase()};f
 var logado = false;
 
 var total_capitulos_livros = [];
+var abreviacoes_livros = [];
+var versiculos_livro_selecionado = [];
 
 function uploadImagem(foto, contFotos, contCelulas){
 
@@ -115,12 +117,9 @@ $(function(){
         success: function(result){
             for(var i in result){
                 total_capitulos_livros[i] = result[i].chapters;
+                abreviacoes_livros[i] = result[i].abbrev.pt;
                 let option = "<option value='" + i + "'>" + result[i].name + "</option>";
                 $("#sNovoLivro").append(option);
-                /*$("#sNovoLivro").append("<option>", {
-                    value: i,
-                    text: result[i].name
-                });*/
             }
 
             $("#sNovoCapitulo").empty();
@@ -128,10 +127,6 @@ $(function(){
             for(var i=1; i<=total_capitulos_livros[0]; i++){
                 let option = "<option value='" + i + "'>" + i + "</option>";
                 $("#sNovoCapitulo").append(option);
-                /*$("#sNovoCapitulo").append("<option>", {
-                    value: i,
-                    text: i
-                });*/
             }
         }
     });
@@ -143,15 +138,37 @@ $(function(){
         $("#sNovoCapitulo").empty(); //Limpa o select
 
         for(var i=1; i<=total_capitulos_livros[index]; i++){
-            $("#sNovoCapitulo").append("<option>", {
-                value: i,
-                text: i
-            });
+            let option = "<option value='" + i + "'>" + i + "</option>";
+            $("#sNovoCapitulo").append(option);
         }
+
+        $("#taNovaDescricao").text("");
     });
 
     $("#sNovoCapitulo").change(function(){
+        let capitulo = $("#sNovoCapitulo option:selected").val();
+        let abv = abreviacoes_livros[parseInt(capitulo-1)];
 
+        $("#sNovoVersiculo").empty();
+        $("#taNovaDescricao").text("");
+
+        $.ajax({
+            url: 'https://www.abibliadigital.com.br/api/verses/nvi/' + abv + '/' + capitulo,
+            method: 'GET',
+            success: function(result){
+                for(var i in result.verses){
+                    versiculos_livro_selecionado[i] = result.verses[i].text;
+
+                    let option = "<option value='" + i + "'>" + i + "</option>";
+                    $("#sNovoVersiculo").append(option);
+                }
+            }
+        });
+    });
+
+    $("#sNovoVersiculo").change(function(){
+        let index = $("#sNovoVersiculo option:selected").val();
+        $("#taNovaDescricao").text(versiculos_livro_selecionado[index]);
     });
 
     $("#modalCadastroUsuarios").click(function(){
