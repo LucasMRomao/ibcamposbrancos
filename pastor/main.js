@@ -117,7 +117,7 @@ $(function(){
                 total_capitulos_livros[i] = result[i].chapters;
                 $("#sNovoLivro").append("<option>", {
                     value: i,
-                    text: result[i].name
+                    text: result[i]['name']
                 });
             }
 
@@ -147,7 +147,7 @@ $(function(){
     });
 
     $("#sNovoCapitulo").change(function(){
-        
+
     });
 
     $("#modalCadastroUsuarios").click(function(){
