@@ -115,19 +115,23 @@ $(function(){
         success: function(result){
             for(var i in result){
                 total_capitulos_livros[i] = result[i].chapters;
-                $("#sNovoLivro").append("<option>", {
+                let option = "<option value='" + i + "'>" + result[i].name + "</option>";
+                $("#sNovoLivro").append(option);
+                /*$("#sNovoLivro").append("<option>", {
                     value: i,
-                    text: result[i]['name']
-                });
+                    text: result[i].name
+                });*/
             }
 
             $("#sNovoCapitulo").empty();
             //Preenche automaticamente os capítulos do primeiro livro selecionado (Gênesis)
             for(var i=1; i<=total_capitulos_livros[0]; i++){
-                $("#sNovoCapitulo").append("<option>", {
+                let option = "<option value='" + i + "'>" + i + "</option>";
+                $("#sNovoCapitulo").append(option);
+                /*$("#sNovoCapitulo").append("<option>", {
                     value: i,
                     text: i
-                });
+                });*/
             }
         }
     });
