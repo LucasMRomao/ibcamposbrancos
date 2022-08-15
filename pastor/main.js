@@ -149,6 +149,9 @@ $(function(){
         let capitulo = $("#sNovoCapitulo option:selected").val();
         let abv = abreviacoes_livros[parseInt(capitulo-1)];
 
+        console.log("Capítulo: " + capitulo);
+        console.log("Abreviação: " + abv);
+
         $("#sNovoVersiculo").empty();
         $("#taNovaDescricao").text("");
 
