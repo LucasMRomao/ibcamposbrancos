@@ -123,6 +123,7 @@ $(function(){
             }
 
             $("#sNovoCapitulo").empty();
+            $("#sNovoCapitulo").append("<option value='-1'></option>");
             //Preenche automaticamente os capítulos do primeiro livro selecionado (Gênesis)
             for(var i=1; i<=total_capitulos_livros[0]; i++){
                 let option = "<option value='" + i + "'>" + i + "</option>";
@@ -136,6 +137,7 @@ $(function(){
         let index = $("#sNovoLivro option:selected").val();
 
         $("#sNovoCapitulo").empty(); //Limpa o select
+        $("#sNovoCapitulo").append("<option value='-1'></option>");
 
         for(var i=1; i<=total_capitulos_livros[index]; i++){
             let option = "<option value='" + i + "'>" + i + "</option>";
@@ -151,21 +153,24 @@ $(function(){
         let abv = abreviacoes_livros[indexLivro];
 
         $("#sNovoVersiculo").empty();
+        $("#sNovoVersiculo").append("<option></option>");
         $("#taNovaDescricao").text("");
 
-        $.ajax({
-            url: 'https://www.abibliadigital.com.br/api/verses/nvi/' + abv + '/' + capitulo,
-            method: 'GET',
-            success: function(result){
-                for(var i in result.verses){
-                    versiculos_livro_selecionado[i] = result.verses[i].text;
-
-                    let j = Number(i) + Number(1);
-                    let option = "<option value='" + j + "'>" + j + "</option>";
-                    $("#sNovoVersiculo").append(option);
+        if(capitulo && abv){
+            $.ajax({
+                url: 'https://www.abibliadigital.com.br/api/verses/nvi/' + abv + '/' + capitulo,
+                method: 'GET',
+                success: function(result){
+                    for(var i in result.verses){
+                        versiculos_livro_selecionado[i] = result.verses[i].text;
+    
+                        let j = Number(i) + Number(1);
+                        let option = "<option value='" + j + "'>" + j + "</option>";
+                        $("#sNovoVersiculo").append(option);
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
     $("#sNovoVersiculo").change(function(){
