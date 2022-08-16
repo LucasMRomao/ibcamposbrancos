@@ -309,6 +309,13 @@ $(function(){
         $("#iNovaSenha").val('');
     });
 
+    $("#bAlterarVersiculo").click(function(){
+        $("#sNovoLivro").val("0");
+        $("#sNovoCapitulo").val("");
+        $("#sNovoVersiculo").val("");
+        $("#taNovaDescricao").text("");
+    });
+
     $("#bSalvarNovoVersiculo").click(function(){
         let livro = $("#sNovoLivro option:selected").text();
         let capitulo = $("#sNovoCapitulo option:selected").text();
@@ -325,31 +332,6 @@ $(function(){
             alert("Por favor, selecione um versículo!");
             return false;
         }else{
-            console.clear();
-            console.log("Livro: " + livro);
-            console.log("Capítulo: " + capitulo);
-            console.log("Versículo: " + versiculo);
-            console.log("Descrição versículo: "+ descricao_versiculo);
-        }
-        
-        /*if($("#iNovoLivro").val() == ''){
-            alert("Por favor insira o nome do livro!");
-            return false;
-        }else if($("#iNovoCapitulo").val() == ''){
-            alert("Por favor insira o capítulo!");
-            return false;
-        }else if($("#iNovoVersiculo").val() == ''){
-            alert("Por favor insira o versículo!");
-            return false;
-        }else if($("#taNovaDescricao").val() == ''){
-            alert("Por favor insira a descrição do versículo!");
-            return false;
-        }else{
-            let livro = $("#iNovoLivro").val();
-            let capitulo = $("#iNovoCapitulo").val();
-            let versiculo = $("#iNovoVersiculo").val();
-            let descricao_versiculo = $("#taNovaDescricao").val();
-
             db.collection("versiculo_semanal").doc("tXDk9jv0SOvX4MF5Muho").update({
                 livro: livro,
                 capitulo: capitulo,
@@ -358,11 +340,7 @@ $(function(){
             });
 
             alert("Versículo atualizado!");
-            $("#iNovoLivro").val('');
-            $("#iNovoCapitulo").val('');
-            $("#iNovoVersiculo").val('');
-            $("#taNovaDescricao").val('');
-        }*/
+        }
     });
 
     $("#bCancelarNovoVersiculo").click(function(){
