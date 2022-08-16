@@ -139,6 +139,9 @@ $(function(){
         $("#sNovoCapitulo").empty(); //Limpa o select
         $("#sNovoCapitulo").append("<option></option>");
 
+        $("#sNovoVersiculo").empty();
+        $("#sNovoVersiculo").append("<option></option>");
+
         for(var i=1; i<=total_capitulos_livros[index]; i++){
             let option = "<option value='" + i + "'>" + i + "</option>";
             $("#sNovoCapitulo").append(option);
@@ -307,7 +310,29 @@ $(function(){
     });
 
     $("#bSalvarNovoVersiculo").click(function(){
-        if($("#iNovoLivro").val() == ''){
+        let livro = $("#sNovoLivro option:selected").text();
+        let capitulo = $("#sNovoCapitulo option:selected").text();
+        let versiculo = $("#sNovoVersiculo option:selected").text();
+        let descricao_versiculo = $("#taNovaDescricao").text();
+
+        if(livro == ''){
+            alert("Por favor, selecione um livro!");
+            return false;
+        }else if(capitulo == ''){
+            alert("Por favor, selecione um capítulo!");
+            return false;
+        }else if(versiculo == ''){
+            alert("Por favor, selecione um versículo!");
+            return false;
+        }else{
+            console.clear();
+            console.log("Livro: " + livro);
+            console.log("Capítulo: " + capitulo);
+            console.log("Versículo: " + versiculo);
+            console.log("Descrição versículo: "+ descricao_versiculo);
+        }
+        
+        /*if($("#iNovoLivro").val() == ''){
             alert("Por favor insira o nome do livro!");
             return false;
         }else if($("#iNovoCapitulo").val() == ''){
@@ -337,7 +362,7 @@ $(function(){
             $("#iNovoCapitulo").val('');
             $("#iNovoVersiculo").val('');
             $("#taNovaDescricao").val('');
-        }
+        }*/
     });
 
     $("#bCancelarNovoVersiculo").click(function(){
