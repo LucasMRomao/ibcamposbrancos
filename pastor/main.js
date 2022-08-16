@@ -123,7 +123,7 @@ $(function(){
             }
 
             $("#sNovoCapitulo").empty();
-            $("#sNovoCapitulo").append("<option value='-1'></option>");
+            $("#sNovoCapitulo").append("<option></option>");
             //Preenche automaticamente os capítulos do primeiro livro selecionado (Gênesis)
             for(var i=1; i<=total_capitulos_livros[0]; i++){
                 let option = "<option value='" + i + "'>" + i + "</option>";
@@ -137,7 +137,7 @@ $(function(){
         let index = $("#sNovoLivro option:selected").val();
 
         $("#sNovoCapitulo").empty(); //Limpa o select
-        $("#sNovoCapitulo").append("<option value='-1'></option>");
+        $("#sNovoCapitulo").append("<option></option>");
 
         for(var i=1; i<=total_capitulos_livros[index]; i++){
             let option = "<option value='" + i + "'>" + i + "</option>";
