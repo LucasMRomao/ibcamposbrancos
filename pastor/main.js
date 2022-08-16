@@ -336,12 +336,12 @@ $(function(){
         }
     });
 
-    $("#bCancelarNovoVersiculo").click(function(){
+    /*$("#bCancelarNovoVersiculo").click(function(){
         $("#iNovoLivro").val('');
         $("#iNovoCapitulo").val('');
         $("#iNovoVersiculo").val('');
         $("#taNovaDescricao").val('');
-    });
+    });*/
 
     $("#bSalvarNovaCelula").click(() => {
 
