@@ -309,13 +309,6 @@ $(function(){
         $("#iNovaSenha").val('');
     });
 
-    $("#bAlterarVersiculo").click(function(){
-        $("#sNovoLivro").val("0");
-        $("#sNovoCapitulo").val("");
-        $("#sNovoVersiculo").val("");
-        $("#taNovaDescricao").text("");
-    });
-
     $("#bSalvarNovoVersiculo").click(function(){
         let livro = $("#sNovoLivro option:selected").text();
         let capitulo = $("#sNovoCapitulo option:selected").text();
