@@ -52,53 +52,110 @@
                     let dataCelula = val.data().data_celula;
                     let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" +dataCelula.split("-")[0];
 
+                    var fotos = [];
+                    var videos = [];
+
+                    for(var i in data.docs){
+                        if(data.docs[i].data().tipo_arquivo == 'imagem'){
+                            fotos.push(data.docs[i]);
+                        }else if(data.docs[i].data().tipo_arquivo == 'video'){
+                            videos.push(data.docs[i]);
+                        }
+                    }
+
                     let celula = "";
                     celula += "<div class='alert alert-success' style='margin-top: 10px;'>";
                     celula += "<h5>" + val.data().descricao + "</h5><br/>";
                     celula += "<span>" + dataFormatada + "</span><br/><br/>";
-                    celula += "<div id='carouselCelula" + id + "' class='carousel slide' data-ride='carousel'>";
-                    celula += "<ol class='carousel-indicators'>";
 
-                    for(var i in data.docs){
-                        celula += "<li data-target='#carouselCelula" + id + "' data-slide-to='";
-                        celula += i + "'";
-                        if(i == 0) celula += " class='active'";
-                        celula += "></li>";
-                    }
+                    if(fotos.length > 0){
+                        celula += "<div id='carouselFotosCelula" + id + "' class='carousel slide' data-ride='carousel'>";
+                        celula += "<ol class='carousel-indicators'>";
 
-                    celula += "</ol>";
-                    
-                    celula += "<div class='carousel-inner'>";
-                    
-                    for(var i in data.docs){
-                        celula += "<div class='carousel-item";
-                        if(i == 0) celula += " active";
-                        celula += "'>";
+                        for(var i in fotos){
+                            celula += "<li data-target='#carouselFotosCelula" + id + "' data-slide-to='";
+                            celula += i + "'";
+                            if(i == 0) celula += " class='active'";
+                            celula += "></li>";
+                        }
 
-                        if(data.docs[i].data().tipo_arquivo == 'imagem'){
-                            celula += "<img style='width: auto' src='" + data.docs[i].data().url_foto + "' class='d-block w-100' alt='...'>";
-                        }else{
+                        celula += "</ol>";
+                        
+                        celula += "<div class='carousel-inner'>";
+                        
+                        for(var i in fotos){
+                            celula += "<div class='carousel-item";
+                            if(i == 0) celula += " active";
+                            celula += "'>";
+
+                            celula += "<img style='width: auto' src='" + fotos.url_foto + "' class='d-block w-100' alt='...'>";
+
+                            /*
                             celula += "<video controls name='media' style='width: 100%; height: auto;'>";
                             celula += "<source src='" + data.docs[i].data().url_foto  + "'>";
                             celula += "</video>";
+                            */
+
+                            celula += "</div>";
                         }
 
-                        celula += "</div>";
+                        celula += "</div>"; //Close div carousel-inner
+
+                        celula += "<button class='carousel-control-prev' type='button' data-target='#carouselFotosCelula" + id + "' data-slide='prev'>";
+                        celula += "<span class='carousel-control-prev-icon' aria-hidden='true'></span>";
+                        celula += "<span class='sr-only'>Previous</span>";
+                        celula += "</button>";
+                        celula += "<button class='carousel-control-next' type='button' data-target='#carouselFotosCelula" + id + "' data-slide='next'>";
+                        celula += "<span class='carousel-control-next-icon' aria-hidden='true'></span>";
+                        celula += "<span class='sr-only'>Next</span>";
+                        celula += "</button>";
+
+                        celula += "</div>"; //Close div carousel slide
+                        celula += "</div>"; //Close div alert
+                        celula += "<br/>";
                     }
 
-                    celula += "</div>"; //Close div carousel-inner
+                    if(videos.length > 0){
+                        celula += "<div id='carouselVideosCelula" + id + "' class='carousel slide' data-ride='carousel'>";
+                        celula += "<ol class='carousel-indicators'>";
 
-                    celula += "<button class='carousel-control-prev' type='button' data-target='#carouselCelula" + id + "' data-slide='prev'>";
-                    celula += "<span class='carousel-control-prev-icon' aria-hidden='true'></span>";
-                    celula += "<span class='sr-only'>Previous</span>";
-                    celula += "</button>";
-                    celula += "<button class='carousel-control-next' type='button' data-target='#carouselCelula" + id + "' data-slide='next'>";
-                    celula += "<span class='carousel-control-next-icon' aria-hidden='true'></span>";
-                    celula += "<span class='sr-only'>Next</span>";
-                    celula += "</button>";
+                        for(var i in fotos){
+                            celula += "<li data-target='#carouselVideosCelula" + id + "' data-slide-to='";
+                            celula += i + "'";
+                            if(i == 0) celula += " class='active'";
+                            celula += "></li>";
+                        }
 
-                    celula += "</div>"; //Close div carousel slide
-                    celula += "</div>"; //Close div alert
+                        celula += "</ol>";
+                        
+                        celula += "<div class='carousel-inner'>";
+                        
+                        for(var i in videos){
+                            celula += "<div class='carousel-item";
+                            if(i == 0) celula += " active";
+                            celula += "'>";
+
+                            celula += "<video controls name='media' style='width: 100%; height: auto;'>";
+                            celula += "<source src='" + videos.url_foto  + "'>";
+                            celula += "</video>";
+
+                            celula += "</div>";
+                        }
+
+                        celula += "</div>"; //Close div carousel-inner
+
+                        celula += "<button class='carousel-control-prev' type='button' data-target='#carouselVideosCelula" + id + "' data-slide='prev'>";
+                        celula += "<span class='carousel-control-prev-icon' aria-hidden='true'></span>";
+                        celula += "<span class='sr-only'>Previous</span>";
+                        celula += "</button>";
+                        celula += "<button class='carousel-control-next' type='button' data-target='#carouselVideosCelula" + id + "' data-slide='next'>";
+                        celula += "<span class='carousel-control-next-icon' aria-hidden='true'></span>";
+                        celula += "<span class='sr-only'>Next</span>";
+                        celula += "</button>";
+
+                        celula += "</div>"; //Close div carousel slide
+                        celula += "</div>"; //Close div alert
+                    }
 
                     $("#dCelulas").append(celula);
                 });
