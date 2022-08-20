@@ -59,7 +59,7 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
-    function uploadImagem(foto, contFotos, contCelulas){
+    function uploadImagem(foto, contFotos, contCelulas, tipoArquivo){
 
         const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
 
@@ -73,7 +73,8 @@
             uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
                 db.collection("celulas_fotos").add({
                     id_celula: contCelulas,
-                    url_foto: url
+                    url_foto: url,
+                    tipo_arquivo: tipoArquivo
                 });
 
                 let ariaValueNow = Number($("#pEnvioFoto").attr("aria-valuenow"));
@@ -107,9 +108,20 @@
             }else if($("#iFotosCelula")[0].files.length == 0){
                 alert("Selecione ao menos 1 foto!");
             }else{
+
+                let arquivos = $("#iFotosCelula")[0].files;
                 let descricaoCelula = $("#iDescricaoNovaCelula").val();
                 let dataCelula = $("#iDataNovaCelula").val();
                 let usuarioLogado = $("#iUsuarioLogado").val();
+
+                var patternVideos = /video-*/;
+
+                for(var i=0; i<arquivos.length; i++){
+                    if(!arquivos[i].type.includes('image') && !arquivos[i].type.match(patternVideos)){
+                        alert("Somente arquivos de imagem e vídeo são permitidos!");
+                        return;
+                    }
+                }
 
                 $("#pEnvioFoto").attr("aria-valuenow", "0");
                 $("#pEnvioFoto").css("width", "0%");
@@ -121,8 +133,7 @@
 
                     let contCelulas = data.docs[0].data().cont_celulas;
                     let contFotos = data.docs[0].data().cont_fotos;
-                    let fotos = $("#iFotosCelula")[0].files;
-                    $("#pEnvioFoto").attr("aria-valuemax", fotos.length);
+                    $("#pEnvioFoto").attr("aria-valuemax", arquivos.length);
                     $("#divEnvioFotos").show('fade');
 
                     db.collection("celulas").add({
@@ -132,8 +143,12 @@
                         enviado_por: usuarioLogado
                     });
 
-                    for(var i=0; i<fotos.length; i++){
-                        await uploadImagem(fotos[i], contFotos, contCelulas);
+                    for(var i=0; i<arquivos.length; i++){
+                        if(arquivos[i].type.includes('image')){
+                            await uploadImagem(arquivos[i], contFotos, contCelulas, 'imagem');
+                        }else{
+                            await uploadImagem(arquivos[i], contFotos, contCelulas, 'video');
+                        }
                         contFotos++;
                     }
 

@@ -75,7 +75,13 @@
                         if(i == 0) celula += " active";
                         celula += "'>";
 
-                        celula += "<img style='width: auto' src='" + data.docs[i].data().url_foto + "' class='d-block w-100' alt='...'>";
+                        if(data.docs[i].data().tipo_arquivo == 'imagem'){
+                            celula += "<img style='width: auto' src='" + data.docs[i].data().url_foto + "' class='d-block w-100' alt='...'>";
+                        }else{
+                            celula += "<video controls name='media' style='width: 100%; height: auto;'>";
+                            celula += "<source src='" + data.docs[i].data().url_foto  + "'>";
+                            celula += "</video>";
+                        }
 
                         celula += "</div>";
                     }

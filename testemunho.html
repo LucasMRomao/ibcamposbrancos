@@ -120,6 +120,7 @@
 
                 if(file){
 
+                    $("#bEnviar").prop("disabled", true); //Desabilita botão enquanto o upload é concluído
                     let contador;
 
                     db.collection("arquivos").get("uhuMYjfpabutlQGYL1pu").then((data) => {
@@ -181,6 +182,7 @@
                     $("#pEnvioArquivo").attr("aria-valuenow", "0");
                     $("#pEnvioArquivo").css("width", "0%");
                     $("#pEnvioArquivo").text("0%");
+                    $("#bEnviar").prop("disabled", false);
                 }
             }
         });
