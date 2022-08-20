@@ -68,6 +68,9 @@
                     celula += "<h5>" + val.data().descricao + "</h5><br/>";
                     celula += "<span>" + dataFormatada + "</span><br/><br/>";
 
+                    console.log(fotos);
+                    console.log(videos);
+
                     if(fotos.length > 0){
                         celula += "<div id='carouselFotosCelula" + id + "' class='carousel slide' data-ride='carousel'>";
                         celula += "<ol class='carousel-indicators'>";
@@ -89,12 +92,6 @@
                             celula += "'>";
 
                             celula += "<img style='width: auto' src='" + fotos.url_foto + "' class='d-block w-100' alt='...'>";
-
-                            /*
-                            celula += "<video controls name='media' style='width: 100%; height: auto;'>";
-                            celula += "<source src='" + data.docs[i].data().url_foto  + "'>";
-                            celula += "</video>";
-                            */
 
                             celula += "</div>";
                         }
