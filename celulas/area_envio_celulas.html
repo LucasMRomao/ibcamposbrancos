@@ -94,7 +94,7 @@
         $("#dFotosCelula").html("<h5>Carregando célula...</h5>");
 
         db.collection("celulas").doc(id).get().then((data) => {
-            $("#titleCelula").text(data.docs[0].data().descricao + " (" + formatarData(data.docs[0].data().data_celula) + ")");
+            $("#titleCelula").text(data.data().descricao + " (" + formatarData(data.data().data_celula) + ")");
             let idCelula = data.docs[0].data().id;
 
             db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
