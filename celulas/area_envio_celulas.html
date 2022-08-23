@@ -68,6 +68,10 @@
         return split[2] + "/" + split[1] + "/" + split[0];
     }
 
+    function exibirFotosCelula(id){
+        console.log("Exibir fotos: " + id);
+    }
+
     function excluirCelula(id){
         console.log("Excluir célula: " + id);
     }
@@ -119,6 +123,8 @@
             data.docs.map((val) => {
                 let $celula = "<div class='alert alert-success' style='margin-top: 10px;'>";
                 $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
+                $celula += "&nbsp;";
+                $celula += "<button class='btn btn-outline-warning' onclick='exibirFotosCelula(\"" + val.id + "\")Exibir fotos</button>";
                 $celula += "&nbsp;";
                 $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
                 $celula += "</div>";
