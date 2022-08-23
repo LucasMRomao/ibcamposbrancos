@@ -102,7 +102,7 @@
                 $carousel = '<div id="carouselFotosCelula" class="carousel slide" data-ride="carousel">';
                 $carousel += '<ol class="carousel-indicators">';
                 
-                for(var i in data.docs){
+                for(var i in dataFotos.docs){
                     $carousel += '<li data-target="#carouselFotosCelula" data-slide-to="' + i + '"';
                     if(i == 0) $carousel += ' class="active"';
                     $carousel += '></li>';
@@ -111,11 +111,11 @@
                 $carousel += '</ol>';
                 $carousel += '<div class="carousel-inner">';
                 
-                for(var i in data.docs){
+                for(var i in dataFotos.docs){
                     $carousel += '<div class="carousel-item';
                     if(i == 0) $carousel += ' active';
                     $carousel += '>';
-                    $carousel += '<img class="d-block w-100" src="' + data.docs[i].data().url_foto + '" />';
+                    $carousel += '<img class="d-block w-100" src="' + dataFotos.docs[i].data().url_foto + '" />';
                     $carousel += '</div>';
                 }
 
