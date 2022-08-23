@@ -63,6 +63,11 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
+    function formatarData(data){
+        let split = data.split("-");
+        return split[2] + "/" + split[1] + "/" + split[0];
+    }
+
     function uploadImagem(foto, contFotos, contCelulas, tipoArquivo){
 
         const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
@@ -111,7 +116,7 @@
                 let $celula = "<div class='alert alert-succes' style='margin-top: 10px;'>";
                 $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
                 $celula += "</div>";
-                
+
                 $("#dCelulasEnviadas").append($celula);
             });
 
