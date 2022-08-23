@@ -68,6 +68,10 @@
         return split[2] + "/" + split[1] + "/" + split[0];
     }
 
+    function excluirCelula(id){
+        console.log("Excluir célula: " + id);
+    }
+
     function uploadImagem(foto, contFotos, contCelulas, tipoArquivo){
 
         const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
@@ -115,6 +119,8 @@
             data.docs.map((val) => {
                 let $celula = "<div class='alert alert-succes' style='margin-top: 10px;'>";
                 $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
+                $celula += "&nbsp;";
+                $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
                 $celula += "</div>";
 
                 $("#dCelulasEnviadas").append($celula);
