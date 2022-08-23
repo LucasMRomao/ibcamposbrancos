@@ -93,7 +93,7 @@
     function exibirFotosCelula(id){
         $("#dFotosCelula").html("<h5>Carregando célula...</h5>");
 
-        db.collection("celulas").get(id).then((data) => {
+        db.collection("celulas").doc(id).get().then((data) => {
             $("#titleCelula").text(data.docs[0].data().descricao + " (" + formatarData(data.docs[0].data().data_celula) + ")");
             let idCelula = data.docs[0].data().id;
 
