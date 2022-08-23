@@ -41,6 +41,28 @@
     </div>
 </div>
 
+<!--Modal exibir fotos célula-->
+<div class="modal fade" id="modalExibirCelula" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="dFotosCelula">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script type="text/javascript">
 
     const firebaseConfig = {
@@ -69,7 +91,48 @@
     }
 
     function exibirFotosCelula(id){
-        console.log("Exibir fotos: " + id);
+        $("#dFotosCelula").html("<h5>Carregando célula...</h5>");
+
+        db.collection("celulas").get("dFotosCelula").then((data) => {
+            let idCelula = data.docs[0].data().id_celula;
+
+            db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
+
+                $carousel = '<div id="carouselFotosCelula" class="carousel slide" data-ride="carousel">';
+                $carousel += '<ol class="carousel-indicators">';
+                
+                for(var i in data.docs){
+                    $carousel += '<li data-target="#carouselFotosCelula" data-slide-to="' + i + '"';
+                    if(i == 0) $carousel += ' class="active"';
+                    $carousel += '></li>';
+                }
+
+                $carousel += '</ol>';
+                $carousel += '<div class="carousel-inner">';
+                
+                for(var i in data.docs){
+                    $carousel += '<div class="carousel-item';
+                    if(i == 0) $carousel += ' active';
+                    $carousel += '>';
+                    $carousel += '<img class="d-block w-100" src="' + data.docs[i].data().url_foto + '" />';
+                    $carousel += '</div>';
+                }
+
+                $carousel += '</div>'; //div carousel-inner
+                
+                $carousel += '<a class="carousel-control-prev" href="#carouselFotosCelula" role="button" data-slide="prev">';
+                $carousel += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+                $carousel += '<span class="sr-only">Previous</span>';
+                $carousel += '</a>';
+                $carousel += '<a class="carousel-control-next" href="#carouselFotosCelula" role="button" data-slide="next">';
+                $carousel += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+                $carousel += '<span class="sr-only">Next</span>';
+                $carousel += '</a>';
+                
+                $carousel += '</div>'; //div carousel
+
+            });
+        });
     }
 
     function excluirCelula(id){
@@ -124,7 +187,7 @@
                 let $celula = "<div class='alert alert-success' style='margin-top: 10px;'>";
                 $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
                 $celula += "&nbsp;";
-                $celula += "<button class='btn btn-outline-warning' onclick='exibirFotosCelula(\"" + val.id + "\")'>Exibir fotos</button>";
+                $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Exibir fotos</button>";
                 $celula += "&nbsp;";
                 $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
                 $celula += "</div>";
