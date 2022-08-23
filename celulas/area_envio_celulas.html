@@ -35,6 +35,10 @@
             </div>
         </div>
     </div>
+
+    <div id="dCelulasEnviadas">
+
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -99,6 +103,19 @@
     $(function(){
 
         $("#sUsuarioLogado").text($("#iUsuarioLogado").val());
+
+        db.collection("celulas").where("enviado_por", "==", $("#iUsuarioLogado").val()).onSnapshot((data) => {
+            $("#dCelulasEnviadas").html("");
+
+            data.docs.map((val) => {
+                let $celula = "<div class='alert alert-succes' style='margin-top: 10px;'>";
+                $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
+                $celula += "</div>";
+                
+                $("#dCelulasEnviadas").append($celula);
+            });
+
+        });
 
         $("#bEnviar").click(async () => {
             if($("#iDescricaoNovaCelula").val() == ''){
