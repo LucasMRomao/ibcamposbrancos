@@ -94,7 +94,7 @@
         $("#dFotosCelula").html("<h5>Carregando célula...</h5>");
 
         db.collection("celulas").get("dFotosCelula").then((data) => {
-            $("#titleCelula").text(data.docs[0].data().descricao);
+            $("#titleCelula").text(data.docs[0].data().descricao + "(" + formatarData(data.docs[0].data().data_celula) + ")");
             let idCelula = data.docs[0].data().id;
 
             db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
@@ -132,6 +132,7 @@
                 
                 $carousel += '</div>'; //div carousel
 
+                $("#dFotosCelula").html($carousel);
             });
         });
     }
