@@ -117,7 +117,7 @@
             $("#dCelulasEnviadas").html("");
 
             data.docs.map((val) => {
-                let $celula = "<div class='alert alert-succes' style='margin-top: 10px;'>";
+                let $celula = "<div class='alert alert-success' style='margin-top: 10px;'>";
                 $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
                 $celula += "&nbsp;";
                 $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
