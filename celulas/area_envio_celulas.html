@@ -46,7 +46,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title" id="titleCelula"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -94,7 +94,8 @@
         $("#dFotosCelula").html("<h5>Carregando célula...</h5>");
 
         db.collection("celulas").get("dFotosCelula").then((data) => {
-            let idCelula = data.docs[0].data().id_celula;
+            $("#titleCelula").text(data.docs[0].data().descricao);
+            let idCelula = data.docs[0].data().id;
 
             db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
 
