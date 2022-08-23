@@ -102,18 +102,26 @@
                 $carousel = '<div id="carouselFotosCelula" class="carousel slide" data-ride="carousel">';
                 $carousel += '<ol class="carousel-indicators">';
                 
+                let primeiro = true;
                 for(var i in dataFotos.docs){
                     $carousel += '<li data-target="#carouselFotosCelula" data-slide-to="' + i + '"';
-                    if(i == 0) $carousel += ' class="active"';
+                    if(primeiro){
+                        $carousel += ' class="active"';
+                        primeiro = false;
+                    }
                     $carousel += '></li>';
                 }
 
                 $carousel += '</ol>';
                 $carousel += '<div class="carousel-inner">';
                 
+                primeiro = true;
                 for(var i in dataFotos.docs){
                     $carousel += '<div class="carousel-item';
-                    if(i == 0) $carousel += ' active';
+                    if(primeiro){
+                        $carousel += ' active';
+                        primeiro = false;
+                    }
                     $carousel += '>';
                     $carousel += '<img class="d-block w-100" src="' + dataFotos.docs[i].data().url_foto + '" />';
                     $carousel += '</div>';
