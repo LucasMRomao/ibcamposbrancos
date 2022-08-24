@@ -111,6 +111,8 @@
             let dataCelula = data.data().data_celula;
 
             $("#iIDEditarCelula").val(idCelula);
+            $("#iDescricaoEditarCelula").val(descricaoCelula);
+            $("#iDataEditarCelula").val(dataCelula);
             $("#titleCelula").text(descricaoCelula + " (" + formatarData(dataCelula) + ")");
 
             db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
@@ -213,9 +215,7 @@
                 let $celula = "<div class='alert alert-success' style='margin-top: 10px;'>";
                 $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
                 $celula += "&nbsp;";
-                $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalEditarCelula' onclick='editarCelula(\"" + val.id + "\")'>Editar</button>";
-                $celula += "&nbsp;";
-                $celula += "<button class='btn btn-outline-info' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Exibir fotos</button>";
+                $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Exibir fotos</button>";
                 $celula += "&nbsp;";
                 $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
                 $celula += "</div>";
