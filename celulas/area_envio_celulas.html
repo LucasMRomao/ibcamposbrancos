@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<!--Modal exibir fotos célula-->
+<!--Modal exibir célula-->
 <div class="modal fade" id="modalExibirCelula" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -52,16 +52,28 @@
           </button>
         </div>
         <div class="modal-body">
-          <div id="dFotosCelula">
+            <div style="display: none;">
+                <input type="text" id="iIDEditarCelula" />
+            </div>
+            <div class="form-group">
+                <label for="iDescricaoEditarCelula">Descrição</label>
+                <input type="text" class="form-control" id="iDescricaoEditarCelula" />
+            </div>
+            <div class="form-group">
+                <label for="iDataEditarCelula">Data</label>
+                <input type="date" class="form-control" id="iDataEditarCelula" />
+            </div>
+            <div id="dFotosCelula" style="margin-top: 10px;">
 
-          </div>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="bSalvarEdicaoCelula">Salvar</button>
         </div>
       </div>
     </div>
-  </div>
+</div>
 
 <script type="text/javascript">
 
@@ -94,8 +106,12 @@
         $("#dFotosCelula").html("<h5>Carregando célula...</h5>");
 
         db.collection("celulas").doc(id).get().then((data) => {
-            $("#titleCelula").text(data.data().descricao + " (" + formatarData(data.data().data_celula) + ")");
             let idCelula = data.data().id;
+            let descricaoCelula = data.data().descricao;
+            let dataCelula = data.data().data_celula;
+
+            $("#iIDEditarCelula").val(idCelula);
+            $("#titleCelula").text(descricaoCelula + " (" + formatarData(dataCelula) + ")");
 
             db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
 
@@ -197,7 +213,9 @@
                 let $celula = "<div class='alert alert-success' style='margin-top: 10px;'>";
                 $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
                 $celula += "&nbsp;";
-                $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Exibir fotos</button>";
+                $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalEditarCelula' onclick='editarCelula(\"" + val.id + "\")'>Editar</button>";
+                $celula += "&nbsp;";
+                $celula += "<button class='btn btn-outline-info' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Exibir fotos</button>";
                 $celula += "&nbsp;";
                 $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
                 $celula += "</div>";
@@ -205,6 +223,27 @@
                 $("#dCelulasEnviadas").append($celula);
             });
 
+        });
+
+        $("#bSalvarEdicaoCelula").click(function(){
+            if($("#iDescricaoEditarCelula").val() == ''){
+                alert("Insira uma descrição para a célula!");
+                return false;
+            }else if($("#iDataEditarCelula").val() == ''){
+                alert("Insira a data da célula!");
+                return false;
+            }else{
+                let descricao = $("#iDescricaoEditarCelula").val();
+                let data = $("#iDataEditarCelula").val();
+                let id = $("#iIDEditarCelula").val();
+
+                db.collection("celulas").doc(id).update({
+                    descricao: descricao,
+                    data_celula: data
+                });
+
+                alert("Célula editada com sucesso!");
+            }
         });
 
         $("#bEnviar").click(async () => {
