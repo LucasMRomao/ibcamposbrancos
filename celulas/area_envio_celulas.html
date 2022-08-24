@@ -179,7 +179,11 @@
                     });
                 });
 
-                db.collection("celulas_fotos").where("id_celula", "==", idCelula).delete();
+                await db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then(async (dataFotos) => {
+                    await dataFotos.docs.map((val) => {
+                        db.collection("celulas_fotos").doc(val.id).delete();
+                    });
+                });
 
             });
 
