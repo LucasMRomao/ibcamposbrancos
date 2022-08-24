@@ -169,7 +169,7 @@
         if(confirmar){
             
             db.collection("celulas").doc(id).get().then((dataCelula) => {
-                let idCelula = dataCelula.docs[0].data().id;
+                let idCelula = dataCelula.data().id;
 
                 db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
                     dataFotos.docs.map((val) => {
