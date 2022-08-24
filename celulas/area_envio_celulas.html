@@ -163,17 +163,15 @@
         });
     }
 
-    function excluirCelula(id){
+    async function excluirCelula(id){
         let confirmar = confirm("Deseja realmente excluir a célula?");
         
         if(confirmar){
             
-            db.collection("celulas").doc(id).get().then((dataCelula) => {
-                console.log("Data célula:");
-                console.log(dataCelula.data());
+            await db.collection("celulas").doc(id).get().then((dataCelula) => {
                 let idCelula = dataCelula.data().id;
 
-                db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
+                await db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
                     dataFotos.docs.map((val) => {
                         let storageRef = val.data().storage_ref;
 
