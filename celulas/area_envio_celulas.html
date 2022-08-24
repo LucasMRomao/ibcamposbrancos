@@ -167,10 +167,10 @@
         let confirmar = confirm("Deseja realmente excluir a célula?");
         
         if(confirmar){
-            console.log("ID excluir: " + id);
+            
             db.collection("celulas").doc(id).get().then((dataCelula) => {
                 console.log("Data célula:");
-                console.log(dataCelula);
+                console.log(dataCelula.data());
                 let idCelula = dataCelula.data().id;
 
                 db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
