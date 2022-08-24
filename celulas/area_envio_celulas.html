@@ -167,13 +167,33 @@
         let confirmar = confirm("Deseja realmente excluir a célula?");
         
         if(confirmar){
-            console.log("Excluir célula: " + id);
+            
+            db.collection("celulas").doc(id).get().then((dataCelula) => {
+                let idCelula = dataCelula.docs[0].data().id;
+
+                db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
+                    dataFotos.docs.map((val) => {
+                        let storageRef = val.data().storage_ref;
+
+                        storage.ref(`celulas/${storageRef}`).delete();
+                    });
+                });
+
+                db.collection("celulas_fotos").where("id_celula", "==", idCelula).delete();
+
+            });
+
+            db.collection("celulas").doc(id).delete();
+
+            alert("Célula excluída com sucesso!");
+
         }
     }
 
     function uploadImagem(foto, contFotos, contCelulas, tipoArquivo){
 
-        const uploadTask = storage.ref(`celulas/arquivo-${contFotos}`).put(foto);
+        let storageRef = 'arquivo-' + contFotos;
+        const uploadTask = storage.ref(`celulas/${storageRef}`).put(foto);
 
         uploadTask.on('state_change', (snapshot) => {
             /*let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
@@ -183,10 +203,12 @@
             console.log(error);
         }, () => {
             uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
+
                 db.collection("celulas_fotos").add({
                     id_celula: contCelulas,
                     url_foto: url,
-                    tipo_arquivo: tipoArquivo
+                    tipo_arquivo: tipoArquivo,
+                    storage_ref: storageRef
                 });
 
                 let ariaValueNow = Number($("#pEnvioFoto").attr("aria-valuenow"));
