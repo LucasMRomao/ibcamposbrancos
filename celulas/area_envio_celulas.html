@@ -164,7 +164,11 @@
     }
 
     function excluirCelula(id){
-        console.log("Excluir célula: " + id);
+        let confirmar = confirm("Deseja realmente excluir a célula?");
+        
+        if(confirmar){
+            console.log("Excluir célula: " + id);
+        }
     }
 
     function uploadImagem(foto, contFotos, contCelulas, tipoArquivo){
