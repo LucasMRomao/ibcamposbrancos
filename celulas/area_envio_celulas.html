@@ -168,11 +168,11 @@
         
         if(confirmar){
             
-            await db.collection("celulas").doc(id).get().then((dataCelula) => {
+            await db.collection("celulas").doc(id).get().then(async (dataCelula) => {
                 let idCelula = dataCelula.data().id;
 
-                await db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then((dataFotos) => {
-                    dataFotos.docs.map((val) => {
+                await db.collection("celulas_fotos").where("id_celula", "==", idCelula).get().then(async (dataFotos) => {
+                    await dataFotos.docs.map((val) => {
                         let storageRef = val.data().storage_ref;
 
                         storage.ref(`celulas/${storageRef}`).delete();
