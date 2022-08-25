@@ -64,7 +64,18 @@
                 <input type="date" class="form-control" id="iDataEditarCelula" />
             </div>
             <div id="dFotosCelula" style="margin-top: 10px;">
-
+                <table class="table table-hover table-dark" id="tableFotosCelula">
+                    <thead>
+                      <tr>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                    </tbody>
+                  </table>
             </div>
         </div>
         <div class="modal-footer">
@@ -239,10 +250,11 @@
         let usuarioLogado = $("#iUsuarioLogado").val();
         $("#sUsuarioLogado").text(usuarioLogado);
 
-        db.collection("celulas").where("enviado_por", "==", usuarioLogado).onSnapshot((data) => {
-            $("#dCelulasEnviadas").html("");
-
-            data.docs.map((val) => {
+        db.collection("celulas").where("enviado_por", "==", usuarioLogado).orderBy("data_celula", "desc").onSnapshot((data) => {
+            //$("#dCelulasEnviadas").html("");
+            $("#tableFotosCelula>tbody").html("");
+            
+            /*data.docs.map((val) => {
                 let $celula = "<div class='alert alert-success' style='margin-top: 10px;'>";
                 $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
                 $celula += "&nbsp;";
@@ -252,6 +264,19 @@
                 $celula += "</div>";
 
                 $("#dCelulasEnviadas").append($celula);
+            });*/
+
+            data.docs.map((val) => {
+                let $celula = "<tr>";
+                $celula += "<th scope='row'>" + val.data().descricao + "</th>";
+                $celula += "<td>" + formatarData(val.data().data_celula) + "</td>";
+                $celula += "<td>";
+                $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Editar</button>";
+                $celula += "&nbsp;";
+                $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
+                $celula += "</td>";
+                $celula += "</tr>";
+                $("#tableFotosCelula>tbody").append($celula);
             });
 
         });
