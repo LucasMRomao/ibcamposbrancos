@@ -250,7 +250,7 @@
         let usuarioLogado = $("#iUsuarioLogado").val();
         $("#sUsuarioLogado").text(usuarioLogado);
 
-        db.collection("celulas").where("enviado_por", "==", usuarioLogado).orderBy("data_celula", "desc").onSnapshot((data) => {
+        db.collection("celulas").where("enviado_por", "==", usuarioLogado).onSnapshot((data) => {
             //$("#dCelulasEnviadas").html("");
             $("#tableFotosCelula>tbody").html("");
             
