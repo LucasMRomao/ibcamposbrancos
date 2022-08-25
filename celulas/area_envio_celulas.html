@@ -238,10 +238,7 @@
 
         $("#sUsuarioLogado").text($("#iUsuarioLogado").val());
 
-        db.collection("celulas")
-        .where("enviado_por", "==", $("#iUsuarioLogado").val())
-        .orderBy("data_celula", "desc")
-        .onSnapshot((data) => {
+        db.collection("celulas").where("enviado_por", "==", $("#iUsuarioLogado").val()).orderBy("data_celula", "desc").onSnapshot((data) => {
             $("#dCelulasEnviadas").html("");
 
             data.docs.map((val) => {
