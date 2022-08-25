@@ -236,9 +236,10 @@
 
     $(function(){
 
-        $("#sUsuarioLogado").text($("#iUsuarioLogado").val());
+        let usuarioLogado = $("#iUsuarioLogado").val();
+        $("#sUsuarioLogado").text(usuarioLogado);
 
-        db.collection("celulas").where("enviado_por", "==", $("#iUsuarioLogado").val()).onSnapshot((data) => {
+        db.collection("celulas").where("enviado_por", "==", usuarioLogado).onSnapshot((data) => {
             $("#dCelulasEnviadas").html("");
 
             data.docs.map((val) => {
