@@ -255,20 +255,22 @@
         let usuarioLogado = $("#iUsuarioLogado").val();
         $("#sUsuarioLogado").text(usuarioLogado);
 
-        db.collection("celulas").where("enviado_por", "==", usuarioLogado).onSnapshot((data) => {
+        db.collection("celulas").orderBy("data_celula", "desc").onSnapshot((data) => {
             $("#tableFotosCelula>tbody").html("");
 
             data.docs.map((val) => {
-                let $celula = "<tr>";
-                $celula += "<th scope='row'>" + val.data().descricao + "</th>";
-                $celula += "<td>" + formatarData(val.data().data_celula) + "</td>";
-                $celula += "<td>";
-                $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Editar</button>";
-                $celula += "&nbsp;";
-                $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
-                $celula += "</td>";
-                $celula += "</tr>";
-                $("#tableFotosCelula>tbody").append($celula);
+                if(val.data().enviado_por == usuarioLogado){
+                    let $celula = "<tr>";
+                    $celula += "<th scope='row'>" + val.data().descricao + "</th>";
+                    $celula += "<td>" + formatarData(val.data().data_celula) + "</td>";
+                    $celula += "<td>";
+                    $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Editar</button>";
+                    $celula += "&nbsp;";
+                    $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
+                    $celula += "</td>";
+                    $celula += "</tr>";
+                    $("#tableFotosCelula>tbody").append($celula);
+                }
             });
 
         });
