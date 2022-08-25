@@ -256,20 +256,7 @@
         $("#sUsuarioLogado").text(usuarioLogado);
 
         db.collection("celulas").where("enviado_por", "==", usuarioLogado).onSnapshot((data) => {
-            //$("#dCelulasEnviadas").html("");
             $("#tableFotosCelula>tbody").html("");
-            
-            /*data.docs.map((val) => {
-                let $celula = "<div class='alert alert-success' style='margin-top: 10px;'>";
-                $celula += "<b>" + val.data().descricao + "</b> <i>" + formatarData(val.data().data_celula) + "</i>";
-                $celula += "&nbsp;";
-                $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Exibir fotos</button>";
-                $celula += "&nbsp;";
-                $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
-                $celula += "</div>";
-
-                $("#dCelulasEnviadas").append($celula);
-            });*/
 
             data.docs.map((val) => {
                 let $celula = "<tr>";
