@@ -1,3 +1,18 @@
+<style>
+    .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
 <div class='alert alert-primary' role='alert' style='margin-top: 10px;'>
     <div class="alert alert-secondary">
         <span style="font-weight: bold;">Usuário logado: </span><span id="sUsuarioLogado"></span>&nbsp;&nbsp;
@@ -179,11 +194,20 @@
         });
     }
 
-    async function excluirCelula(id){
+    async function excluirCelula(id, button){
         let confirmar = confirm("Deseja realmente excluir a célula?");
         
         if(confirmar){
             
+            let $loader = "<div class='row'>";
+            $loader += "<div class='col-1'>";
+            $loader += "<div class='loader'>";
+            $loader += "</div></div>";
+            $loader += "<div class='col-11'>
+            $loader += "<span>Excluindo célula...</span>";
+            $loader += "</div></div>";
+            $(button).parent().html($loader);
+
             await db.collection("celulas").doc(id).get().then(async (dataCelula) => {
                 let idCelula = dataCelula.data().id;
 
@@ -270,7 +294,7 @@
                     $celula += "<td>";
                     $celula += "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirFotosCelula(\"" + val.id + "\")'>Editar</button>";
                     $celula += "&nbsp;";
-                    $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\")'>Excluir</button>";
+                    $celula += "<button class='btn btn-outline-danger' onclick='excluirCelula(\"" + val.id + "\", this)'>Excluir</button>";
                     $celula += "</td>";
                     $celula += "</tr>";
                     $("#tableFotosCelula>tbody").append($celula);
