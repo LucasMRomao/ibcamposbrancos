@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Seleção de fotos - página principal</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    </head>
+    <body>
+        <div style="display: none">
+            <input type="text" id="iUsuarioLogado" />
+        </div>
+        <div class="container-fluid" id="dMain">
+            <div class="alert alert-primary" role="alert" style="margin-top: 10px;">
+                <div class="form-group">
+                    <label for="iUsuario">Usuário</label>
+                    <input type="text" class="form-control" id="iUsuario" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label for="iNome">Senha</label>
+                    <input type="password" class="form-control" id="iSenha" aria-describedby="emailHelp">
+                </div>
+                <button type="button" class="btn btn-primary" id="bLogar">Logar</button>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        <!--Bibliotecas do Firebase para utilizar a base de dados online-->
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>
