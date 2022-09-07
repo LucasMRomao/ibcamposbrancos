@@ -3,18 +3,18 @@
     
   </div>
   <div class="col">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carousel_fotos_home" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <!--<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>-->
       </ol>
       <div class="carousel-inner">
-        <div class="carousel-item active">
+        <!--<div class="carousel-item active">
           <img src="assets/img/carousel_main/01.jpg" class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
@@ -34,7 +34,7 @@
         </div>
         <div class="carousel-item">
           <img src="assets/img/carousel_main/07.jpg" class="d-block w-100" alt="...">
-        </div>
+        </div>-->
       </div>
       <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -69,6 +69,38 @@
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
     const db = firebase.firestore();
+
+    db.collection("fotos_carousel_main_pagina_home").orderBy("storage_ref").get().then((data) => {
+      
+      $("#carousel_fotos_home>.carousel-indicators").html("");
+      $("#carousel_fotos_home>.carousel-inner").html("");
+
+      let cont = 0;
+      
+      data.forEach((item) => {
+        let id = item.id;
+        let storage_ref = item.data().storage_ref;
+        let url_foto = item.data().url_foto;
+
+        let $indicator = "<li data-target='#carousel_fotos_home' data-slide-to='";
+        $indicator += cont + "'";
+        if(cont == 0) $indicator += " class='active'";
+        $indicator += "></li>";
+
+        let $carousel_item = "<div class='carousel-item";
+        if(cont == 0) $carousel_item += " active";
+        $carousel_item += "'>";
+        $carousel_item += "<img src='" + url_foto + "' class='d-block w-100' alt='...'>";
+        $carousel_item += "</div>";
+
+        $("#carousel_fotos_home>.carousel-indicators").append($indicator);
+        $("#carousel_fotos_home>.carousel-inner").append($carousel_item);
+
+        cont++;
+
+      });
+
+    });
 
     db.collection("cultos").orderBy("data", "desc").limit(1).get().then((data) => {
         let url_iframe = data.docs[0].data().url_iframe;
