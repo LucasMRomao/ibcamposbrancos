@@ -39,6 +39,7 @@ $(function(){
                 if(!data.empty){
                     $("#iUsuarioLogado").val(user);
                     $("#dMain").load("area_selecao_fotos.html");
+                    logado = true;
                 }else{
                     alert("Credenciais inválidas!");
                 }
@@ -46,6 +47,47 @@ $(function(){
         }
     });
 
+    $("#bCancelarAdicionarFotos").click(() => {
+        $("#iFotosEnviar").val('');
+    });
+
+    $("#bEnviarAdicionarFotos").click(() => {
+        if($("#iFotosEnviar")[0].files.length == 0){
+            alert("Selecione ao menos 1 foto para enviar!");
+            return false; //Cancela o dismiss do modal
+        }else{
+            let fotos = $("#iFotosEnviar")[0].files;
+
+            console.log(fotos);
+        }
+    });
+
+    db.collection("fotos_carousel_main_pagina_home").orderBy("storage_ref").onSnapshot((data) => {
+        
+        let contFotos = 0;
+
+        data.docs.map((val) => {
+            let storage_ref = val.data().storage_ref;
+            let url_foto = val.data().url_foto;
+
+            let $indicator = "<li data-target='#carouselSelecaoFotos' data-slide-to='";
+            $indicator += contFotos + "'";
+            if(contFotos == 0) $indicator += " class='active'";
+            $indicator += "></li>";
+
+            $innerItem = "<div class='carousel-item";
+            if(contFotos == 0) $innerItem += " active";
+            $innerItem += "'>";
+            $innerItem += "<img src='" + url_foto + "' storage_ref='" + storage_ref + "' class='d-block w-100' alt='...'>";
+            $innerItem += "</div>";
+
+            $("#carouselSelecaoFotos>.carousel-indicators").append($indicator);
+            $("#carouselSelecaoFotos>.carousel-inner").append($innerItem);
+
+            contFotos++;
+        });
+
+    });
 
     var inputUsuario = document.getElementById("iUsuario");
     var inputSenha = document.getElementById("iSenha");
