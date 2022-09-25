@@ -62,34 +62,6 @@ $(function(){
         }
     });
 
-    db.collection("fotos_carousel_main_pagina_home").orderBy("storage_ref").onSnapshot((data) => {
-        
-        let contFotos = 0;
-
-        data.docs.map((val) => {
-            console.log(val.data());
-            let storage_ref = val.data().storage_ref;
-            let url_foto = val.data().url_foto;
-
-            let $indicator = "<li data-target='#carouselSelecaoFotos' data-slide-to='";
-            $indicator += contFotos + "'";
-            if(contFotos == 0) $indicator += " class='active'";
-            $indicator += "></li>";
-
-            $innerItem = "<div class='carousel-item";
-            if(contFotos == 0) $innerItem += " active";
-            $innerItem += "'>";
-            $innerItem += "<img src='" + url_foto + "' storage_ref='" + storage_ref + "' class='d-block w-100' alt='...'>";
-            $innerItem += "</div>";
-
-            $("#carouselSelecaoFotos>.carousel-indicators").append($indicator);
-            $("#carouselSelecaoFotos>.carousel-inner").append($innerItem);
-
-            contFotos++;
-        });
-
-    });
-
     var inputUsuario = document.getElementById("iUsuario");
     var inputSenha = document.getElementById("iSenha");
 
