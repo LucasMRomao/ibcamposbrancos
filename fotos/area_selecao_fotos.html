@@ -85,6 +85,14 @@
 
     function uploadImagem(foto, contFotos){
 
+        if(contFotos < 10){
+            contFotos = '00' + contFotos;
+        }else if(contFotos < 100){
+            contFotos = '0' + contFotos;
+        }
+
+        console.log(foto);
+
         let storageRef = 'arquivo-' + contFotos;
         const uploadTask = storage.ref(`carousel_main_pagina_home/${storageRef}`).put(foto);
 
