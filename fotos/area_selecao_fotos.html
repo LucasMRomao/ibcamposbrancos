@@ -91,9 +91,9 @@
             contFotos = '0' + contFotos;
         }
 
-        console.log(foto);
+        let extensao = foto.name.split(".").reverse()[0];
 
-        let storageRef = 'arquivo-' + contFotos;
+        let storageRef = 'arquivo-' + contFotos + '.' + extensao;
         const uploadTask = storage.ref(`carousel_main_pagina_home/${storageRef}`).put(foto);
 
         uploadTask.on('state_change', (snapshot) => {
