@@ -67,6 +67,7 @@ $(function(){
         let contFotos = 0;
 
         data.docs.map((val) => {
+            console.log(val.data());
             let storage_ref = val.data().storage_ref;
             let url_foto = val.data().url_foto;
 
