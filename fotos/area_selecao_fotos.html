@@ -71,6 +71,18 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
+    function excluirImagem(storage_ref){
+        storage.ref(`carousel_main_pagina_home/${storage_ref}`).delete();
+
+        db.collection("fotos_carousel_main_pagina_home").where("storage_ref", "==", storage_ref).get().then(async (data) => {
+            await data.docs.map((val) => {
+                db.collection("fotos_carousel_main_pagina_home").doc(val.id).delete();
+            });
+        });
+
+        alert("Foto excluída com sucesso!");
+    }
+
     function uploadImagem(foto, contFotos){
 
         let storageRef = 'arquivo-' + contFotos;
@@ -171,12 +183,12 @@
         }
     });
 
-    $("#bExcluirFotoSelecionada").click(() => {
+    $("#bExcluirFotoSelecionada").click(async () => {
         let storage_ref = $("#carouselSelecaoFotos>.carousel-inner>.active>img").attr("storage_ref");
         let $confirm = confirm("Deseja realmente excluir a foto " + storage_ref + " ?");
 
         if($confirm){
-            alert("Excluir foto " + storage_ref);
+            await excluirImagem(storage_ref);
         }
     });
 </script>
