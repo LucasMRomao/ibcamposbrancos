@@ -47,21 +47,6 @@ $(function(){
         }
     });
 
-    $("#bCancelarAdicionarFotos").click(() => {
-        $("#iFotosEnviar").val('');
-    });
-
-    $("#bEnviarAdicionarFotos").click(() => {
-        if($("#iFotosEnviar")[0].files.length == 0){
-            alert("Selecione ao menos 1 foto para enviar!");
-            return false; //Cancela o dismiss do modal
-        }else{
-            let fotos = $("#iFotosEnviar")[0].files;
-
-            console.log(fotos);
-        }
-    });
-
     var inputUsuario = document.getElementById("iUsuario");
     var inputSenha = document.getElementById("iSenha");
 
