@@ -123,6 +123,9 @@
 
     db.collection("fotos_carousel_main_pagina_home").orderBy("storage_ref").onSnapshot((data) => {
         
+        $("#carouselSelecaoFotos>.carousel-indicators").html("");
+        $("#carouselSelecaoFotos>.carousel-inner").html("");
+
         let contFotos = 0;
 
         data.docs.map((val) => {
