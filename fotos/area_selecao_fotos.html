@@ -147,6 +147,7 @@
         }else{
             let fotos = $("#iFotosEnviar")[0].files;
 
+            $("#pEnvioFoto").attr("aria-valuemax", fotos.length);
             $("#pEnvioFoto").attr("aria-valuenow", "0");
             $("#pEnvioFoto").css("width", "0%");
             $("#pEnvioFoto").text("0%");
@@ -160,7 +161,7 @@
                 $("#pEnvioFoto").attr("aria-valuemax", fotos.length);
                 $("#divEnvioFotos").show('fade');
 
-                for(var i=0; i<arquivos.length; i++){
+                for(var i=0; i<fotos.length; i++){
                     await uploadImagem(fotos[i], contFotos);
                     contFotos++;
                 }
