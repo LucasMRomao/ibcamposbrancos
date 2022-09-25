@@ -9,8 +9,8 @@
     <div class="btn-group" role="group" aria-label="...">
         <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalAdicionarFotos'>Adicionar Fotos</button>
     </div>
-    <div class="row">
-        <div class="col-12">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-sm-6">
             <div id="carouselSelecaoFotos" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
 
@@ -51,7 +51,7 @@
     const provider = new firebase.auth.GoogleAuthProvider();
     const db = firebase.firestore();
     const storage = firebase.storage();
-    
+
     db.collection("fotos_carousel_main_pagina_home").orderBy("storage_ref").onSnapshot((data) => {
         
         let contFotos = 0;
