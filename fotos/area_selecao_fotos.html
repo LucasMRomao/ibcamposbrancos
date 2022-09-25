@@ -147,7 +147,26 @@
         }else{
             let fotos = $("#iFotosEnviar")[0].files;
 
-            console.log(fotos);
+            $("#pEnvioFoto").attr("aria-valuenow", "0");
+            $("#pEnvioFoto").css("width", "0%");
+            $("#pEnvioFoto").text("0%");
+            $("#sMensagemConcluida").hide();
+            $("#divEnvioFotos").show();
+
+            db.collection("cont_fotos_home_page").get("vXH7zSpPqHCmrEWrF8Qh").then(async (data) => {
+
+                let contFotos = data.docs[0].data().cont;
+
+                $("#pEnvioFoto").attr("aria-valuemax", fotos.length);
+                $("#divEnvioFotos").show('fade');
+
+                for(var i=0; i<arquivos.length; i++){
+                    await uploadImagem(fotos[i], contFotos);
+                    contFotos++;
+                }
+
+                db.collection("cont_fotos_home_page").doc("vXH7zSpPqHCmrEWrF8Qh").update({cont: contFotos});
+            });
         }
     });
 
