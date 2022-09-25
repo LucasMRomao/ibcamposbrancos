@@ -9,7 +9,7 @@
     <div class="btn-group" role="group" aria-label="...">
         <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalAdicionarFotos'>Adicionar Fotos</button>
     </div>
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center" style="margin-top: 10px;">
         <div class="col-12 col-sm-6">
             <div id="carouselSelecaoFotos" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -26,6 +26,11 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="sr-only">Next</span>
                 </button>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="btn-group" role="group" aria-label="...">
+                <button type='button' class='btn btn-primary' id="bExcluirFotoSelecionada">Excluir foto selecionada</button>
             </div>
         </div>
     </div>
@@ -77,5 +82,14 @@
             contFotos++;
         });
 
+    });
+
+    $("#bExcluirFotoSelecionada").click(() => {
+        let storage_ref = $("#carouselSelecaoFotos>.carousel-inner>.active>img").attr("storage_ref");
+        let $confirm = confirm("Deseja realmente excluir a foto " + storage_ref + " ?");
+
+        if($confirm){
+            alert("Excluir foto " + storage_ref);
+        }
     });
 </script>
