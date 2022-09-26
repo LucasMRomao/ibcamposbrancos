@@ -22,7 +22,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title"></h5>
+          <h5 class="modal-title titulo-celula-exibir"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -61,7 +61,7 @@
 
         $("#carouselExibirCelula>.carousel-indicators").html($indicatorHTML);
         $("#carouselExibirCelula>.carousel-inner").html($innerHTML);
-        $("#carouselExibirCelula>.modal-title").html(tituloCelula);
+        $(".titulo-celula-exibir").html(tituloCelula);
     }
 
     $(function(){
