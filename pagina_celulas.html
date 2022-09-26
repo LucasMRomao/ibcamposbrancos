@@ -55,7 +55,13 @@
 <script type="text/javascript">
 
     function exibirCelula(id){
-        console.log(id);
+        let tituloCelula = $("#divCelula" + id + ">.titulo-celula").html();
+        let $indicatorHTML = $("#carouselFotosCelula" + id + ">.carousel-indicators").html();
+        let $innerHTML = $("#carouselFotosCelula" + id + ">.carousel-inner").html();
+
+        $("#carouselExibirCelula>.carousel-indicators").html($indicatorHTML);
+        $("#carouselExibirCelula>.carousel-inner").html($innerHTML);
+        $("#carouselExibirCelula>.modal-title").html(tituloCelula);
     }
 
     $(function(){
@@ -103,8 +109,8 @@
                     }
 
                     let celula = "";
-                    celula += "<div class='alert alert-success' style='margin-top: 10px;'>";
-                    celula += "<h5>" + val.data().descricao + "</h5><br/>";
+                    celula += "<div id='divCelula" + id + "'' class='alert alert-success' style='margin-top: 10px;'>";
+                    celula += "<h5 class='titulo-celula'>" + val.data().descricao + "</h5><br/>";
                     celula += "<span>" + dataFormatada + "</span><br/><br/>";
 
                     if(videos.length > 0){
@@ -169,7 +175,7 @@
                             if(i == 0) celula += " active";
                             celula += "'>";
 
-                            celula += "<img style='width: auto' src='" + fotos[i].url_foto + "' class='d-block w-100' alt='...' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirCelula('" + id + "')'>";
+                            celula += "<img style='width: auto' src='" + fotos[i].url_foto + "' class='d-block w-100' alt='...' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirCelula(\"" + id + "\")'>";
 
                             celula += "</div>";
                         }
