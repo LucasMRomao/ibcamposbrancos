@@ -6,7 +6,7 @@
         <h1>Carregando cultos</h1>
         <h3>Aguarde...</h3>
     </div>
-    <div class="list-group col-sm-6 scroll-bg-cultos" style="height: 60vh;">
+    <div id="divCultos" class="list-group col-sm-6 scroll-bg-cultos" style="height: 60vh;">
         <div class="scroll-div-cultos" id="dDatasCultos">
 
         </div>
@@ -34,6 +34,10 @@
     }
 
     $(function(){
+
+        $("#divLoading").show();
+        $("#divCultos").hide();
+
         const firebaseConfig = {
             apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
             authDomain: "igreja-batista-campos-brancos.firebaseapp.com",
@@ -55,6 +59,7 @@
 
         db.collection('cultos').orderBy("data", "desc").onSnapshot((dataCultos) => {
             $("#divLoading").hide();
+            $("#divCultos").show();
             $("#dLivesCultos").html("");
             $("#dDatasCultos").html("");
             
