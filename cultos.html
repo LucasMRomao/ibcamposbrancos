@@ -2,6 +2,10 @@
     <div class="carousel-inner col-sm-6" style="margin-bottom: 20px;" id="dLivesCultos">
         
     </div>
+    <div class='text-center' id="divLoading">
+        <h1>Carregando cultos</h1>
+        <h3>Aguarde...</h3>
+    </div>
     <div class="list-group col-sm-6 scroll-bg-cultos" style="height: 60vh;">
         <div class="scroll-div-cultos" id="dDatasCultos">
 
@@ -50,6 +54,7 @@
         const db = firebase.firestore();
 
         db.collection('cultos').orderBy("data", "desc").onSnapshot((dataCultos) => {
+            $("#divLoading").hide();
             $("#dLivesCultos").html("");
             $("#dDatasCultos").html("");
             
