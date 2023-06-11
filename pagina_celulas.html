@@ -13,7 +13,16 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
-                    <div id="dCelulas">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="dPaginacao">
+                                
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div id="dCelulas">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,6 +84,30 @@
         $("#carouselExibirCelula>.carousel-indicators").html($indicatorHTML);
         $("#carouselExibirCelula>.carousel-inner").html($innerHTML);
         $(".titulo-celula-exibir").html(tituloCelula);
+    }
+
+    function montarPaginacao(){
+        let paginacao = "<nav aria-label='Paginação das células'>";
+        paginacao += "<ul class='pagination justify-content-center'>";
+        paginacao += "<li class='page-item disabled'>";
+        paginacao += "<a class='page-link' href='#' tabindex='-1'>Anterior</a>";
+        paginacao += "</li>";
+
+        let total_paginas = Math.round(celulas.length / 10)
+
+        for(i = 1; i<=total_paginas; i++){
+            paginacao += "<li class='page-item";
+            if(i == 1) paginacao += " active";
+            paginacao += "'><a class='page-link' href='#'>" + i + "</a></li>";
+        }
+
+        paginacao += "<li class='page-item'>";
+        paginacao += "<a class='page-link' href='#'>Próxima</a>";
+        paginacao += "</li>";
+        paginacao += "</ul>";
+        paginacao += "</nav>";
+
+        $("#dPaginacao").html(paginacao);
     }
 
     function exibirPagina(numPagina){
@@ -239,6 +272,7 @@
             cont_celulas++;
             });
         }).finally(() => {
+            montarPaginacao();
             exibirPagina(1);
         }).catch(console.log);
 
