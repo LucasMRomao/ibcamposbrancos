@@ -215,17 +215,17 @@
                         videos.push(data.docs[i].data());
                     }
                 }*/
-
-                celulas[celulas.length] = {
-                    id: id,
-                    dataCelula: dataFormatada,
-                    descricao: dataCelulas.data().descricao,
-                    fotos: fotos,
-                    videos: videos
-                };
-
-                cont_celulas++;
             });
+
+            celulas[celulas.length] = {
+                id: id,
+                dataCelula: dataFormatada,
+                descricao: dataCelulas.data().descricao,
+                fotos: fotos,
+                videos: videos
+            };
+
+            cont_celulas++;
 
             /*dataCelulas.forEach(async (val) => {
 
@@ -261,7 +261,6 @@
             });*/
         });
 
-        exibirPagina(1);
     }
 
     async function carregarFirebase(){
