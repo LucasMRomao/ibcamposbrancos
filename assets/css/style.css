@@ -21,11 +21,11 @@
 }
 
 @media (min-width: 576px) {
-    main {
+    .section {
         height: calc(100vh - 300px);
         overflow: auto;
     }
-    footer {
+    .rodape {
         min-height: 236px;
     }
 }
