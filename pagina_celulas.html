@@ -184,10 +184,40 @@
     async function carregarCelulas(){
 
         db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
-        await db_celulas.forEach((dataCelulas) => {
+        await db_celulas.forEach(async (dataCelulas) => {
             $("#dCelulas").html("");
 
-            dataCelulas.docs.map(async (val) => {
+            let id = dataCelulas.data().id;
+            let db_celulas_fotos = await db.collection("celulas_fotos").where("id_celula", "==", id).get();
+
+            await db_celulas_fotos.forEach((data) => {
+
+                let dataCelula = dataCelulas.data().data_celula;
+                let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" + dataCelula.split("-")[0];
+
+                var fotos = [];
+                var videos = [];
+
+                for(var i in data.docs){
+                    if(data.docs[i].data().tipo_arquivo == 'imagem'){
+                        fotos.push(data.docs[i].data());
+                    }else if(data.docs[i].data().tipo_arquivo == 'video'){
+                        videos.push(data.docs[i].data());
+                    }
+                }
+
+                celulas[celulas.length] = {
+                    id: id,
+                    dataCelula: dataFormatada,
+                    descricao: dataCelulas.data().descricao,
+                    fotos: fotos,
+                    videos: videos
+                };
+
+                cont_celulas++;
+            });
+
+            /*dataCelulas.forEach(async (val) => {
 
                 let id = val.data().id;
                 let db_celulas_fotos = await db.collection("celulas_fotos").where("id_celula", "==", id).get();
@@ -218,7 +248,7 @@
 
                     cont_celulas++;
                 });
-            });
+            });*/
         });
     }
 
