@@ -183,6 +183,7 @@
 
     async function carregarCelulas(){
 
+        db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
         await db_celulas.then((dataCelulas) => {
             $("#dCelulas").html("");
 
@@ -242,8 +243,6 @@
         db = await firebase.firestore();
 
         cont_celulas = 0;
-
-        db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
     }
 
     //Não é possível usar o onload, pois a página principal já fez o carregamento
