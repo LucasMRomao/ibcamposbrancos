@@ -89,7 +89,7 @@
     function showPage(pagina){
         $("#listaPaginas>.active").removeClass("active");
         $("#aPag" + pagina).addClass("active");
-        exibirPagina(pagina);
+        exibirPagina(Number(pagina));
 
         if(pagina > 1){
             $("#aPagPrimeira").removeClass("disabled");
