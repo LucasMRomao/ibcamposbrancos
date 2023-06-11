@@ -78,12 +78,12 @@
 
         for(var i = inicio; i<=fim; i++){
             let celula = "";
-            celula += "<div id='divCelula" + id + "' class='alert alert-success' style='margin-top: 10px;'>";
+            celula += "<div id='divCelula" + celulas[i].id + "' class='alert alert-success' style='margin-top: 10px;'>";
             celula += "<h5 class='titulo-celula'>" + celulas[i].descricao + "</h5><br/>";
             celula += "<span>" + celulas[i].dataCelula + "</span><br/><br/>";
 
             if(celulas[i].videos.length > 0){
-                celula += "<div id='carouselVideosCelula" + id + "' class='carousel slide' data-ride='carousel'>";
+                celula += "<div id='carouselVideosCelula" + celulas[i].id + "' class='carousel slide' data-ride='carousel'>";
                 /*celula += "<ol class='carousel-indicators'>";
 
                 for(var i in videos){
@@ -111,11 +111,11 @@
 
                 celula += "</div>"; //Close div carousel-inner
 
-                celula += "<button class='carousel-control-prev' type='button' data-target='#carouselVideosCelula" + id + "' data-slide='prev'>";
+                celula += "<button class='carousel-control-prev' type='button' data-target='#carouselVideosCelula" + celulas[i].id + "' data-slide='prev'>";
                 celula += "<span class='carousel-control-prev-icon' aria-hidden='true'></span>";
                 celula += "<span class='sr-only'>Previous</span>";
                 celula += "</button>";
-                celula += "<button class='carousel-control-next' type='button' data-target='#carouselVideosCelula" + id + "' data-slide='next'>";
+                celula += "<button class='carousel-control-next' type='button' data-target='#carouselVideosCelula" + celulas[i].id + "' data-slide='next'>";
                 celula += "<span class='carousel-control-next-icon' aria-hidden='true'></span>";
                 celula += "<span class='sr-only'>Next</span>";
                 celula += "</button>";
@@ -125,11 +125,11 @@
             }
 
             if(celulas[i].fotos.length > 0){
-                celula += "<div id='carouselFotosCelula" + id + "' class='carousel slide' data-ride='carousel'>";
+                celula += "<div id='carouselFotosCelula" + celulas[i].id + "' class='carousel slide' data-ride='carousel'>";
                 celula += "<ol class='carousel-indicators'>";
 
                 for(var i in celulas[i].fotos){
-                    celula += "<li data-target='#carouselFotosCelula" + id + "' data-slide-to='";
+                    celula += "<li data-target='#carouselFotosCelula" + celulas[i].id + "' data-slide-to='";
                     celula += i + "'";
                     if(i == 0) celula += " class='active'";
                     celula += "></li>";
@@ -144,18 +144,18 @@
                     if(i == 0) celula += " active";
                     celula += "'>";
 
-                    celula += "<img style='width: auto' src='" + celulas[i].fotos[i].url_foto + "' class='d-block w-100' alt='...' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirCelula(\"" + id + "\")'>";
+                    celula += "<img style='width: auto' src='" + celulas[i].fotos[i].url_foto + "' class='d-block w-100' alt='...' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirCelula(\"" + celulas[i].id + "\")'>";
 
                     celula += "</div>";
                 }
 
                 celula += "</div>"; //Close div carousel-inner
 
-                celula += "<button class='carousel-control-prev' type='button' data-target='#carouselFotosCelula" + id + "' data-slide='prev'>";
+                celula += "<button class='carousel-control-prev' type='button' data-target='#carouselFotosCelula" + celulas[i].id + "' data-slide='prev'>";
                 celula += "<span class='carousel-control-prev-icon' aria-hidden='true'></span>";
                 celula += "<span class='sr-only'>Previous</span>";
                 celula += "</button>";
-                celula += "<button class='carousel-control-next' type='button' data-target='#carouselFotosCelula" + id + "' data-slide='next'>";
+                celula += "<button class='carousel-control-next' type='button' data-target='#carouselFotosCelula" + celulas[i].id + "' data-slide='next'>";
                 celula += "<span class='carousel-control-next-icon' aria-hidden='true'></span>";
                 celula += "<span class='sr-only'>Next</span>";
                 celula += "</button>";
@@ -214,6 +214,7 @@
                     }
 
                     celulas[celulas.length] = {
+                        id: id,
                         dataCelula: dataFormatada,
                         descricao: val.data().descricao,
                         fotos: fotos,
