@@ -119,12 +119,12 @@
                         }
                     }
 
-                    celulas.append({
+                    celulas[celulas.length] = {
                         dataCelula: dataFormatada,
                         descricao: val.data().descricao,
                         fotos: fotos,
                         videos: videos
-                    });
+                    };
 
                     let celula = "";
                     celula += "<div id='divCelula" + id + "' class='alert alert-success' style='margin-top: 10px;'>";
