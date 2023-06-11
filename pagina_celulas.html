@@ -200,13 +200,19 @@
                 var fotos = [];
                 var videos = [];
 
-                for(var i in data.docs){
+                if(data.data().tipo_arquivo == 'imagem'){
+                    fotos.push(data.data());
+                }else if(data.data().tipo_arquivo == 'video'){
+                    videos.push(data.data());
+                }
+
+                /*for(var i in data.docs){
                     if(data.docs[i].data().tipo_arquivo == 'imagem'){
                         fotos.push(data.docs[i].data());
                     }else if(data.docs[i].data().tipo_arquivo == 'video'){
                         videos.push(data.docs[i].data());
                     }
-                }
+                }*/
 
                 celulas[celulas.length] = {
                     id: id,
