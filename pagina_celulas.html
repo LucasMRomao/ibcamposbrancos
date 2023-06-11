@@ -77,6 +77,8 @@
         $("#dCelulas").html("");
 
         for(var i = inicio; i<=fim; i++){
+            console.log("i: " + i);
+            console.log(celulas[i]);
             let celula = "";
             celula += "<div id='divCelula" + celulas[i].id + "' class='alert alert-success' style='margin-top: 10px;'>";
             celula += "<h5 class='titulo-celula'>" + celulas[i].descricao + "</h5><br/>";
