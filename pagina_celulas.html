@@ -85,6 +85,8 @@
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
 
+        var celulas = [];
+
         db.collection("celulas").orderBy("data_celula", "desc").get().then((dataCelulas) => {
             $("#dCelulas").html("");
 
@@ -107,6 +109,15 @@
                             videos.push(data.docs[i].data());
                         }
                     }
+
+                    let celula2 = {
+                        dataCelula: dataFormatada,
+                        descricao: val.data().descricao,
+                        fotos: fotos,
+                        videos: videos
+                    }
+
+                    console.log(celula2);
 
                     let celula = "";
                     celula += "<div id='divCelula" + id + "' class='alert alert-success' style='margin-top: 10px;'>";
