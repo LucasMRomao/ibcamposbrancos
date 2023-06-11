@@ -172,6 +172,46 @@
         }
     }
 
+    async function carregarCelulas(){
+        await db_celulas.then((dataCelulas) => {
+            $("#dCelulas").html("");
+
+            dataCelulas.docs.map(async (val) => {
+
+                let id = val.data().id;
+                let db_celulas_fotos = db.collection("celulas_fotos").where("id_celula", "==", id).get();
+
+                await db_celulas_fotos.then((data) => {
+
+                    let dataCelula = val.data().data_celula;
+                    let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" +dataCelula.split("-")[0];
+
+                    var fotos = [];
+                    var videos = [];
+
+                    for(var i in data.docs){
+                        if(data.docs[i].data().tipo_arquivo == 'imagem'){
+                            fotos.push(data.docs[i].data());
+                        }else if(data.docs[i].data().tipo_arquivo == 'video'){
+                            videos.push(data.docs[i].data());
+                        }
+                    }
+
+                    celulas[celulas.length] = {
+                        id: id,
+                        dataCelula: dataFormatada,
+                        descricao: val.data().descricao,
+                        fotos: fotos,
+                        videos: videos
+                    };
+
+                    cont_celulas++;
+                });
+            });
+            exibirPagina(1);
+        });
+    }
+
     //Não é possível usar o onload, pois a página principal já fez o carregamento
     const firebaseConfig = {
         apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
@@ -197,42 +237,5 @@
     let db_celulas = db.collection("celulas").orderBy("data_celula", "desc").get();
 
     console.log("Carregando células...");
-    await db_celulas.then((dataCelulas) => {
-        $("#dCelulas").html("");
-
-        dataCelulas.docs.map(async (val) => {
-
-            let id = val.data().id;
-            let db_celulas_fotos = db.collection("celulas_fotos").where("id_celula", "==", id).get();
-
-            await db_celulas_fotos.then((data) => {
-
-                let dataCelula = val.data().data_celula;
-                let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" +dataCelula.split("-")[0];
-
-                var fotos = [];
-                var videos = [];
-
-                for(var i in data.docs){
-                    if(data.docs[i].data().tipo_arquivo == 'imagem'){
-                        fotos.push(data.docs[i].data());
-                    }else if(data.docs[i].data().tipo_arquivo == 'video'){
-                        videos.push(data.docs[i].data());
-                    }
-                }
-
-                celulas[celulas.length] = {
-                    id: id,
-                    dataCelula: dataFormatada,
-                    descricao: val.data().descricao,
-                    fotos: fotos,
-                    videos: videos
-                };
-
-                cont_celulas++;
-            });
-        });
-        exibirPagina(1);
-    });
-
+    carregarCelulas(); //Necessário jogar em uma função assíncrona, pelo uso do await
 </script>
