@@ -208,7 +208,11 @@
 
                 db_celulas_fotos.then((dbcf) => {
                     dbcf.docs.forEach((dbcf_val) => {
-                        console.log(dbcf_val);
+                        if(dbcf_val.data().tipo_arquivo == 'imagem'){
+                            fotos.push(dbcf_val.data());
+                        }else if(dbcf_val.data().tipo_arquivo == 'video'){
+                            videos.push(dbcf_val.data());
+                        }
                     });
                 })
 
