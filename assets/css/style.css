@@ -1,20 +1,23 @@
-header {
+.topo {
     background-color: #b3dbff;
     min-height: 64px;
 }
 
-header ul {
+.topo ul {
     margin: 0;
 }
 
-section nav {
+.section nav {
     background-color: #EDEDED;
     padding: 2rem;
 }
 
-footer {
+.rodape {
     background-color: #454545;
     padding: 2rem;
+    position: fixed;
+    margin: 0;
+    bottom: 0;
 }
 
 @media (min-width: 576px) {
