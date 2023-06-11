@@ -209,21 +209,21 @@
                 let videos = [];
 
                 db_celulas_fotos.then(async (dbcf) => {
-                    const CELULA_FOTOS = dbcf.docs.map(dbcf_val => selectAsync(dbcf_val.data()));
+                    /*const CELULA_FOTOS = dbcf.docs.map(dbcf_val => selectAsync(dbcf_val.data()));
                     await Promise.all(CELULA_FOTOS).then((cf) => {
                         if(cf.tipo_arquivo == 'imagem'){
                             fotos.push(cf);
                         }else if(cf.tipo_arquivo == 'video'){
                             videos.push(cf);
                         }
-                    }).catch(console.log);
-                    /*dbcf.docs.forEach((dbcf_val) => {
+                    }).catch(console.log);*/
+                    dbcf.docs.forEach((dbcf_val) => {
                         if(dbcf_val.data().tipo_arquivo == 'imagem'){
                             fotos.push(dbcf_val.data());
                         }else if(dbcf_val.data().tipo_arquivo == 'video'){
                             videos.push(dbcf_val.data());
                         }
-                    });*/
+                    });
                 })
 
                 /* FIM TESTE DB FOTOS */
