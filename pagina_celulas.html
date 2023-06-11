@@ -76,6 +76,8 @@
     var provider = null;
     var db = null;
 
+    var total_paginas = 0;
+
     function exibirCelula(id){
         let tituloCelula = $("#divCelula" + id + ">.titulo-celula").html();
         let $indicatorHTML = $("#carouselFotosCelula" + id + ">.carousel-indicators").html();
@@ -99,10 +101,30 @@
             $("#aPagPrimeira").addClass("disabled");
         }
 
-        if(pagina < $("[id^=aPag]").size()){
+        if(pagina < $("[id^=aPag]").size() - 2){ // Desconta os botões Anterior e Próximo
             $("#aPagProxima").removeClass("disabled");
         }else{
             $("#aPagProxima").addClass("disabled");
+        }
+    }
+
+    function showPaginaAnterior(){
+        let paginaAtual = $("#listaPaginas>.active").attr("numpagina");
+
+        if(paginaAtual > 0){
+            $("#aPag" + paginaAtual).removeClass("active");
+            $("#aPag" + --paginaAtual).addClass("active");
+            exibirPagina(paginaAtual);
+        }
+    }
+
+    function showProximaPagina(){
+        let paginaAtual = $("#listaPaginas>.active").attr("numpagina");
+
+        if(paginaAtual < total_paginas){
+            $("#aPag" + paginaAtual).removeClass("active");
+            $("#aPag" + ++paginaAtual).addClass("active");
+            exibirPagina(paginaAtual);
         }
     }
 
@@ -110,20 +132,20 @@
         let paginacao = "<nav aria-label='Paginação das células'>";
         paginacao += "<ul class='pagination justify-content-center' id='listaPaginas'>";
         paginacao += "<li class='page-item disabled' id='aPagPrimeira'>";
-        paginacao += "<a class='page-link' href='#' tabindex='-1'>Anterior</a>";
+        paginacao += "<a class='page-link' href='#' tabindex='-1' onclick='showPaginaAnterior()'>Anterior</a>";
         paginacao += "</li>";
 
-        let total_paginas = Math.ceil(celulas.length / 10)
+        total_paginas = Math.ceil(celulas.length / 10);
         console.log("Paginas: " + total_paginas);
 
         for(i = 1; i<=total_paginas; i++){
             paginacao += "<li class='page-item";
             if(i == 1) paginacao += " active";
-            paginacao += "' id='aPag" + i + "'><a class='page-link' href='#' onclick='showPage(" + i + ")'>" + i + "</a></li>";
+            paginacao += "' id='aPag" + i + "' numpagina=" + i + "><a class='page-link' href='#' onclick='showPage(" + i + ")'>" + i + "</a></li>";
         }
 
-        paginacao += "<li class='page-item'>";
-        paginacao += "<a class='page-link' href='#' id='aPagProxima'>Próxima</a>";
+        paginacao += "<li class='page-item' id='aPagProxima'>";
+        paginacao += "<a class='page-link' href='#' onclick='showProximaPagina()'>Próxima</a>";
         paginacao += "</li>";
         paginacao += "</ul>";
         paginacao += "</nav>";
