@@ -193,13 +193,12 @@
             let db_celulas_fotos = await db.collection("celulas_fotos").where("id_celula", "==", id).get();
             let dataCelula = dataCelulas.data().data_celula;
             let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" + dataCelula.split("-")[0];
+            let fotos = [];
+            let videos = [];
 
             await db_celulas_fotos.forEach((data) => {
                 
                 console.log(data.data());
-
-                var fotos = [];
-                var videos = [];
 
                 if(data.data().tipo_arquivo == 'imagem'){
                     fotos.push(data.data());
