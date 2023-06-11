@@ -111,10 +111,8 @@
     function showPaginaAnterior(){
         let paginaAtual = $("#listaPaginas>.active").attr("numpagina");
 
-        if(paginaAtual > 0){
-            $("#aPag" + paginaAtual).removeClass("active");
-            $("#aPag" + --paginaAtual).addClass("active");
-            showPage(paginaAtual);
+        if(paginaAtual > 1){
+            showPage(--paginaAtual);
         }
     }
 
@@ -122,9 +120,7 @@
         let paginaAtual = $("#listaPaginas>.active").attr("numpagina");
 
         if(paginaAtual < total_paginas){
-            $("#aPag" + paginaAtual).removeClass("active");
-            $("#aPag" + ++paginaAtual).addClass("active");
-            showPage(paginaAtual);
+            showPage(++paginaAtual);
         }
     }
 
