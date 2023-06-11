@@ -235,12 +235,12 @@
         };
 
         if(!firebase.apps.length) {
-            await firebase.initializeApp(firebaseConfig);
+            firebase.initializeApp(firebaseConfig);
         }
 
-        auth = await firebase.auth();
+        auth = firebase.auth();
         provider = new firebase.auth.GoogleAuthProvider();
-        db = await firebase.firestore();
+        db = firebase.firestore();
 
         cont_celulas = 0;
     }
