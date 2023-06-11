@@ -209,6 +209,8 @@
                 });
             });
         });
+
+        exibirPagina(1);
     }
 
     //Não é possível usar o onload, pois a página principal já fez o carregamento
@@ -237,5 +239,4 @@
 
     console.log("Carregando células...");
     carregarCelulas(); //Necessário jogar em uma função assíncrona, pelo uso do await
-    exibirPagina(1);
 </script>
