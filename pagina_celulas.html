@@ -182,6 +182,11 @@
     }
 
     async function carregarCelulas(){
+
+        while(db_celulas == null){
+            console.log("Aguardando carregar Database de células");
+        }
+
         await db_celulas.then((dataCelulas) => {
             $("#dCelulas").html("");
 
