@@ -190,7 +190,7 @@
 
     $(function(){
         
-        EventEmitter.listen("CARREGOU-CELULAS", data => console.log(data));
+        EventEmitter.listen("CARREGOU-CELULAS", data => exibirPagina(1));
 
         const firebaseConfig = {
             apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
@@ -245,7 +245,10 @@
                     };
 
                     cont_celulas++;
-                    EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
+
+                    if(cont_celulas > 10){
+                        EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
+                    }
                 });
             });
         });
