@@ -186,7 +186,7 @@
 
         db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
         await db_celulas.forEach(async (dataCelulas) => {
-            console.log(dataCelulas);
+            //console.log(dataCelulas);
             $("#dCelulas").html("");
 
             let id = dataCelulas.data().id;
@@ -198,7 +198,7 @@
 
             await db_celulas_fotos.forEach((data) => {
                 
-                console.log(data.data());
+                //console.log(data.data());
 
                 if(data.data().tipo_arquivo == 'imagem'){
                     fotos.push(data.data());
@@ -259,6 +259,7 @@
             });*/
         });
 
+        exibirPagina(1);
     }
 
     async function carregarFirebase(){
