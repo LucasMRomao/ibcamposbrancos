@@ -203,7 +203,9 @@
 
                 let db_celulas_fotos = db.collection("celulas_fotos").where("id_celula", "==", val_c.id).get();
                 
-                console.log(db_celulas_fotos);
+                db_celulas_fotos.then((dbcf) => {
+                    console.log(dbcf);
+                })
 
                 /* FIM TESTE DB FOTOS */
 
