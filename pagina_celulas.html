@@ -245,10 +245,9 @@
                     };
 
                     cont_celulas++;
+                    EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
                 });
             });
-
-            EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
         });
     });
 
