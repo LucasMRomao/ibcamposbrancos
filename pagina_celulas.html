@@ -87,6 +87,8 @@
     }
 
     function showPage(pagina){
+        console.log("Pagina: " + pagina);
+        console.log("Num Pagina: " + Number(pagina));
         $("#listaPaginas>.active").removeClass("active");
         $("#aPag" + pagina).addClass("active");
         exibirPagina(Number(pagina));
