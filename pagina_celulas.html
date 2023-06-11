@@ -97,13 +97,13 @@
                 
                 celula += "<div class='carousel-inner'>";
                 
-                for(var i in celulas[i].videos){
+                for(var j in celulas[i].videos){
                     celula += "<div class='carousel-item";
-                    if(i == 0) celula += " active";
+                    if(j == 0) celula += " active";
                     celula += "'>";
 
                     celula += "<video controls name='media' style='width: 100%; height: auto;'>";
-                    celula += "<source src='" + celulas[i].videos[i].url_foto  + "'>";
+                    celula += "<source src='" + celulas[i].videos[j].url_foto  + "'>";
                     celula += "</video>";
 
                     celula += "</div>";
@@ -128,9 +128,9 @@
                 celula += "<div id='carouselFotosCelula" + celulas[i].id + "' class='carousel slide' data-ride='carousel'>";
                 celula += "<ol class='carousel-indicators'>";
 
-                for(var i in celulas[i].fotos){
+                for(var j in celulas[i].fotos){
                     celula += "<li data-target='#carouselFotosCelula" + celulas[i].id + "' data-slide-to='";
-                    celula += i + "'";
+                    celula += j + "'";
                     if(i == 0) celula += " class='active'";
                     celula += "></li>";
                 }
@@ -139,12 +139,12 @@
                 
                 celula += "<div class='carousel-inner'>";
                 
-                for(var i in celulas[i].fotos){
+                for(var j in celulas[i].fotos){
                     celula += "<div class='carousel-item";
                     if(i == 0) celula += " active";
                     celula += "'>";
 
-                    celula += "<img style='width: auto' src='" + celulas[i].fotos[i].url_foto + "' class='d-block w-100' alt='...' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirCelula(\"" + celulas[i].id + "\")'>";
+                    celula += "<img style='width: auto' src='" + celulas[i].fotos[j].url_foto + "' class='d-block w-100' alt='...' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirCelula(\"" + celulas[i].id + "\")'>";
 
                     celula += "</div>";
                 }
