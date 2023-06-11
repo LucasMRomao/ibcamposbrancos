@@ -183,7 +183,6 @@
     }
 
     function selectAsync(cod) {
-        console.log(cod);
         return new Promise((res, rej) => {
             res(cod)
         });
@@ -193,6 +192,7 @@
 
         db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
 
+        db_celulas.forEach(val => console.log(val));
         const CELULAS = db_celulas.forEach(val => selectAsync(val));
         Promise.all(CELULAS).then((c) => console.log(c)).catch(console.log);
 
