@@ -15,9 +15,6 @@
 .rodape {
     background-color: #454545;
     padding: 2rem;
-    position: fixed;
-    margin: 0;
-    bottom: 0;
 }
 
 @media (min-width: 576px) {
