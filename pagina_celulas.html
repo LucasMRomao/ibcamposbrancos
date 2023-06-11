@@ -193,6 +193,8 @@
         db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
 
         const CELULAS = db_celulas.forEach(val => selectAsync(val.data()));
+        console.log(CELULAS);
+        console.log(typeof CELULAS);
         Promise.all(CELULAS).then((c) => console.log(c)).catch(console.log);
 
         /*db_celulas.forEach((dataCelulas) => {
