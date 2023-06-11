@@ -192,14 +192,14 @@
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
 
-        await db.collection("celulas").orderBy("data_celula", "desc").get().then(async (dataCelulas) => {
+        await db.collection("celulas").orderBy("data_celula", "desc").get().then((dataCelulas) => {
             $("#dCelulas").html("");
 
-            await dataCelulas.docs.map(async (val) => {
+            dataCelulas.docs.map((val) => {
 
                 let id = val.data().id;
 
-                await db.collection("celulas_fotos").where("id_celula", "==", id).get().then((data) => {
+                db.collection("celulas_fotos").where("id_celula", "==", id).get().then((data) => {
 
                     let dataCelula = val.data().data_celula;
                     let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" +dataCelula.split("-")[0];
