@@ -184,15 +184,15 @@
     async function carregarCelulas(){
 
         db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
-        await db_celulas.then((dataCelulas) => {
+        await db_celulas.forEach((dataCelulas) => {
             $("#dCelulas").html("");
 
             dataCelulas.docs.map(async (val) => {
 
                 let id = val.data().id;
-                let db_celulas_fotos = db.collection("celulas_fotos").where("id_celula", "==", id).get();
+                let db_celulas_fotos = await db.collection("celulas_fotos").where("id_celula", "==", id).get();
 
-                await db_celulas_fotos.then((data) => {
+                await db_celulas_fotos.forEach((data) => {
 
                     let dataCelula = val.data().data_celula;
                     let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" +dataCelula.split("-")[0];
