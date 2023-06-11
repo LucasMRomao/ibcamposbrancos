@@ -60,6 +60,13 @@
     var celulas = [];
     const MAX_CELULAS_POR_PAGINA = 10;
 
+    let db_celulas = null;
+    let cont_celulas = 0;
+
+    var auth = null;
+    var provider = null;
+    var db = null;
+
     function exibirCelula(id){
         let tituloCelula = $("#divCelula" + id + ">.titulo-celula").html();
         let $indicatorHTML = $("#carouselFotosCelula" + id + ">.carousel-indicators").html();
@@ -211,34 +218,35 @@
                 });
             });
         });
+    }
 
-        exibirPagina(1);
+    async function carregarFirebase(){
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
+            authDomain: "igreja-batista-campos-brancos.firebaseapp.com",
+            databaseURL: "https://igreja-batista-campos-brancos-default-rtdb.firebaseio.com",
+            projectId: "igreja-batista-campos-brancos",
+            storageBucket: "igreja-batista-campos-brancos.appspot.com",
+            messagingSenderId: "724470922283",
+            appId: "1:724470922283:web:fcf1eaf1f43df1d48dfe6e",
+            measurementId: "G-WKZFS0PDDY"
+        };
+
+        if(!firebase.apps.length) {
+            await firebase.initializeApp(firebaseConfig);
+        }
+
+        auth = await firebase.auth();
+        provider = new firebase.auth.GoogleAuthProvider();
+        db = await firebase.firestore();
+
+        cont_celulas = 0;
+
+        db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
     }
 
     //Não é possível usar o onload, pois a página principal já fez o carregamento
-    const firebaseConfig = {
-        apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
-        authDomain: "igreja-batista-campos-brancos.firebaseapp.com",
-        databaseURL: "https://igreja-batista-campos-brancos-default-rtdb.firebaseio.com",
-        projectId: "igreja-batista-campos-brancos",
-        storageBucket: "igreja-batista-campos-brancos.appspot.com",
-        messagingSenderId: "724470922283",
-        appId: "1:724470922283:web:fcf1eaf1f43df1d48dfe6e",
-        measurementId: "G-WKZFS0PDDY"
-    };
-
-    if(!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-
-    const auth = firebase.auth();
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const db = firebase.firestore();
-
-    let cont_celulas = 0;
-
-    let db_celulas = db.collection("celulas").orderBy("data_celula", "desc").get();
-
+    carregarFirebase();
     console.log("Carregando células...");
     carregarCelulas(); //Necessário jogar em uma função assíncrona, pelo uso do await
 </script>
