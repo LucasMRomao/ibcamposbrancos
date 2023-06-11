@@ -198,7 +198,7 @@
         const CELULAS = db_celulas.docs.map(val => selectAsync(val.data()));
         Promise.all(CELULAS).then((c) => {
             c.forEach((val_c) => {
-                contador++;
+                console.log(val_c);
             });
         }).finally(() => {
             console.log("CONTADOR: " + contador);
