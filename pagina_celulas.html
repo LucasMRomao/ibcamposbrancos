@@ -203,8 +203,13 @@
 
                 let db_celulas_fotos = db.collection("celulas_fotos").where("id_celula", "==", val_c.id).get();
                 
+                let fotos = [];
+                let videos = [];
+
                 db_celulas_fotos.then((dbcf) => {
-                    console.log(dbcf);
+                    dbcf.docs.forEach((dbcf_val) => {
+                        console.log(dbcf_val);
+                    });
                 })
 
                 /* FIM TESTE DB FOTOS */
@@ -213,8 +218,8 @@
                 id: val_c.id,
                 dataCelula: val_c.data_celula,
                 descricao: val_c.descricao,
-                fotos: [], // Inserir array fotos
-                videos: [] // Inserir array videos
+                fotos: fotos,
+                videos: videos
             };
 
             cont_celulas++;
