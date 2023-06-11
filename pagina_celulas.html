@@ -210,7 +210,7 @@
 
                 db_celulas_fotos.then(async (dbcf) => {
                     const CELULA_FOTOS = dbcf.docs.map(dbcf_val => selectAsync(dbcf_val.data()));
-                    Promise.all(CELULAS_FOTOS).then((cf) => {
+                    Promise.all(CELULA_FOTOS).then((cf) => {
                         if(cf.tipo_arquivo == 'imagem'){
                             fotos.push(cf);
                         }else if(cf.tipo_arquivo == 'video'){
