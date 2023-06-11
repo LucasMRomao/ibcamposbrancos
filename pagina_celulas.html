@@ -246,11 +246,13 @@
 
                     cont_celulas++;
 
-                    if(cont_celulas > 10){
+                    /*if(cont_celulas > 10){
                         EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
-                    }
+                    }*/
                 });
             });
+
+            EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
         });
     });
 
