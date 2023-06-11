@@ -185,7 +185,7 @@
     async function carregarCelulas(){
 
         db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
-        await db_celulas.forEach(async (dataCelulas) => {
+        db_celulas.forEach(async (dataCelulas) => {
             //console.log(dataCelulas);
             $("#dCelulas").html("");
 
@@ -196,7 +196,7 @@
             let fotos = [];
             let videos = [];
 
-            await db_celulas_fotos.forEach((data) => {
+            db_celulas_fotos.forEach((data) => {
                 
                 //console.log(data.data());
 
