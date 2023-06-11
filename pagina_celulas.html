@@ -78,6 +78,10 @@
 
     var total_paginas = 0;
 
+    function formatarData(data){
+        return data.split("-")[2] + "/" + data.split("-")[1] + data.split("-")[0];
+    }
+
     function exibirCelula(id){
         let tituloCelula = $("#divCelula" + id + ">.titulo-celula").html();
         let $indicatorHTML = $("#carouselFotosCelula" + id + ">.carousel-indicators").html();
@@ -165,7 +169,7 @@
             let celula = "";
             celula += "<div id='divCelula" + celulas[i].id + "' class='alert alert-success' style='margin-top: 10px;'>";
             celula += "<h5 class='titulo-celula'>" + celulas[i].descricao + "</h5><br/>";
-            celula += "<span>" + celulas[i].dataCelula + "</span><br/><br/>";
+            celula += "<span>" + formatarData(celulas[i].dataCelula) + "</span><br/><br/>";
 
             console.log("Fotos: " + celulas[i].fotos.length + " || Videos: " + celulas[i].videos.length);
 
