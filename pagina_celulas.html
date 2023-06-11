@@ -57,6 +57,23 @@
     var celulas = [];
     const MAX_CELULAS_POR_PAGINA = 10;
 
+    const EventEmitter = {
+        events: new Map(),
+        listen: (topic, cb) => {
+            const oldEvents = EventEmitter.events.get(topic)
+            if (EventEmitter.events.has(topic)) {
+                return EventEmitter.events.set(topic, [ ...oldEvents, cb ])
+            }
+            return EventEmitter.events.set(topic, [ cb ])
+        },
+        emit: (topic, data) => {
+            const myListeners = EventEmitter.events.get(topic)
+            if (Array.isArray(myListeners) && myListeners.length) {
+                myListeners.forEach(event => event(data))
+            }
+        }
+    }
+
     function exibirCelula(id){
         let tituloCelula = $("#divCelula" + id + ">.titulo-celula").html();
         let $indicatorHTML = $("#carouselFotosCelula" + id + ">.carousel-indicators").html();
@@ -171,8 +188,10 @@
         }
     }
 
-    $(async function(){
+    $(function(){
         
+        EventEmitter.listen("CARREGOU-CELULAS", data => console.log(data));
+
         const firebaseConfig = {
             apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
             authDomain: "igreja-batista-campos-brancos.firebaseapp.com",
@@ -192,7 +211,9 @@
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
 
-        await db.collection("celulas").orderBy("data_celula", "desc").get().then((dataCelulas) => {
+        let cont_celulas = 0;
+
+        db.collection("celulas").orderBy("data_celula", "desc").get().then((dataCelulas) => {
             $("#dCelulas").html("");
 
             dataCelulas.docs.map((val) => {
@@ -224,9 +245,11 @@
                     };
                 });
             });
+
+            cont_celulas++;
         });
 
-        exibirPagina(1);
+        EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
     });
 
 </script>
