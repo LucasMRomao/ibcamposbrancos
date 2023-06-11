@@ -54,6 +54,9 @@
 
 <script type="text/javascript">
 
+    var celulas = [];
+    const MAX_CELULAS_POR_PAGINA = 10;
+
     function exibirCelula(id){
         let tituloCelula = $("#divCelula" + id + ">.titulo-celula").html();
         let $indicatorHTML = $("#carouselFotosCelula" + id + ">.carousel-indicators").html();
@@ -62,6 +65,14 @@
         $("#carouselExibirCelula>.carousel-indicators").html($indicatorHTML);
         $("#carouselExibirCelula>.carousel-inner").html($innerHTML);
         $(".titulo-celula-exibir").html(tituloCelula);
+    }
+
+    function exibirPagina(numPagina){
+        let inicio = (numPagina - 1) * 10;
+        let fim = inicio + 10;
+        if(fim > celulas.lengh) fim = celulas.length;
+
+        console.log(inicio + " - " + fim);
     }
 
     $(function(){
@@ -84,8 +95,6 @@
         const auth = firebase.auth();
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
-
-        var celulas = [];
 
         db.collection("celulas").orderBy("data_celula", "desc").get().then((dataCelulas) => {
             $("#dCelulas").html("");
@@ -110,14 +119,12 @@
                         }
                     }
 
-                    let celula2 = {
+                    celulas.append({
                         dataCelula: dataFormatada,
                         descricao: val.data().descricao,
                         fotos: fotos,
                         videos: videos
-                    }
-
-                    console.log(celula2);
+                    });
 
                     let celula = "";
                     celula += "<div id='divCelula" + id + "' class='alert alert-success' style='margin-top: 10px;'>";
