@@ -18,6 +18,14 @@
                             <div id="dPaginacao">
                                 
                             </div>
+                            <div>
+                                <span>Exibindo resultados: </span>
+                                <span id="sInicioResultados"></span>
+                                <span>-</span>
+                                <span id="sFimResultados"></span>
+                                <span> de </span>
+                                <span id="sTotalResultados"></span>
+                            </div>
                         </div>
                         <div class="col-12">
                             <div id="dCelulas">
@@ -161,6 +169,9 @@
         console.log(inicio + " - " + fim);
 
         $("#dCelulas").html("");
+        $("#sInicioResultados").text(inicio + 1);
+        $("#sFimResultados").text(fim + 1);
+        $("#sTotalResultados").text(celulas.length);
 
         for(var i = inicio; i<=fim; i++){
             console.log("i: " + i);
