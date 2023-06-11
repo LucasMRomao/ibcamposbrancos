@@ -160,7 +160,7 @@
                 
                 for(var j in celulas[i].fotos){
                     celula += "<div class='carousel-item";
-                    if(i == 0) celula += " active";
+                    if(j == 0) celula += " active";
                     celula += "'>";
 
                     celula += "<img style='width: auto' src='" + celulas[i].fotos[j].url_foto + "' class='d-block w-100' alt='...' data-toggle='modal' data-target='#modalExibirCelula' onclick='exibirCelula(\"" + celulas[i].id + "\")'>";
