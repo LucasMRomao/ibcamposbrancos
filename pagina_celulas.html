@@ -69,8 +69,8 @@
 
     function exibirPagina(numPagina){
         let inicio = (numPagina - 1) * 10;
-        let fim = inicio + 10;
-        if(fim > celulas.lengh) fim = celulas.length;
+        let fim = inicio + 9;
+        if(fim > celulas.length) fim = celulas.length;
 
         console.log(inicio + " - " + fim);
     }
