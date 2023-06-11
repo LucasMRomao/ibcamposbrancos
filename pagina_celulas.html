@@ -185,7 +185,7 @@
     async function carregarCelulas(){
 
         db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
-        db_celulas.forEach(async (dataCelulas) => {
+        await db_celulas.forEach(async (dataCelulas) => {
             //console.log(dataCelulas);
             $("#dCelulas").html("");
 
