@@ -208,14 +208,22 @@
                 let fotos = [];
                 let videos = [];
 
-                db_celulas_fotos.then((dbcf) => {
-                    dbcf.docs.forEach((dbcf_val) => {
+                db_celulas_fotos.then(async (dbcf) => {
+                    const CELULA_FOTOS = dbcf.docs.map(dbcf_val => selectAsync(dbcf_val.data()));
+                    Promise.all(CELULAS_FOTOS).then((cf) => {
+                        if(cf.tipo_arquivo == 'imagem'){
+                            fotos.push(cf);
+                        }else if(cf.tipo_arquivo == 'video'){
+                            videos.push(cf);
+                        }
+                    }).catch(console.log);
+                    /*dbcf.docs.forEach((dbcf_val) => {
                         if(dbcf_val.data().tipo_arquivo == 'imagem'){
                             fotos.push(dbcf_val.data());
                         }else if(dbcf_val.data().tipo_arquivo == 'video'){
                             videos.push(dbcf_val.data());
                         }
-                    });
+                    });*/
                 })
 
                 /* FIM TESTE DB FOTOS */
