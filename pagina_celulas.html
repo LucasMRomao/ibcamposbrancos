@@ -196,6 +196,7 @@
 
         let db_celulas = db.collection("celulas").orderBy("data_celula", "desc").get();
 
+        console.log("Carregando células");
         await db_celulas.then((dataCelulas) => {
             $("#dCelulas").html("");
 
