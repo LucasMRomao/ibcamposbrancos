@@ -57,23 +57,6 @@
     var celulas = [];
     const MAX_CELULAS_POR_PAGINA = 10;
 
-    const EventEmitter = {
-        events: new Map(),
-        listen: (topic, cb) => {
-            const oldEvents = EventEmitter.events.get(topic)
-            if (EventEmitter.events.has(topic)) {
-                return EventEmitter.events.set(topic, [ ...oldEvents, cb ])
-            }
-            return EventEmitter.events.set(topic, [ cb ])
-        },
-        emit: (topic, data) => {
-            const myListeners = EventEmitter.events.get(topic)
-            if (Array.isArray(myListeners) && myListeners.length) {
-                myListeners.forEach(event => event(data))
-            }
-        }
-    }
-
     function exibirCelula(id){
         let tituloCelula = $("#divCelula" + id + ">.titulo-celula").html();
         let $indicatorHTML = $("#carouselFotosCelula" + id + ">.carousel-indicators").html();
@@ -188,10 +171,8 @@
         }
     }
 
-    $(function(){
+    $(async () => {
         
-        EventEmitter.listen("CARREGOU-CELULAS", data => exibirPagina(1));
-
         const firebaseConfig = {
             apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
             authDomain: "igreja-batista-campos-brancos.firebaseapp.com",
@@ -213,14 +194,17 @@
 
         let cont_celulas = 0;
 
-        db.collection("celulas").orderBy("data_celula", "desc").get().then((dataCelulas) => {
+        let db_celulas = db.collection("celulas").orderBy("data_celula", "desc").get();
+
+        await db_celulas.then((dataCelulas) => {
             $("#dCelulas").html("");
 
-            dataCelulas.docs.map((val) => {
+            dataCelulas.docs.map(async (val) => {
 
                 let id = val.data().id;
+                let db_celulas_fotos = db.collection("celulas_fotos").where("id_celula", "==", id).get();
 
-                db.collection("celulas_fotos").where("id_celula", "==", id).get().then((data) => {
+                await db_celulas_fotos.then((data) => {
 
                     let dataCelula = val.data().data_celula;
                     let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" +dataCelula.split("-")[0];
@@ -245,14 +229,9 @@
                     };
 
                     cont_celulas++;
-
-                    /*if(cont_celulas > 10){
-                        EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
-                    }*/
                 });
             });
-
-            EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
+            exibirPagina(1);
         });
     });
 
