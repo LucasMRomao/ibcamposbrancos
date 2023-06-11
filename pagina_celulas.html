@@ -88,12 +88,14 @@
 
         for(var i = inicio; i<=fim; i++){
             console.log("i: " + i);
-            console.log(celulas[i]);
-            console.log(celulas[i].id);
+            //console.log(celulas[i]);
+            //console.log(celulas[i].id);
             let celula = "";
             celula += "<div id='divCelula" + celulas[i].id + "' class='alert alert-success' style='margin-top: 10px;'>";
             celula += "<h5 class='titulo-celula'>" + celulas[i].descricao + "</h5><br/>";
             celula += "<span>" + celulas[i].dataCelula + "</span><br/><br/>";
+
+            console.log("Fotos: " + celulas[i].fotos.length + " || Videos: " + celulas[i].videos.length);
 
             if(celulas[i].videos.length > 0){
                 celula += "<div id='carouselVideosCelula" + celulas[i].id + "' class='carousel slide' data-ride='carousel'>";
