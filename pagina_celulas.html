@@ -192,7 +192,7 @@
 
             await db_celulas_fotos.forEach((data) => {
                 
-                console.log(data);
+                console.log(data.data());
 
                 let dataCelula = dataCelulas.data().data_celula;
                 let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" + dataCelula.split("-")[0];
