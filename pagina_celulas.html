@@ -191,6 +191,8 @@
             let db_celulas_fotos = await db.collection("celulas_fotos").where("id_celula", "==", id).get();
 
             await db_celulas_fotos.forEach((data) => {
+                
+                console.log(data);
 
                 let dataCelula = dataCelulas.data().data_celula;
                 let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" + dataCelula.split("-")[0];
