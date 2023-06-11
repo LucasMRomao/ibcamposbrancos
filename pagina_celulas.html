@@ -82,14 +82,14 @@
         let fim = inicio + 9;
         if(fim > celulas.length) fim = celulas.length;
 
-        console.log(inicio + " - " + fim);
+        //console.log(inicio + " - " + fim);
 
         $("#dCelulas").html("");
 
         for(var i = inicio; i<=fim; i++){
-            console.log("i: " + i);
-            console.log(celulas[i]);
-            console.log(celulas[i].id);
+            // console.log("i: " + i);
+            // console.log(celulas[i]);
+            // console.log(celulas[i].id);
             let celula = "";
             celula += "<div id='divCelula" + celulas[i].id + "' class='alert alert-success' style='margin-top: 10px;'>";
             celula += "<h5 class='titulo-celula'>" + celulas[i].descricao + "</h5><br/>";
@@ -185,7 +185,10 @@
     async function carregarCelulas(){
 
         db_celulas = await db.collection("celulas").orderBy("data_celula", "desc").get();
+        let contador = 0;
         await db_celulas.forEach(async (dataCelulas) => {
+            console.log(dataCelulas);
+            contador++;
             $("#dCelulas").html("");
 
             let id = dataCelulas.data().id;
@@ -193,7 +196,7 @@
 
             await db_celulas_fotos.forEach((data) => {
                 
-                console.log(data.data());
+                //console.log(data.data());
 
                 let dataCelula = dataCelulas.data().data_celula;
                 let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" + dataCelula.split("-")[0];
@@ -261,6 +264,7 @@
         });
 
         exibirPagina(1);
+        console.log(contador);
     }
 
     async function carregarFirebase(){
@@ -288,6 +292,6 @@
 
     //Não é possível usar o onload, pois a página principal já fez o carregamento
     carregarFirebase();
-    console.log("Carregando células...");
+    //console.log("Carregando células...");
     carregarCelulas(); //Necessário jogar em uma função assíncrona, pelo uso do await
 </script>
