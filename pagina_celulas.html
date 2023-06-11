@@ -197,7 +197,14 @@
         console.log(db_celulas);
         const CELULAS = db_celulas.docs.map(val => selectAsync(val.data()));
         Promise.all(CELULAS).then((c) => {
-            c.forEach((val_c) => {
+            c.forEach(async (val_c) => {
+
+                /* INICIO TESTE DB FOTOS*/
+
+                let db_celulas_fotos = await db.collection("celulas_fotos").where("id_celula", "==", val_c.id).get();
+                
+                /* FIM TESTE DB FOTOS */
+
                 celulas[celulas.length] = {
                 id: val_c.id,
                 dataCelula: val_c.data_celula,
