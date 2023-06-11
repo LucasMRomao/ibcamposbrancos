@@ -171,7 +171,7 @@
         }
     }
 
-    $(function(){
+    $(async function(){
         
         const firebaseConfig = {
             apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
@@ -192,14 +192,14 @@
         const provider = new firebase.auth.GoogleAuthProvider();
         const db = firebase.firestore();
 
-        db.collection("celulas").orderBy("data_celula", "desc").get().then((dataCelulas) => {
+        await db.collection("celulas").orderBy("data_celula", "desc").get().then(async (dataCelulas) => {
             $("#dCelulas").html("");
 
-            dataCelulas.docs.map((val) => {
+            await dataCelulas.docs.map(async (val) => {
 
                 let id = val.data().id;
 
-                db.collection("celulas_fotos").where("id_celula", "==", id).get().then((data) => {
+                await db.collection("celulas_fotos").where("id_celula", "==", id).get().then((data) => {
 
                     let dataCelula = val.data().data_celula;
                     let dataFormatada = dataCelula.split("-")[2] + "/" + dataCelula.split("-")[1] + "/" +dataCelula.split("-")[0];
