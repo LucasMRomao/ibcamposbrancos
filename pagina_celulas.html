@@ -86,10 +86,28 @@
         $(".titulo-celula-exibir").html(tituloCelula);
     }
 
+    function showPage(pagina){
+        $("#listaPaginas>.active").removeClass("active");
+        $("#aPag" + pagina).addClass("active");
+        exibirPagina(pagina);
+
+        if(pagina > 1){
+            $("#aPagPrimeira").removeClass("disabled");
+        }else{
+            $("#aPagPrimeira").addClass("disabled");
+        }
+
+        if(pagina < $("[id^=aPag]").size()){
+            $("#aPagProxima").removeClass("disabled");
+        }else{
+            $("#aPagProxima").addClass("disabled");
+        }
+    }
+
     function montarPaginacao(){
         let paginacao = "<nav aria-label='Paginação das células'>";
-        paginacao += "<ul class='pagination justify-content-center'>";
-        paginacao += "<li class='page-item disabled'>";
+        paginacao += "<ul class='pagination justify-content-center' id='listaPaginas'>";
+        paginacao += "<li class='page-item disabled' id='aPagPrimeira'>";
         paginacao += "<a class='page-link' href='#' tabindex='-1'>Anterior</a>";
         paginacao += "</li>";
 
@@ -98,11 +116,11 @@
         for(i = 1; i<=total_paginas; i++){
             paginacao += "<li class='page-item";
             if(i == 1) paginacao += " active";
-            paginacao += "'><a class='page-link' href='#'>" + i + "</a></li>";
+            paginacao += "'><a class='page-link' href='#' id='aPag" + i + "' onclick='showPage(\"i\")'>" + i + "</a></li>";
         }
 
         paginacao += "<li class='page-item'>";
-        paginacao += "<a class='page-link' href='#'>Próxima</a>";
+        paginacao += "<a class='page-link' href='#' id='aPagProxima'>Próxima</a>";
         paginacao += "</li>";
         paginacao += "</ul>";
         paginacao += "</nav>";
@@ -113,7 +131,7 @@
     function exibirPagina(numPagina){
         let inicio = (numPagina - 1) * 10;
         let fim = inicio + 9;
-        if(fim > celulas.length) fim = celulas.length;
+        if(fim > celulas.length - 1) fim = celulas.length - 1;
 
         console.log(inicio + " - " + fim);
 
