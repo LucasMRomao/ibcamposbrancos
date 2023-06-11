@@ -114,11 +114,12 @@
         paginacao += "</li>";
 
         let total_paginas = Math.round(celulas.length / 10)
+        console.log("Paginas: " + total_paginas);
 
         for(i = 1; i<=total_paginas; i++){
             paginacao += "<li class='page-item";
             if(i == 1) paginacao += " active";
-            paginacao += "'><a class='page-link' href='#' id='aPag" + i + "' onclick='showPage(" + i + ")'>" + i + "</a></li>";
+            paginacao += "' id='aPag" + i + "'><a class='page-link' href='#' onclick='showPage(" + i + ")'>" + i + "</a></li>";
         }
 
         paginacao += "<li class='page-item'>";
