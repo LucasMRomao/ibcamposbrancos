@@ -243,10 +243,10 @@
                         fotos: fotos,
                         videos: videos
                     };
+
+                    cont_celulas++;
                 });
             });
-
-            cont_celulas++;
         });
 
         EventEmitter.emit("CARREGOU-CELULAS", "Total: " + cont_celulas);
