@@ -17,16 +17,6 @@
     padding: 2rem;
 }
 
-@media (min-width: 576px) {
-    .section {
-        height: calc(100vh - 300px);
-        overflow: auto;
-    }
-    .rodape {
-        min-height: 236px;
-    }
-}
-
 .link_1{
     color: black;
 }
