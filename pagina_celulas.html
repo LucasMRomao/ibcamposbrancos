@@ -18,7 +18,7 @@
                             <div id="dPaginacao">
                                 
                             </div>
-                            <div>
+                            <div id="dTotalResultados" style="display: none;">
                                 <span>Exibindo resultados: </span>
                                 <span id="sInicioResultados"></span>
                                 <span>-</span>
@@ -29,6 +29,8 @@
                         </div>
                         <div class="col-12">
                             <div id="dCelulas">
+                                Carregando células<br/>
+                                Aguarde...
                             </div>
                         </div>
                     </div>
@@ -330,6 +332,7 @@
             setTimeout(() => {
                 montarPaginacao();
                 exibirPagina(1);
+                $("#dTotalResultados").show();
             }, 1500);
         }).catch(console.log);
 
