@@ -86,8 +86,6 @@
 
     var total_paginas = 0;
 
-    var exibiu = false;
-
     function formatarData(data){
         return data.split("-")[2] + "/" + data.split("-")[1] + "/" + data.split("-")[0];
     }
@@ -327,14 +325,12 @@
 
             cont_celulas++;
 
-            if((cont_celulas >= 10 || cont_celulas == db_celulas.size) && !exibiu){
-                exibirPagina(1);
-                exibiu = true;
-            }
-
             });
         }).finally(() => {
-            montarPaginacao();
+            setTimeout(() => {
+                montarPaginacao();
+                exibirPagina(1);
+            }, 1500);
         }).catch(console.log);
 
         /*db_celulas.forEach((dataCelulas) => {
