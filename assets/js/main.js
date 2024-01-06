@@ -14,6 +14,10 @@ $(function(){
     $("#lPedido").click(() => loadPage("pedido_oracao.html", "Pedido"));
     $("#lTestemunho").click(() => loadPage("testemunho.html", "Testemunho"));
 
+    $("#lFotos").click(() => {
+        $(".submenu-fotos").is(":visible") ? $(".submenu-fotos").hide() : $(".submenu-fotos").show();
+    });
+
     const firebaseConfig = {
         apiKey: "AIzaSyC_Lz-HIXHPz90MM_8vERto3dUK1rGts44",
         authDomain: "igreja-batista-campos-brancos.firebaseapp.com",
